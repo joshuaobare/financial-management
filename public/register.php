@@ -4,18 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/register.css">
     <title>Register</title>
 </head>
 
 <body>
-    <form action="">
-        <div><input type="text"><label for="">First Name</label></div>
-        <div><input type="text"><label for="">Last Name</label></div>
-        <div><input type="date"><label for="">Date of Birth</label></div>
-        <div><input type="email"><label for="">Email</label></div>
-        <div><input type="password"><label for="">Password</label></div>
-        <div><input type="password"><label for="">Confirm Password</label></div>
-    </form>
+    <main class="register-main">
+        <form action="" class="register-form">
+            <div class="register-form-item"><label for="">First Name</label><input type="text"
+                    class="register-form-item-input"></div>
+            <div class="register-form-item"><label for="">Last Name</label><input type="text"
+                    class="register-form-item-input"></div>
+            <div class="register-form-item"><label for="">Date of Birth</label><input type="date"
+                    class="register-form-item-input"></div>
+            <div class="register-form-item"><label for="">Email</label><input type="email"
+                    class="register-form-item-input">
+            </div>
+            <div class="register-form-item"><label for="">Password</label><input type="password"
+                    class="register-form-item-input"></div>
+            <div class="register-form-item"><label for="">Confirm Password</label><input type="password"
+                    class="register-form-item-input"></div>
+            <button>Submit</button>
+        </form>
+    </main>
+
 </body>
 
 </html>
