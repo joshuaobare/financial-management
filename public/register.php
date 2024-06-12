@@ -15,14 +15,10 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
                                 ":date_of_birth" => $_POST["date_of_birth"]
                         )
                 );
-                echo "User added successfully";
-
-        } catch (Exception $e) {
-                //throw $th;
-                echo "Error has occurred: $e";
+        } catch (PDOException $e) {
+                echo "An error has occurred: " . $e->getMessage() . "";
         }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +33,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
 
 <body>
         <main class="register-main">
-                <form action="#" class="register-form">
+                <form action="#" class="register-form" method="post">
                         <div class="register-form-item"><label for="first_name">First Name</label><input type="text"
                                         class="register-form-item-input" name="first_name" id="first_name"></div>
                         <div class="register-form-item"><label for="last_name">Last Name</label><input type="text"
