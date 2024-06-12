@@ -29,6 +29,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/register.css" />
+    <script src="../scripts/register.js" defer></script>
     <title>Register</title>
   </head>
 
@@ -44,7 +45,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               name="first_name"
               id="first_name"
             />
-            <span class="error-message">Field cannot be empty!</span>
+            <span class="error-message" id="first_name_error">Field cannot be empty!</span>
           </div>
         </div>
         <div class="register-form-item">
@@ -56,7 +57,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               name="last_name"
               id="last_name"
             />
-            <span class="error-message">Field cannot be empty!</span>
+            <span class="error-message" id="last_name_error">Field cannot be empty!</span>
           </div>
         </div>
         <div class="register-form-item">
@@ -67,7 +68,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="date_of_birth"
               id="date_of_birth"
-            /><span class="error-message">Field cannot be empty!</span>
+            /><span class="error-message" id="date_of_birth_error">Field cannot be empty!</span>
           </div>
         </div>
         <div class="register-form-item">
@@ -79,7 +80,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               name="email"
               id="email"
             />
-            <span class="error-message"></span>
+            <span class="error-message" id="email_error"></span>
           </div>
         </div>
         <div class="register-form-item">
@@ -91,7 +92,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               name="password"
               id="password"
             />
-            <span class="error-message"></span>
+            <span class="error-message" id="password_error"></span>
           </div>
         </div>
         <div class="register-form-item">
@@ -103,7 +104,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               name="confirm_password"
               id="confirm_password"
             />
-            <span class="error-message"></span>
+            <span class="error-message" id="confirm_password_error"></span>
           </div>
         </div>
         <button>Submit</button>
