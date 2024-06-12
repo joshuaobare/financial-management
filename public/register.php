@@ -28,14 +28,14 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/register.css" />
-    <script src="../scripts/register.js" defer></script>
+    <link rel="stylesheet" href="../styles/register.css" />  
+    <script src="../dist/register.js" defer></script>  
     <title>Register</title>
   </head>
 
   <body>
     <main class="register-main">
-      <form action="#" class="register-form" method="post">
+      <form action="#" class="register-form" id="register-form" method="post" novalidate>
         <div class="register-form-item">
           <label for="first_name">First Name</label>
           <div class="register-form-input-cont">
