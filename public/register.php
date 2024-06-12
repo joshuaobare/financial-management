@@ -1,3 +1,30 @@
+<?php
+include_once ("../config/pdo.php");
+
+if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_POST["date_of_birth"])) && (isset($_POST["email"])) && (isset($_POST["password"]))) {
+
+        try {
+                $sql = "INSERT INTO USERS (first_name, last_name, date_of_birth, email, password) VALUES ( :first_name, :last_name, :date_of_birth, :email, :password)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(
+                        array(
+                                ":first_name" => $_POST["first_name"],
+                                ":last_name" => $_POST["last_name"],
+                                ":email" => $_POST["email"],
+                                ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
+                                ":date_of_birth" => $_POST["date_of_birth"]
+                        )
+                );
+                echo "User added successfully";
+
+        } catch (Exception $e) {
+                //throw $th;
+                echo "Error has occurred: $e";
+        }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +37,7 @@
 
 <body>
         <main class="register-main">
-                <form action="" class="register-form">
+                <form action="#" class="register-form">
                         <div class="register-form-item"><label for="first_name">First Name</label><input type="text"
                                         class="register-form-item-input" name="first_name" id="first_name"></div>
                         <div class="register-form-item"><label for="last_name">Last Name</label><input type="text"

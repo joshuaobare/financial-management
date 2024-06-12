@@ -1,4 +1,5 @@
 create database financial_management;
+
 use financial_management;
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -6,7 +7,7 @@ CREATE TABLE users (
     last_name VARCHAR(50) NOT NULL UNIQUE,
     date_of_birth DATE NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
