@@ -19,3 +19,8 @@ button {
   transition: border-color 0.25s;
   color: white;
 }
+
+.error-message {
+  font-size: 0.75rem;
+  color: #cc0000;
+}

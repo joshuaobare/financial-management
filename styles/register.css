@@ -14,8 +14,14 @@
 .register-form-item {
   display: flex;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .register-form-item > label {
-  width: 100px;
+  width: 150px;
+}
+
+.register-form-input-cont {
+  display: flex;
+  flex-direction: column;
 }
