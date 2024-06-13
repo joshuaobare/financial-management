@@ -1,16 +1,23 @@
 <?php
 include_once ("../config/pdo.php");
 
-if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_POST["date_of_birth"])) && (isset($_POST["email"])) && (isset($_POST["password"]))) {
+function validate_input($data){
+  $data = trim($data);
+  $data = htmlspecialchars($data);
+  $data = stripslashes($data);  
+  return $data;
 
+}
+
+if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_POST["date_of_birth"])) && (isset($_POST["email"])) && (isset($_POST["password"]))) {
         try {
                 $sql = "INSERT INTO USERS (first_name, last_name, date_of_birth, email, password) VALUES ( :first_name, :last_name, :date_of_birth, :email, :password)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute(
                         array(
-                                ":first_name" => $_POST["first_name"],
-                                ":last_name" => $_POST["last_name"],
-                                ":email" => $_POST["email"],
+                                ":first_name" => validate_input($_POST["first_name"]),
+                                ":last_name" => validate_input($_POST["last_name"]),
+                                ":email" => validate_input($_POST["email"]),
                                 ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
                                 ":date_of_birth" => $_POST["date_of_birth"]
                         )
@@ -20,7 +27,6 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
         }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
