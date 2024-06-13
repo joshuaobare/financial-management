@@ -46,7 +46,18 @@ const inputErrorMap = {
   confirm_password: confirm_password_error,
   date_of_birth: date_of_birth_error,
 };
-0;
+
+// The minimum birthdate is set to 18 years ago
+const currentDate = new Date();
+date_of_birth.max = new Date(
+  currentDate.getFullYear() - 18,
+  currentDate.getMonth(),
+  currentDate.getDate()
+)
+  .toISOString()
+  .split("T")[0];
+console.log(date_of_birth.max);
+
 const displayError = (node: HTMLElement) => {
   if (node === email) {
     if (email.validity.valueMissing) {
@@ -68,13 +79,13 @@ const displayError = (node: HTMLElement) => {
     }
   } else if (node === date_of_birth) {
     if (date_of_birth.validity.valueMissing) {
-      last_name_error!.textContent = "Invalid date";
+      date_of_birth_error!.textContent = "Invalid date";
     }
   } else if (node === password) {
-    if (last_name.validity.valueMissing) {
-      last_name_error!.textContent = "Password cannot be blank";
-    } else if (last_name.validity.tooShort) {
-      last_name_error!.textContent = "Password too short";
+    if (password.validity.valueMissing) {
+      password_error!.textContent = "Password cannot be blank";
+    } else if (password.validity.tooShort) {
+      password_error!.textContent = "Password too short";
     }
   } else if (node === confirm_password) {
   }

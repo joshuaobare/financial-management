@@ -20,4 +20,5 @@ declare const inputErrorMap: {
     confirm_password: HTMLElement | null;
     date_of_birth: HTMLElement | null;
 };
+declare const currentDate: Date;
 declare const displayError: (node: HTMLElement) => void;
