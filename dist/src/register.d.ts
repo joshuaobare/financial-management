@@ -12,3 +12,4 @@ declare const password: HTMLInputElement;
 declare const password_error: HTMLElement | null;
 declare const confirm_password: HTMLInputElement;
 declare const confirm_password_error: HTMLElement | null;
+declare const displayError: (node: HTMLElement) => void;

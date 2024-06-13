@@ -23,4 +23,5 @@ button {
 .error-message {
   font-size: 0.75rem;
   color: #cc0000;
+  height: 1rem;
 }

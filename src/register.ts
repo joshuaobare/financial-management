@@ -31,8 +31,21 @@ const confirm_password_error: HTMLElement | null = document.getElementById(
   "confirm_password_error"
 );
 
+const displayError = (node: HTMLElement) => {
+  if (node == email) {
+    if (email.validity.valueMissing) {
+      email_error!.textContent = "Email address is required";
+    } else if (email.validity.typeMismatch) {
+      email_error!.textContent = "Valid email address is required";
+    }
+  }
+};
+
 email?.addEventListener("input", (e: Event) => {
+  // if valid, remove any error messages, else display error message
   if (email.validity.valid) {
     email_error!.textContent = "";
+  } else {
+    displayError(email);
   }
 });
