@@ -44,6 +44,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="first_name"
               id="first_name"
+              required              
             />
             <span class="error-message" id="first_name_error">Field cannot be empty!</span>
           </div>
@@ -56,6 +57,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="last_name"
               id="last_name"
+              required
             />
             <span class="error-message" id="last_name_error">Field cannot be empty!</span>
           </div>
@@ -68,6 +70,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="date_of_birth"
               id="date_of_birth"
+              required
             /><span class="error-message" id="date_of_birth_error">Field cannot be empty!</span>
           </div>
         </div>
@@ -79,6 +82,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="email"
               id="email"
+              required
             />
             <span class="error-message" id="email_error"></span>
           </div>
@@ -91,6 +95,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="password"
               id="password"
+              required
             />
             <span class="error-message" id="password_error"></span>
           </div>
@@ -103,6 +108,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               class="register-form-item-input"
               name="confirm_password"
               id="confirm_password"
+              required
             />
             <span class="error-message" id="confirm_password_error"></span>
           </div>

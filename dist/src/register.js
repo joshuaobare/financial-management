@@ -1,6 +1,9 @@
 const inputs = document.querySelectorAll("input");
-const form = document.getElementById("#register-form");
-inputs.forEach((input) => {
-    input.addEventListener("change", (e) => { });
-});
+const form = document.getElementById("register-form");
+const first_name = document.getElementById("first_name");
+const last_name = document.getElementById("last_name");
+const email = document.getElementById("email");
+const date_of_birth = document.getElementById("date_of_birth");
+const password = document.getElementById("password");
+const confirm_password = document.getElementById("confirm_password");
 //# sourceMappingURL=register.js.map
