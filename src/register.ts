@@ -46,14 +46,37 @@ const inputErrorMap = {
   confirm_password: confirm_password_error,
   date_of_birth: date_of_birth_error,
 };
-
+0;
 const displayError = (node: HTMLElement) => {
-  if (node == email) {
+  if (node === email) {
     if (email.validity.valueMissing) {
       email_error!.textContent = "Email address is required";
     } else if (email.validity.typeMismatch) {
       email_error!.textContent = "Valid email address is required";
     }
+  } else if (node === first_name) {
+    if (first_name.validity.valueMissing) {
+      first_name_error!.textContent = "First name cannot be blank";
+    } else if (first_name.validity.tooShort) {
+      first_name_error!.textContent = "First name too short";
+    }
+  } else if (node === last_name) {
+    if (last_name.validity.valueMissing) {
+      last_name_error!.textContent = "Last name cannot be blank";
+    } else if (last_name.validity.tooShort) {
+      last_name_error!.textContent = "Last name too short";
+    }
+  } else if (node === date_of_birth) {
+    if (date_of_birth.validity.valueMissing) {
+      last_name_error!.textContent = "Invalid date";
+    }
+  } else if (node === password) {
+    if (last_name.validity.valueMissing) {
+      last_name_error!.textContent = "Password cannot be blank";
+    } else if (last_name.validity.tooShort) {
+      last_name_error!.textContent = "Password too short";
+    }
+  } else if (node === confirm_password) {
   }
 };
 
@@ -62,7 +85,8 @@ inputs.forEach((input: HTMLInputElement) => {
   input?.addEventListener("input", (e: Event) => {
     // if valid, remove any error messages, else display error message
     if (input.validity.valid) {
-      inputErrorMap.input!.textContent = "";
+      // the corresponding errorNode is retrieved and emptied
+      inputErrorMap[input.id]!.textContent = "";
     } else {
       displayError(input);
     }
