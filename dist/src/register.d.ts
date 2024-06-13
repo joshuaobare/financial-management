@@ -1,4 +1,3 @@
-declare const inputs: NodeListOf<HTMLInputElement>;
 declare const form: HTMLElement | null;
 declare const first_name: HTMLInputElement;
 declare const first_name_error: HTMLElement | null;
@@ -12,4 +11,13 @@ declare const password: HTMLInputElement;
 declare const password_error: HTMLElement | null;
 declare const confirm_password: HTMLInputElement;
 declare const confirm_password_error: HTMLElement | null;
+declare const inputs: HTMLInputElement[];
+declare const inputErrorMap: {
+    email: HTMLElement | null;
+    first_name: HTMLElement | null;
+    last_name: HTMLElement | null;
+    password: HTMLElement | null;
+    confirm_password: HTMLElement | null;
+    date_of_birth: HTMLElement | null;
+};
 declare const displayError: (node: HTMLElement) => void;

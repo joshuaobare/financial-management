@@ -1,4 +1,3 @@
-const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input");
 const form: HTMLElement | null = document.getElementById("register-form");
 const first_name: HTMLInputElement = <HTMLInputElement>(
   document.getElementById("first_name")
@@ -30,6 +29,23 @@ const confirm_password: HTMLInputElement = <HTMLInputElement>(
 const confirm_password_error: HTMLElement | null = document.getElementById(
   "confirm_password_error"
 );
+const inputs: HTMLInputElement[] = [
+  first_name,
+  last_name,
+  email,
+  password,
+  confirm_password,
+  date_of_birth,
+];
+
+const inputErrorMap = {
+  email: email_error,
+  first_name: first_name_error,
+  last_name: last_name_error,
+  password: password_error,
+  confirm_password: confirm_password_error,
+  date_of_birth: date_of_birth_error,
+};
 
 const displayError = (node: HTMLElement) => {
   if (node == email) {
@@ -41,11 +57,14 @@ const displayError = (node: HTMLElement) => {
   }
 };
 
-email?.addEventListener("input", (e: Event) => {
-  // if valid, remove any error messages, else display error message
-  if (email.validity.valid) {
-    email_error!.textContent = "";
-  } else {
-    displayError(email);
-  }
+// An eventListener is added to all inputs at once rather than each individually
+inputs.forEach((input: HTMLInputElement) => {
+  input?.addEventListener("input", (e: Event) => {
+    // if valid, remove any error messages, else display error message
+    if (input.validity.valid) {
+      inputErrorMap.input!.textContent = "";
+    } else {
+      displayError(input);
+    }
+  });
 });
