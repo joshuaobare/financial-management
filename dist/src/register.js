@@ -88,11 +88,17 @@ inputs.forEach((input) => {
     });
 });
 confirm_password.addEventListener("input", (e) => {
-    if (password.textContent !== confirm_password.textContent) {
+    console.log(password.textContent, confirm_password.textContent);
+    if (password.value !== confirm_password.value) {
         displayError(password);
         displayError(confirm_password);
     }
     else {
+        confirm_password_error.textContent = "";
+    }
+});
+password.addEventListener("input", (e) => {
+    if (password.value === confirm_password.value) {
         confirm_password_error.textContent = "";
     }
 });
