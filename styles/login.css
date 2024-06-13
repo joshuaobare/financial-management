@@ -23,3 +23,15 @@
   display: flex;
   flex-direction: column;
 }
+.login-error,
+.login-success {
+  font-size: 0.75rem;
+
+  height: 1rem;
+}
+.login-error {
+  color: #cc0000;
+}
+.login-success {
+  color: #14a44d;
+}
