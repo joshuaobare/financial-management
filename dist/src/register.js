@@ -72,6 +72,9 @@ const displayError = (node) => {
     }
     else if (node === confirm_password) {
         confirm_password_error.textContent = "Passwords must match!";
+        if (confirm_password.validity.valueMissing) {
+            confirm_password_error.textContent = "Field cannot be blank!";
+        }
     }
 };
 // An eventListener is added to all inputs at once rather than each individually
@@ -88,7 +91,6 @@ inputs.forEach((input) => {
     });
 });
 confirm_password.addEventListener("input", (e) => {
-    console.log(password.textContent, confirm_password.textContent);
     if (password.value !== confirm_password.value) {
         displayError(password);
         displayError(confirm_password);
@@ -100,6 +102,38 @@ confirm_password.addEventListener("input", (e) => {
 password.addEventListener("input", (e) => {
     if (password.value === confirm_password.value) {
         confirm_password_error.textContent = "";
+    }
+});
+// An event listener on form submission to display errors
+form === null || form === void 0 ? void 0 : form.addEventListener("submit", (e) => {
+    // If any field is invalid, an error message is displayed and submission is blocked
+    if (!first_name.validity.valid) {
+        displayError(first_name);
+        e.preventDefault();
+    }
+    if (!last_name.validity.valid) {
+        displayError(last_name);
+        e.preventDefault();
+    }
+    if (!email.validity.valid) {
+        displayError(email);
+        e.preventDefault();
+    }
+    if (!password.validity.valid) {
+        displayError(password);
+        e.preventDefault();
+    }
+    if (!date_of_birth.validity.valid) {
+        displayError(date_of_birth);
+        e.preventDefault();
+    }
+    if (!confirm_password.validity.valid) {
+        displayError(confirm_password);
+        e.preventDefault();
+    }
+    if (password.value !== confirm_password.value) {
+        displayError(confirm_password);
+        e.preventDefault();
     }
 });
 //# sourceMappingURL=register.js.map

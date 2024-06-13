@@ -47,7 +47,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               minlength="3"
               required              
             />
-            <span class="error-message" id="first_name_error">Field cannot be empty!</span>
+            <span class="error-message" id="first_name_error"></span>
           </div>
         </div>
         <div class="register-form-item">
@@ -61,7 +61,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               minlength="3"
               required
             />
-            <span class="error-message" id="last_name_error">Field cannot be empty!</span>
+            <span class="error-message" id="last_name_error"></span>
           </div>
         </div>
         <div class="register-form-item">
@@ -73,7 +73,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
               name="date_of_birth"
               id="date_of_birth"              
               required
-            /><span class="error-message" id="date_of_birth_error">Field cannot be empty!</span>
+            /><span class="error-message" id="date_of_birth_error"></span>
           </div>
         </div>
         <div class="register-form-item">
