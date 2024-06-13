@@ -24,4 +24,6 @@ button {
   font-size: 0.75rem;
   color: #cc0000;
   height: 1rem;
+  position: absolute;
+  margin-top: 1.2rem;
 }

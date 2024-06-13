@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
     <title>Login</title>
 </head>
 <body>
-    <main>
-        <form action="">
+    <main class="login-main">
+        <form action="" class="login-form">
         <div class="login-form-item">
           <label for="email">Email</label>
           <div class="login-form-input-cont">
