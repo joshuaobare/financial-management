@@ -9,6 +9,7 @@
     />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/home.css" />
+    <script src="../dist/src/index.js" type="module" defer></script>  
     <title>Home</title>
   </head>
   <body>
@@ -52,7 +53,7 @@
             </div>
           </div>
         </nav>
-        <div></div>
+        <div id="container"></div>
       </main>
     </div>
   </body>
