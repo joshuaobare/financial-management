@@ -7,7 +7,16 @@
 </head>
 <body>
     <main class="home-main">
-        <nav></nav>
+        <nav>
+            <div>
+                <div>Home</div>
+                <div>Budgets</div>
+                <div>Goals</div>
+                <div>Investments</div>
+                <div>Transactions</div>
+                <div>Spending</div>
+            </div>
+        </nav>
         <div></div>
     </main>
 </body>
