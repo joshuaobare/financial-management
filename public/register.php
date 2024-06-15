@@ -41,6 +41,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
 
   <body>
     <main class="register-main">
+      <h1>Registration</h1>
       <form action="#" class="register-form" id="register-form" method="post" novalidate>
         <div class="register-form-item">
           <label for="first_name">First Name</label>

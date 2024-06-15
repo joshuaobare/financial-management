@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .login-form {
@@ -12,7 +13,7 @@
 }
 .login-form-item {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
   margin-bottom: 5px;
 }
 .login-form-item > label {

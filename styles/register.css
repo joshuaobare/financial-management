@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .register-form {
@@ -13,8 +14,9 @@
 
 .register-form-item {
   display: flex;
-  gap: 10px;
+  /* gap: 10px; */
   margin-bottom: 10px;
+  flex-direction: column;
 }
 
 .register-form-item > label {

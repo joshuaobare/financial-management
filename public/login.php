@@ -47,6 +47,7 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
   </head>
   <body>
     <main class="login-main">
+      <h1>Login</h1>
       <form action="#" class="login-form" method="post" id="login-form" novalidate>
         <div class="login-form-item">
           <label for="email">Email</label>
