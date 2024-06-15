@@ -76,8 +76,8 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
             <span class="error-message" id="password_error"></span>
           </div>
         </div>
-        <div class=<?= $successful_login ? "login-success" : "login-error" ?>><?= $login_message ?></div>
         <button>Login</button>
+        <div class=<?= $successful_login ? "login-success" : "login-error" ?>><?= $login_message ?></div>
       </form>
     </main>
   </body>
