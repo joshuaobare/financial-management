@@ -11,13 +11,13 @@
     <div class="home">
         <main class="home-main">
             <nav class="home-nav">
-                <div>
-                    <div>Home</div>
-                    <div>Budgets</div>
-                    <div>Goals</div>
-                    <div>Investments</div>
-                    <div>Transactions</div>
-                    <div>Spending</div>
+                <div class="home-nav-items-cont">
+                    <div class="home-nav-item">Home</div>
+                    <div class="home-nav-item">Budgets</div>
+                    <div class="home-nav-item">Goals</div>
+                    <div class="home-nav-item">Investments</div>
+                    <div class="home-nav-item">Transactions</div>
+                    <div class="home-nav-item">Spending</div>
                 </div>
             </nav>
             <div></div>

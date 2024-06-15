@@ -7,8 +7,14 @@
   height: 100%;
   width: 100%;
 }
-
 .home-nav {
   width: 16vw;
-  background-color: black;
+  border-right: 1px solid black;
+}
+.home-nav-items-cont {
+  width: 100%;
+}
+
+.home-nav-item {
+  padding: 1rem;
 }
