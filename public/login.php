@@ -31,8 +31,6 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
   } catch (PDOException $e) {
     echo "An error has occurred: " . $e->getMessage() . "";
   }
-
-
 } 
 
 ?>
@@ -44,11 +42,12 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/login.css" />
+    <script src="../dist/src/register.js" defer></script>  
     <title>Login</title>
   </head>
   <body>
     <main class="login-main">
-      <form action="#" class="login-form" method="post" novalidate>
+      <form action="#" class="login-form" method="post" id="login-form" novalidate>
         <div class="login-form-item">
           <label for="email">Email</label>
           <div class="login-form-input-cont">

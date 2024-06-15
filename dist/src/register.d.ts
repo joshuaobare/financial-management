@@ -1,4 +1,4 @@
-declare const form: HTMLElement | null;
+declare const registerForm: HTMLElement | null;
 declare const first_name: HTMLInputElement;
 declare const first_name_error: HTMLElement | null;
 declare const last_name: HTMLInputElement;

@@ -1,4 +1,5 @@
-const form: HTMLElement | null = document.getElementById("register-form");
+const registerForm: HTMLElement | null =
+  document.getElementById("register-form");
 const first_name: HTMLInputElement = <HTMLInputElement>(
   document.getElementById("first_name")
 );
@@ -123,7 +124,7 @@ password.addEventListener("input", (e: Event) => {
 });
 
 // An event listener on form submission to display errors
-form?.addEventListener("submit", (e: Event) => {
+registerForm?.addEventListener("submit", (e: Event) => {
   // If any field is invalid, an error message is displayed and submission is blocked
   if (!first_name.validity.valid) {
     displayError(first_name);
