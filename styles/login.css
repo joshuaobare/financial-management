@@ -1,7 +1,11 @@
-.login-main {
+.login {
+  height: 100vh;
   width: 100vw;
+}
+.login-main {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }

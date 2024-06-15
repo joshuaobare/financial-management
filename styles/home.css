@@ -1,0 +1,14 @@
+.home {
+  height: 100vh;
+  width: 100vw;
+}
+.home-main {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.home-nav {
+  width: 16vw;
+  background-color: black;
+}

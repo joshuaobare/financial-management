@@ -46,39 +46,41 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
     <title>Login</title>
   </head>
   <body>
-    <main class="login-main">
-      <h1>Login</h1>
-      <form action="#" class="login-form" method="post" id="login-form" novalidate>
-        <div class="login-form-item">
-          <label for="email">Email</label>
-          <div class="login-form-input-cont">
-            <input
-              type="email"
-              class="login-form-item-input"
-              name="email"
-              id="email"
-              required
-            />
-            <span class="error-message" id="email_error"></span>
+    <div class="login">
+      <main class="login-main">
+        <h1>Login</h1>
+        <form action="#" class="login-form" method="post" id="login-form" novalidate>
+          <div class="login-form-item">
+            <label for="email">Email</label>
+            <div class="login-form-input-cont">
+              <input
+                type="email"
+                class="login-form-item-input"
+                name="email"
+                id="email"
+                required
+              />
+              <span class="error-message" id="email_error"></span>
+            </div>
           </div>
-        </div>
-        <div class="login-form-item">
-          <label for="password">Password</label>
-          <div class="login-form-input-cont">
-            <input
-              type="password"
-              class="login-form-item-input"
-              name="password"
-              id="password"
-              minlength="3"
-              required
-            />
-            <span class="error-message" id="password_error"></span>
+          <div class="login-form-item">
+            <label for="password">Password</label>
+            <div class="login-form-input-cont">
+              <input
+                type="password"
+                class="login-form-item-input"
+                name="password"
+                id="password"
+                minlength="3"
+                required
+              />
+              <span class="error-message" id="password_error"></span>
+            </div>
           </div>
-        </div>
-        <button>Login</button>
-        <div class=<?= $successful_login ? "login-success" : "login-error" ?>><?= $login_message ?></div>
-      </form>
-    </main>
+          <button>Login</button>
+          <div class=<?= $successful_login ? "login-success" : "login-error" ?>><?= $login_message ?></div>
+        </form>
+      </main>
+    </div>
   </body>
 </html>
