@@ -155,3 +155,5 @@ registerForm?.addEventListener("submit", (e: Event) => {
     e.preventDefault();
   }
 });
+
+export {};

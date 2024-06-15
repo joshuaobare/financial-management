@@ -136,4 +136,5 @@ registerForm === null || registerForm === void 0 ? void 0 : registerForm.addEven
         e.preventDefault();
     }
 });
+export {};
 //# sourceMappingURL=register.js.map

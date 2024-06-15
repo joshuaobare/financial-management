@@ -1,1 +1,1 @@
-declare const loginForm: HTMLElement | null;
+export {};

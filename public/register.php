@@ -35,7 +35,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/register.css" />  
-    <script src="../dist/src/register.js" defer></script>  
+    <script src="../dist/src/register.js" type="module" defer></script>  
     <title>Register</title>
   </head>
 
