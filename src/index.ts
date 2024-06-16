@@ -1,10 +1,14 @@
 import createHome from "./home.js";
 import createBudget from "./budget.js";
+import navbar from "./navbar.js";
 import "./login.js";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
 const budgetBtn = document.getElementById("budget-btn");
+const mainNavCont = document.getElementById("main-nav");
+
+mainNavCont?.appendChild(navbar);
 
 homeBtn?.addEventListener("click", (e: Event) => {
   const home = createHome();

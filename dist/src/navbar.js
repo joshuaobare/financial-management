@@ -1,4 +1,4 @@
-const navbar = document.createElement("nav");
+const navbar = document.createElement("div");
 navbar.classList.add("main-nav");
 navbar.setAttribute("background-color", "black");
 navbar.setAttribute("width", "100%");
