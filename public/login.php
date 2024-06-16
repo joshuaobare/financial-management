@@ -42,7 +42,7 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/login.css" />
-    <script src="../dist/src/login.js" type="module" defer></script>  
+    <script src="../dist/src/index.js" type="module" defer></script>  
     <title>Login</title>
   </head>
   <body>

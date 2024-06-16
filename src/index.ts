@@ -1,5 +1,6 @@
 import createHome from "./home.js";
 import createBudget from "./budget.js";
+import "./login.js";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
