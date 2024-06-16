@@ -40,7 +40,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
   </head>
 
   <body>    
-    <div class="register">
+
       <main class="register-main">
         <h1>Registration</h1>
         <form action="#" class="register-form" id="register-form" method="post" novalidate>
@@ -128,6 +128,6 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
           <button>Submit</button>
         </form>
       </main>
-    </div>
+    
   </body>
 </html>
