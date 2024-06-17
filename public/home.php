@@ -55,7 +55,7 @@
             </div>
           </div>
         </nav>
-        <div id="container"></div>
+        <div id="container" class="home-container"></div>
       </main>
     </div>
   </body>

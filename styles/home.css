@@ -30,3 +30,16 @@
 .material-symbols-outlined {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
+
+.home-container {
+  padding: 2rem;
+}
+
+.home-header {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.home-header-right {
+  color: #d92121;
+}

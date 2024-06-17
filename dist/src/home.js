@@ -11,6 +11,8 @@ const createHeader = () => {
     const headerRight = document.createElement("span");
     headerLeft.textContent = "Welcome ";
     headerRight.textContent = "Jack!";
+    headerLeft.className = "home-header";
+    headerRight.className = "home-header home-header-right";
     header.append(headerLeft, headerRight);
     // Create a div for tag line below welcome message
     const homeTagLine = document.createElement("div");
