@@ -1,1 +1,1 @@
-import "./login.js";
+export {};

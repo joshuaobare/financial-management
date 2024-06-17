@@ -34,13 +34,16 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/register.css" />  
+    <link rel="stylesheet" href="../styles/register.css" /> 
+    <link rel="stylesheet" href="../styles/navbar.css" />  
     <script src="../dist/src/register.js" type="module" defer></script>  
+    <script src="../dist/src/index.js" type="module" defer></script>  
     <title>Register</title>
   </head>
 
   <body>    
-
+    <div class="register">
+      <nav id="main-nav" class="main-nav"></nav>
       <main class="register-main">
         <h1>Registration</h1>
         <form action="#" class="register-form" id="register-form" method="post" novalidate>
@@ -128,6 +131,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
           <button>Submit</button>
         </form>
       </main>
+    </div>
     
   </body>
 </html>

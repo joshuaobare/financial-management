@@ -9,11 +9,13 @@
     />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" /> 
     <script src="../dist/src/index.js" type="module" defer></script>  
     <title>Home</title>
   </head>
   <body>
     <div class="home">
+    <nav id="main-nav" class="main-nav"></nav>
       <main class="home-main">
         <nav class="home-nav">
           <div class="home-nav-items-cont">

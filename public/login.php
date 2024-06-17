@@ -43,6 +43,7 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/login.css" />
     <link rel="stylesheet" href="../styles/navbar.css" />
+    <script src="../dist/src/login.js" type="module" defer></script>  
     <script src="../dist/src/index.js" type="module" defer></script>  
     <title>Login</title>
   </head>
