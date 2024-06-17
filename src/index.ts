@@ -9,10 +9,14 @@ const mainNavCont = document.getElementById("main-nav");
 
 mainNavCont?.appendChild(navbar);
 
-homeBtn?.addEventListener("click", (e: Event) => {
+const openHome = () => {
   const home = createHome();
   container?.replaceChildren();
   container?.appendChild(home);
+};
+
+homeBtn?.addEventListener("click", (e: Event) => {
+  openHome();
 });
 
 budgetBtn?.addEventListener("click", (e: Event) => {
@@ -20,3 +24,5 @@ budgetBtn?.addEventListener("click", (e: Event) => {
   container?.replaceChildren();
   container?.appendChild(budget);
 });
+
+openHome();
