@@ -14,5 +14,20 @@ const createCalendar = (): HTMLDivElement => {
   calendarNavigation.append(calendarPrev, calendarNext);
   calendarHeader.append(calendarHeaderDate, calendarNavigation);
 
+  const calendarBody = document.createElement("div");
+  calendarBody.className = "cal-body";
+  const calendarWeekdays = document.createElement("ul");
+  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  weekDays.forEach((day) => {
+    const dayElement = document.createElement("li");
+    dayElement.textContent = day;
+    calendarWeekdays.appendChild(dayElement);
+  });
+  const calendarDates = document.createElement("ul");
+  calendarDates.className = "cal-dates";
+  calendarBody.append(calendarWeekdays, calendarDates);
+
+  calendar.append(calendarHeader, calendarBody);
+
   return calendar;
 };
