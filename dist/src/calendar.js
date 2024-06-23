@@ -28,4 +28,5 @@ const createCalendar = () => {
     calendar.append(calendarHeader, calendarBody);
     return calendar;
 };
+export default createCalendar;
 //# sourceMappingURL=calendar.js.map

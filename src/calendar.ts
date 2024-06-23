@@ -31,3 +31,5 @@ const createCalendar = (): HTMLDivElement => {
 
   return calendar;
 };
+
+export default createCalendar;
