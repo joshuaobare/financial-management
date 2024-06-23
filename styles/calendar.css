@@ -1,0 +1,45 @@
+.cal-cont {
+  width: 450px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+.cal-chevron-btn {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+  user-select: none;
+  color: #aeabab;
+  font-size: 1.9rem;
+}
+
+.cal-body {
+  padding: 20px;
+}
+
+.cal-body-header {
+  color: #414141;
+  font-size: 1.07rem;
+  width: calc(100% / 7);
+}
+
+.cal-weekdays {
+  display: flex;
+  text-align: center;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.cal-dates {
+}
