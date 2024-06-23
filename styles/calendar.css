@@ -36,7 +36,8 @@
   padding: 20px;
 }
 
-.cal-body-header {
+.cal-body-header,
+.cal-body-date {
   color: #414141;
   font-size: 1.07rem;
   width: calc(100% / 7);
@@ -49,4 +50,8 @@
   flex-wrap: wrap;
 }
 .cal-dates {
+  display: flex;
+  text-align: center;
+  list-style: none;
+  flex-wrap: wrap;
 }
