@@ -32,9 +32,9 @@
             </div>
             <div class="home-nav-item" id="goals-btn">
               <span class="material-symbols-outlined home-icon">
-                check_circle
+                target
               </span>
-              <span>Goal</span>
+              <span>Goals</span>
             </div>
             <div class="home-nav-item" id="investments-btn">
               <span class="material-symbols-outlined home-icon">
@@ -42,17 +42,23 @@
               </span>
               <span>Investments</span>
             </div>
-            <div class="home-nav-item" id="transactions-btn">
-              <span class="material-symbols-outlined home-icon">
-                payments
-              </span>
-              <span>Transactions</span>
-            </div>
             <div class="home-nav-item" id="spending-btn">
               <span class="material-symbols-outlined home-icon">
                 shopping_cart
               </span>
               <span>Spending</span>
+            </div>
+            <div class="home-nav-item" id="spending-btn">
+              <span class="material-symbols-outlined home-icon">
+                monitoring
+              </span>
+              <span>Insights</span>
+            </div>
+            <div class="home-nav-item" id="spending-btn">
+              <span class="material-symbols-outlined home-icon">
+                help
+              </span>
+              <span>FAQs</span>
             </div>
           </div>
         </nav>
