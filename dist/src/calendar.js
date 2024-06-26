@@ -1,17 +1,14 @@
 const createCalendar = () => {
     const calendar = document.createElement("div");
+    calendar.className = "cal-cont";
+    const calHeader = calendarHeader();
+    calendar.appendChild(calHeader);
+    return calendar;
+};
+const renderCalendarDate = (calendarHeaderDate) => {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
-    const calendarHeaderDate = document.createElement("div");
-    calendarHeaderDate.className = "cal-curr-date";
-    calendarHeaderDate.id = "cal-curr-date";
-    calendar.className = "cal-cont";
-    const calHeader = calendarHeader(calendarHeaderDate);
-    calendar.append(calHeader.calendarHeader, calendarBody(date, year, month, calendarHeaderDate, calHeader.calendarPrev, calHeader.calendarNext));
-    return calendar;
-};
-const renderCalendarDates = (date, year, month, daySection, calendarHeaderDate) => {
     const monthNames = [
         "January",
         "February",
@@ -27,38 +24,14 @@ const renderCalendarDates = (date, year, month, daySection, calendarHeaderDate) 
         "December",
     ];
     calendarHeaderDate.textContent = `${monthNames[month]} ${year}`;
-    daySection === null || daySection === void 0 ? void 0 : daySection.replaceChildren();
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
-    const lastDay = new Date(year, month, lastDate).getDay();
-    const monthLastDate = new Date(year, month, 0).getDate();
-    for (let i = firstDay; i > 0; i--) {
-        const newDay = document.createElement("li");
-        newDay.textContent = (monthLastDate - i + 1).toString();
-        daySection === null || daySection === void 0 ? void 0 : daySection.append(newDay);
-    }
-    // Loop to add the dates of the current month
-    for (let i = 1; i <= lastDate; i++) {
-        // Check if the current date is today
-        let isToday = i === date.getDate() &&
-            month === new Date().getMonth() &&
-            year === new Date().getFullYear()
-            ? "active"
-            : "";
-        const newDay = document.createElement("li");
-        newDay.textContent = i.toString();
-        // lit += `<li class="${isToday}">${i}</li>`;
-        daySection.appendChild(newDay);
-    }
-    for (let i = lastDay; i < 6; i++) {
-        const newDay = document.createElement("li");
-        newDay.textContent = (i - lastDay + 1).toString();
-        daySection.appendChild(newDay);
-    }
 };
-const calendarHeader = (calendarHeaderDate) => {
+const calendarHeader = () => {
     const calendarHeader = document.createElement("div");
     calendarHeader.className = "cal-header";
+    const calendarHeaderDate = document.createElement("div");
+    calendarHeaderDate.className = "cal-curr-date";
+    calendarHeaderDate.id = "cal-curr-date";
+    renderCalendarDate(calendarHeaderDate);
     //   calendarHeaderDate.textContent = "June 2024";
     const calendarNavigation = document.createElement("div");
     const calendarPrev = document.createElement("span");
@@ -71,7 +44,8 @@ const calendarHeader = (calendarHeaderDate) => {
     calendarNext.id = "cal-chevron-next";
     calendarNavigation.append(calendarPrev, calendarNext);
     calendarHeader.append(calendarHeaderDate, calendarNavigation);
-    return { calendarHeader, calendarPrev, calendarNext };
+    return calendarHeader;
+    //return { calendarHeader, calendarPrev, calendarNext };
 };
 const calendarBody = (date, year, month, calendarHeaderDate, calendarPrev, calendarNext) => {
     const calendarBody = document.createElement("div");
