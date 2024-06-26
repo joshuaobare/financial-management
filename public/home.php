@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../styles/home.css" />
     <link rel="stylesheet" href="../styles/navbar.css" /> 
     <link rel="stylesheet" href="../styles/calendar.css" /> 
+    <link rel="stylesheet" href="../styles/budget.css" /> 
     <script src="../dist/src/index.js" type="module" defer></script>  
     <title>Home</title>
   </head>
