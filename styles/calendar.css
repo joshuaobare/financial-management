@@ -33,7 +33,10 @@
 
 /* Body */
 .cal-body {
-  padding: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .cal-body-header,

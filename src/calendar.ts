@@ -92,7 +92,12 @@ const calendarBody = (
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
-  calendarBody.appendChild(createBudgetComponent("Income"));
+  calendarBody.append(
+    createBudgetComponent("Income"),
+    createBudgetComponent("Bills"),
+    createBudgetComponent("Personal"),
+    createBudgetComponent("Savings")
+  );
   return calendarBody;
 };
 

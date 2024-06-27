@@ -17,7 +17,9 @@ const createBudgetComponent = (title: string) => {
   main.className = "budget-main";
 
   const footer = document.createElement("footer");
+  footer.className = "budget-footer";
   const addBtn = document.createElement("button");
+  addBtn.textContent = "Add Item";
   footer.appendChild(addBtn);
   budgetComponent.append(header, main, footer);
 
