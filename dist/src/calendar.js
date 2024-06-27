@@ -1,14 +1,14 @@
 const createCalendar = () => {
-    const calendar = document.createElement("div");
-    calendar.className = "cal-cont";
-    const calHeader = calendarHeader();
-    calendar.appendChild(calHeader);
-    return calendar;
-};
-const renderCalendarDate = (calendarHeaderDate) => {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
+    const calendar = document.createElement("div");
+    calendar.className = "cal-cont";
+    const calHeader = calendarHeader(date, year, month);
+    calendar.appendChild(calHeader);
+    return calendar;
+};
+const renderCalendarDate = (calendarHeaderDate, date, year, month) => {
     const monthNames = [
         "January",
         "February",
@@ -25,14 +25,13 @@ const renderCalendarDate = (calendarHeaderDate) => {
     ];
     calendarHeaderDate.textContent = `${monthNames[month]} ${year}`;
 };
-const calendarHeader = () => {
+const calendarHeader = (date, year, month) => {
     const calendarHeader = document.createElement("div");
     calendarHeader.className = "cal-header";
     const calendarHeaderDate = document.createElement("div");
     calendarHeaderDate.className = "cal-curr-date";
     calendarHeaderDate.id = "cal-curr-date";
-    renderCalendarDate(calendarHeaderDate);
-    //   calendarHeaderDate.textContent = "June 2024";
+    renderCalendarDate(calendarHeaderDate, date, year, month);
     const calendarNavigation = document.createElement("div");
     const calendarPrev = document.createElement("span");
     calendarPrev.textContent = "chevron_left";
@@ -44,8 +43,28 @@ const calendarHeader = () => {
     calendarNext.id = "cal-chevron-next";
     calendarNavigation.append(calendarPrev, calendarNext);
     calendarHeader.append(calendarHeaderDate, calendarNavigation);
+    const chevrons = [calendarNext, calendarPrev];
+    renderCalendarDate(calendarHeaderDate, date, year, month);
+    chevrons.forEach((chevron) => {
+        chevron.addEventListener("click", () => {
+            month = chevron.id === "cal-chevron-prev" ? month - 1 : month + 1;
+            if (month < 0 || month > 11) {
+                // Set the date to the first day of the
+                // month with the new year
+                date = new Date(year, month, new Date().getDate());
+                // Set the year to the new year
+                year = date.getFullYear();
+                // Set the month to the new month
+                month = date.getMonth();
+            }
+            else {
+                date = new Date();
+            }
+            renderCalendarDate(calendarHeaderDate, date, year, month);
+            //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
+        });
+    });
     return calendarHeader;
-    //return { calendarHeader, calendarPrev, calendarNext };
 };
 const calendarBody = (date, year, month, calendarHeaderDate, calendarPrev, calendarNext) => {
     const calendarBody = document.createElement("div");
