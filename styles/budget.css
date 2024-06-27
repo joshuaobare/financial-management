@@ -1,7 +1,12 @@
 .budget {
   width: 70vw;
 }
-
+.budget-component {
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
 .budget-row,
 .budget-header {
   display: flex;

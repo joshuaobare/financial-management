@@ -11,6 +11,8 @@
   align-items: center;
   padding: 25px 30px 10px;
   justify-content: space-between;
+  background-color: #f5f7f8;
+  border-bottom: 1px solid lightgray;
 }
 
 .cal-curr-date {
@@ -37,6 +39,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
+  background-color: #f5f7f8;
 }
 
 .cal-body-header,

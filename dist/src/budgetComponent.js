@@ -1,5 +1,6 @@
 const createBudgetComponent = (title) => {
     const budgetComponent = document.createElement("div");
+    budgetComponent.className = "budget-component";
     const header = document.createElement("header");
     header.className = "budget-header";
     const headerLeft = document.createElement("div");
