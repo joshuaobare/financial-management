@@ -79,7 +79,7 @@ const calendarBody = (
   calendarBody.append(calendarWeekdays, calDates);
   const chevrons = [calendarNext, calendarPrev];
 
-  renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
+  //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
 
   chevrons.forEach((chevron) => {
     chevron.addEventListener("click", () => {
@@ -98,7 +98,7 @@ const calendarBody = (
         date = new Date();
       }
 
-      renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
+      //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
     });
   });
 

@@ -64,7 +64,7 @@ const calendarBody = (date, year, month, calendarHeaderDate, calendarPrev, calen
     calDates.id = "cal-dates";
     calendarBody.append(calendarWeekdays, calDates);
     const chevrons = [calendarNext, calendarPrev];
-    renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
+    //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
     chevrons.forEach((chevron) => {
         chevron.addEventListener("click", () => {
             month = chevron.id === "cal-chevron-prev" ? month - 1 : month + 1;
@@ -80,7 +80,7 @@ const calendarBody = (date, year, month, calendarHeaderDate, calendarPrev, calen
             else {
                 date = new Date();
             }
-            renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
+            //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
         });
     });
     return calendarBody;

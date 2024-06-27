@@ -51,6 +51,7 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
     <div class="login">
       <nav id="main-nav" class="main-nav"></nav>
       <main class="login-main">
+      <img src="./assets/wblogo.png" alt="" class="login-logo">
         <h1>Login</h1>
         <form action="#" class="login-form" method="post" id="login-form" novalidate>
           <div class="login-form-item">

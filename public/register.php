@@ -45,6 +45,7 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
     <div class="register">
       <nav id="main-nav" class="main-nav"></nav>
       <main class="register-main">
+        <img src="./assets/wblogo.png" alt="" class="register-logo">
         <h1>Registration</h1>
         <form action="#" class="register-form" id="register-form" method="post" novalidate>
           <div class="register-form-item">
