@@ -1,11 +1,48 @@
 .budget {
-  width: 80vw;
+  width: 70vw;
+}
+
+.budget-row,
+.budget-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.budget-row {
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+}
+.budget-header-left {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.budget-header-mid,
+.budget-header-right {
+  font-size: 0.875rem;
+  color: #8e999e;
 }
 .budget-row-left {
+  width: 50%;
+}
+
+.budget-row-left-input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
 }
 
 .budget-row-mid {
+  width: 25%;
 }
 
 .budget-row-right {
+  width: 25%;
+}
+
+.budget-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
 }

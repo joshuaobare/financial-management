@@ -1,3 +1,4 @@
+import createBudgetComponent from "./budgetComponent.js";
 const createCalendar = () => {
     const date = new Date();
     const year = date.getFullYear();
@@ -5,7 +6,8 @@ const createCalendar = () => {
     const calendar = document.createElement("div");
     calendar.className = "cal-cont";
     const calHeader = calendarHeader(date, year, month);
-    calendar.appendChild(calHeader);
+    const calBody = calendarBody(date, year, month);
+    calendar.append(calHeader, calBody);
     return calendar;
 };
 const renderCalendarDate = (calendarHeaderDate, date, year, month) => {
@@ -66,42 +68,10 @@ const calendarHeader = (date, year, month) => {
     });
     return calendarHeader;
 };
-const calendarBody = (date, year, month, calendarHeaderDate, calendarPrev, calendarNext) => {
+const calendarBody = (date, year, month) => {
     const calendarBody = document.createElement("div");
     calendarBody.className = "cal-body";
-    const calendarWeekdays = document.createElement("ul");
-    calendarWeekdays.className = "cal-weekdays";
-    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    weekDays.forEach((day) => {
-        const dayElement = document.createElement("li");
-        dayElement.textContent = day;
-        dayElement.className = "cal-body-header";
-        calendarWeekdays.appendChild(dayElement);
-    });
-    const calDates = document.createElement("ul");
-    calDates.className = "cal-dates";
-    calDates.id = "cal-dates";
-    calendarBody.append(calendarWeekdays, calDates);
-    const chevrons = [calendarNext, calendarPrev];
-    //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
-    chevrons.forEach((chevron) => {
-        chevron.addEventListener("click", () => {
-            month = chevron.id === "cal-chevron-prev" ? month - 1 : month + 1;
-            if (month < 0 || month > 11) {
-                // Set the date to the first day of the
-                // month with the new year
-                date = new Date(year, month, new Date().getDate());
-                // Set the year to the new year
-                year = date.getFullYear();
-                // Set the month to the new month
-                month = date.getMonth();
-            }
-            else {
-                date = new Date();
-            }
-            //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
-        });
-    });
+    calendarBody.appendChild(createBudgetComponent("Income"));
     return calendarBody;
 };
 export default createCalendar;
