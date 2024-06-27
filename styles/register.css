@@ -24,6 +24,11 @@
   flex-direction: column;
 }
 
+.register-form-item-input {
+  padding: 10px;
+  width: 250px;
+}
+
 .register-form-item > label {
   width: 150px;
 }

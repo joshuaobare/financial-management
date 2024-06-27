@@ -23,6 +23,10 @@
 .login-form-item > label {
   width: 150px;
 }
+.login-form-item-input {
+  padding: 10px;
+  width: 250px;
+}
 
 .login-form-input-cont {
   display: flex;
