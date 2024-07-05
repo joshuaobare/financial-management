@@ -25,10 +25,8 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
     if($user && password_verify($_POST["password"], $user["password"])) {
       $login_message = "Welcome ".$user['first_name']. " ".$user['last_name'];
       $successful_login = true;
-      $user_id = $user->user_id;
-      $_SESSION["user_id"] = $user_id;
-      echo "$user_id";
-      echo "<script type='text/javascript'> localStorage.setItem('user_id'," .$user_id.") </script>";
+      $user_id = $user["user_id"];
+      $_SESSION["user_id"] = $user_id;      
       header("Location: ./home.php");
 
     } else {

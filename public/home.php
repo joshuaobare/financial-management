@@ -1,3 +1,12 @@
+<?php
+include_once ("../config/pdo.php");
+
+session_start();
+if (isset($_SESSION['user_id']) ){
+  echo "<script type='text/javascript'> localStorage.setItem('user_id'," .$_SESSION['user_id'].") </script>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
