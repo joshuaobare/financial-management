@@ -1,6 +1,6 @@
 create database financial_management;
-
 use financial_management;
+
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL UNIQUE,
@@ -8,7 +8,8 @@ CREATE TABLE users (
     date_of_birth DATE NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_admin BOOLEAN
 );
 
 
