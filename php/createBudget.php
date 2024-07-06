@@ -1,5 +1,6 @@
 <?php
 include_once ("../config/pdo.php");
+include_once ("./header.php");
 
 $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
