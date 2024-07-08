@@ -71,7 +71,8 @@ const calendarHeader = (date, year, month) => {
 const calendarBody = (date, year, month) => {
     const calendarBody = document.createElement("div");
     calendarBody.className = "cal-body";
-    calendarBody.append(createBudgetComponent("Income"), createBudgetComponent("Bills"), createBudgetComponent("Personal"), createBudgetComponent("Savings"));
+    const calendarDialog = document.createElement("dialog");
+    calendarBody.append(calendarDialog, createBudgetComponent("Income"), createBudgetComponent("Bills"), createBudgetComponent("Personal"), createBudgetComponent("Savings"));
     return calendarBody;
 };
 export default createCalendar;
