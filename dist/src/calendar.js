@@ -72,7 +72,10 @@ const calendarBody = (date, year, month) => {
     const calendarBody = document.createElement("div");
     calendarBody.className = "cal-body";
     const calendarDialog = document.createElement("dialog");
-    calendarBody.append(calendarDialog, createBudgetComponent("Income"), createBudgetComponent("Bills"), createBudgetComponent("Personal"), createBudgetComponent("Savings"));
+    const dialogBody = document.createElement("div");
+    dialogBody.textContent = "Here's the content";
+    calendarDialog.appendChild(dialogBody);
+    calendarBody.append(calendarDialog, createBudgetComponent("Income", calendarDialog), createBudgetComponent("Bills", calendarDialog), createBudgetComponent("Personal", calendarDialog), createBudgetComponent("Savings", calendarDialog));
     return calendarBody;
 };
 export default createCalendar;

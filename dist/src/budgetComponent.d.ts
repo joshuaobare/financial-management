@@ -1,2 +1,2 @@
-declare const createBudgetComponent: (title: string) => HTMLDivElement;
+declare const createBudgetComponent: (title: string, dialog: HTMLDialogElement) => HTMLDivElement;
 export default createBudgetComponent;

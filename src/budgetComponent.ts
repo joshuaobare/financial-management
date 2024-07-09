@@ -1,4 +1,4 @@
-const createBudgetComponent = (title: string) => {
+const createBudgetComponent = (title: string, dialog: HTMLDialogElement) => {
   const budgetComponent = document.createElement("div");
   budgetComponent.className = "budget-component";
   const header = document.createElement("header");
@@ -21,6 +21,11 @@ const createBudgetComponent = (title: string) => {
   footer.className = "budget-footer";
   const addBtn = document.createElement("button");
   addBtn.textContent = "Add Item";
+
+  addBtn.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
   footer.appendChild(addBtn);
   budgetComponent.append(header, main, footer);
 
