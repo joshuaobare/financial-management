@@ -93,9 +93,17 @@ const calendarBody = (
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
   const calendarDialog = document.createElement("dialog");
+  const dialogHeader = document.createElement("div");
+  const dialogClose = document.createElement("button");
+  dialogClose.textContent = "Close";
+  dialogHeader.appendChild(dialogClose);
   const dialogBody = document.createElement("div");
   dialogBody.textContent = "Here's the content";
-  calendarDialog.appendChild(dialogBody);
+  calendarDialog.append(dialogHeader, dialogBody);
+
+  dialogClose.addEventListener("click", () => {
+    calendarDialog.close();
+  });
 
   calendarBody.append(
     calendarDialog,
