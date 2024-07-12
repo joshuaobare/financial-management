@@ -93,32 +93,12 @@ const calendarBody = (
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
 
-  //
-  const calendarDialog = document.createElement("dialog");
-  const dialogHeader = document.createElement("div");
-  const dialogClose = document.createElement("button");
-  dialogClose.textContent = "X";
-  dialogHeader.appendChild(dialogClose);
-  const dialogBody = document.createElement("div");
-  //dialogBody.textContent = "Here's the content";
-
-  // dialog form
-  const budgetForm = document.createElement("form");
-  budgetForm.id = "budget-form";
-
-  dialogBody.appendChild(budgetForm);
-  calendarDialog.append(dialogHeader, dialogBody);
-
-  dialogClose.addEventListener("click", () => {
-    calendarDialog.close();
-  });
-
   calendarBody.append(
-    calendarDialog,
-    createBudgetComponent("Income", calendarDialog),
-    createBudgetComponent("Bills", calendarDialog),
-    createBudgetComponent("Personal", calendarDialog),
-    createBudgetComponent("Savings", calendarDialog)
+    createBudgetComponent("Income"),
+    createBudgetComponent("Bills"),
+    createBudgetComponent("Personal"),
+    createBudgetComponent("Savings"),
+    createBudgetComponent("Other")
   );
   return calendarBody;
 };

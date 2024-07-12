@@ -86,6 +86,7 @@ if (isset($_SESSION['user_id'])) {
                   <option value="Bills">Bills</option>
                   <option value="Personal">Personal</option>
                   <option value="Savings">Savings</option>
+                  <option value="Savings">Other</option>
                 </select>
               </div>
               <div class="budget-form-item">
@@ -98,6 +99,7 @@ if (isset($_SESSION['user_id'])) {
               <div class="budget-form-item">
                 <label for="">Amount</label><input type="number">
               </div>
+              <button class="budget-form-submit-btn">Submit</button>
             </form>
 
           </div>

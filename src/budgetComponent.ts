@@ -5,7 +5,7 @@ closeDialog?.addEventListener("click", () => {
   dialog.close();
 });
 
-const createBudgetComponent = (title: string, sowdialog: HTMLDialogElement) => {
+const createBudgetComponent = (title: string) => {
   const budgetComponent = document.createElement("div");
   budgetComponent.className = "budget-component";
   const header = document.createElement("header");
