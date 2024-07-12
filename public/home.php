@@ -74,14 +74,15 @@ if (isset($_SESSION['user_id'])) {
       </nav>
       <div id="container" class="home-container"></div>
       <dialog id="budget-dialog">
-        <div>
+        <div class="budget-dialog-cont">
           <div class="budget-dialog=header">
             <button class="budget-dialog-close" id="budget-dialog-close">X</button>
           </div>
           <div class="budget-dialog-body">
-            <form action="">
+            <form action="" class="budget-form">
               <div class="budget-form-item">
-                <select name="" id="">
+                <label for="">Category</label>
+                <select name="" id="" class="budget-form-item-input">
                   <option value="Income">Income</option>
                   <option value="Bills">Bills</option>
                   <option value="Personal">Personal</option>
@@ -90,14 +91,14 @@ if (isset($_SESSION['user_id'])) {
                 </select>
               </div>
               <div class="budget-form-item">
-                <label for="">Title</label><input type="text">
+                <label for="">Title</label><input type="text" class="budget-form-item-input">
               </div>
               <div class="budget-form-item">
-                <label for="">Description</label><textarea type="number">
-                  <textarea name="" id=""></textarea>
+                <label for="">Description</label>
+                <textarea name="" id="" class="budget-form-item-input"></textarea>
               </div>
               <div class="budget-form-item">
-                <label for="">Amount</label><input type="number">
+                <label for="">Amount</label><input type="number" class="budget-form-item-input">
               </div>
               <button class="budget-form-submit-btn">Submit</button>
             </form>

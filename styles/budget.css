@@ -55,3 +55,26 @@
 .budget-footer {
   margin-top: 10px;
 }
+
+/* BUDGET DIALOG */
+.budget-dialog-cont {
+  padding: 10px;
+}
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.budget-form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.budget-form-item > label {
+  width: 150px;
+}
+.budget-form-item-input {
+  padding: 10px;
+  width: 250px;
+}
