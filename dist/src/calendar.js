@@ -74,7 +74,7 @@ const calendarBody = (date, year, month) => {
     const calendarDialog = document.createElement("dialog");
     const dialogHeader = document.createElement("div");
     const dialogClose = document.createElement("button");
-    dialogClose.textContent = "Close";
+    dialogClose.textContent = "X";
     dialogHeader.appendChild(dialogClose);
     const dialogBody = document.createElement("div");
     dialogBody.textContent = "Here's the content";

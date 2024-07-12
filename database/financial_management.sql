@@ -41,6 +41,7 @@ CREATE TABLE transactions (
 CREATE TABLE budgets (
     budget_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
+    title VARCHAR(50),
     category VARCHAR(50) NOT NULL,
     amount DECIMAL(15, 2) NOT NULL,
     start_date DATE NOT NULL,
