@@ -76,7 +76,7 @@ if (isset($_SESSION['user_id'])) {
       <dialog id="budget-dialog">
         <div>
           <div class="budget-dialog=header">
-            <button class="budget-dialog-close">X</button>
+            <button class="budget-dialog-close" id="budget-dialog-close">X</button>
           </div>
           <div class="budget-dialog-body">
             <form action="">
