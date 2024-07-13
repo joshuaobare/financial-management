@@ -78,7 +78,7 @@ if (isset($_SESSION['user_id'])) {
             </button>
           </div>
           <div class="budget-dialog-body">
-            <form action="" class="budget-form">
+            <form action="" class="budget-form" id="budget-form">
               <div class="budget-form-item">
                 <label for="budget-form-category-select">Category</label>
                 <select name="category" id="budget-form-category-select" class="budget-form-item-input">
