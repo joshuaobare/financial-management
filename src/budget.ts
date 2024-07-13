@@ -52,9 +52,29 @@ const getBudgetFormValues = () => {
   };
 };
 
+const submitBudgetForm = async () => {
+  try {
+    const request = await fetch(
+      "http://localhost:8080/financial-management/php/createBudget.php",
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(getBudgetFormValues()),
+      }
+    );
+    const response = await request.json();
+
+    if (response.message) {
+      dialog.close();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 budgetForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  getBudgetFormValues();
+  submitBudgetForm();
 });
 
 export default createBudget;

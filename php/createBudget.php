@@ -5,9 +5,9 @@ include_once ("./header.php");
 $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
 
-if (isset($_POST["user_id"]) && isset($_POST["category"]) && isset($_POST["amount"]) && isset($_POST["start_date"]) && isset($_POST["end_date"])) {
+if (isset($_POST["user_id"]) && isset($_POST["category"]) && isset($_POST["amount"]) && isset($_POST["description"]) && isset($_POST["start_date"]) && isset($_POST["end_date"])) {
     try {
-        $sql = "INSERT INTO BUDGETS (user_id, category, amount,start_date, end_date) VALUES (:user_id, :category, :amount, :start_date, :end_date)";
+        $sql = "INSERT INTO BUDGETS (user_id, category, amount,description, start_date, end_date) VALUES (:user_id, :category, :amount,:description, :start_date, :end_date)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(
             array(
@@ -15,7 +15,8 @@ if (isset($_POST["user_id"]) && isset($_POST["category"]) && isset($_POST["amoun
                 ":category" => $_POST["category"],
                 ":amount" => $_POST["amount"],
                 ":start_date" => $_POST["start_date"],
-                ":end_date" => $_POST["end_date"]
+                ":end_date" => $_POST["end_date"],
+                ":description" => $_POST["description"]
             )
         );
         $data = array("message" => "Budget item created successfully");
