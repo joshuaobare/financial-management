@@ -7,6 +7,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,9 +42,7 @@ if (isset($_SESSION['user_id'])) {
             <span>Budget</span>
           </div>
           <div class="home-nav-item" id="goals-btn">
-            <span class="material-symbols-outlined home-icon">
-              target
-            </span>
+            <span class="material-symbols-outlined home-icon"> target </span>
             <span>Goals</span>
           </div>
           <div class="home-nav-item" id="investments-btn">
@@ -65,9 +64,7 @@ if (isset($_SESSION['user_id'])) {
             <span>Insights</span>
           </div>
           <div class="home-nav-item" id="spending-btn">
-            <span class="material-symbols-outlined home-icon">
-              help
-            </span>
+            <span class="material-symbols-outlined home-icon"> help </span>
             <span>FAQs</span>
           </div>
         </div>
@@ -76,13 +73,15 @@ if (isset($_SESSION['user_id'])) {
       <dialog id="budget-dialog">
         <div class="budget-dialog-cont">
           <div class="budget-dialog=header">
-            <button class="budget-dialog-close" id="budget-dialog-close">X</button>
+            <button class="budget-dialog-close" id="budget-dialog-close">
+              X
+            </button>
           </div>
           <div class="budget-dialog-body">
             <form action="" class="budget-form">
               <div class="budget-form-item">
                 <label for="">Category</label>
-                <select name="" id="" class="budget-form-item-input">
+                <select name="" id="budget-form-category-select" class="budget-form-item-input">
                   <option value="Income">Income</option>
                   <option value="Bills">Bills</option>
                   <option value="Personal">Personal</option>
@@ -91,21 +90,21 @@ if (isset($_SESSION['user_id'])) {
                 </select>
               </div>
               <div class="budget-form-item">
-                <label for="">Title</label><input type="text" class="budget-form-item-input">
+                <label for="">Title</label>
+                <input type="text" class="budget-form-item-input" />
               </div>
               <div class="budget-form-item">
                 <label for="">Description</label>
                 <textarea name="" id="" class="budget-form-item-input"></textarea>
               </div>
               <div class="budget-form-item">
-                <label for="">Amount</label><input type="number" class="budget-form-item-input">
+                <label for="">Amount</label>
+                <input type="number" class="budget-form-item-input" />
               </div>
               <button class="budget-form-submit-btn">Submit</button>
             </form>
-
           </div>
         </div>
-
       </dialog>
     </main>
   </div>

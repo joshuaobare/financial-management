@@ -35,6 +35,7 @@ const renderCalendarDate = (
     "December",
   ];
   calendarHeaderDate.textContent = `${monthNames[month]} ${year}`;
+  calendarHeaderDate.dataset.date = `${month} ${year}`;
 };
 
 const calendarHeader = (date: Date, year: number, month: number) => {

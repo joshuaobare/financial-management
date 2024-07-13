@@ -22,6 +22,8 @@ const createBudgetComponent = (title) => {
     const addBtn = document.createElement("button");
     addBtn.textContent = "Add Item";
     addBtn.addEventListener("click", () => {
+        const budgetFormSelect = (document.getElementById("budget-form-category-select"));
+        budgetFormSelect.value = title;
         dialog.showModal();
     });
     footer.appendChild(addBtn);
