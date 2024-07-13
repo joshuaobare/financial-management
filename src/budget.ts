@@ -51,7 +51,17 @@ const getBudgetFormValues = () => {
     end_date,
   };
 };
-
+const resetBudgetForm = () => {
+  const amount = ((<HTMLInputElement>(
+    document.getElementById("budget-form-amount")
+  )).value = "");
+  const title = ((<HTMLInputElement>(
+    document.getElementById("budget-form-title")
+  )).value = "");
+  const description = ((<HTMLTextAreaElement>(
+    document.getElementById("budget-form-description")
+  )).value = "");
+};
 const submitBudgetForm = async () => {
   try {
     const request = await fetch(
@@ -65,6 +75,7 @@ const submitBudgetForm = async () => {
     const response = await request.json();
 
     if (response.message) {
+      resetBudgetForm();
       dialog.close();
     }
   } catch (error) {

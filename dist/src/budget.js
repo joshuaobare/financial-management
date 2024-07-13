@@ -50,6 +50,11 @@ const getBudgetFormValues = () => {
         end_date,
     };
 };
+const resetBudgetForm = () => {
+    const amount = ((document.getElementById("budget-form-amount")).value = "");
+    const title = ((document.getElementById("budget-form-title")).value = "");
+    const description = ((document.getElementById("budget-form-description")).value = "");
+};
 const submitBudgetForm = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const request = yield fetch("http://localhost:8080/financial-management/php/createBudget.php", {
@@ -59,6 +64,7 @@ const submitBudgetForm = () => __awaiter(void 0, void 0, void 0, function* () {
         });
         const response = yield request.json();
         if (response.message) {
+            resetBudgetForm();
             dialog.close();
         }
     }
