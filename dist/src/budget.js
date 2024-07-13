@@ -16,5 +16,12 @@ const createBudget = () => {
     budget.appendChild(budgetSidebar);
     return budget;
 };
+const submitBudget = () => {
+    const category = (document.getElementById("budget-form-category-select"));
+    const amount = (document.getElementById("budget-form-amount"));
+    const title = document.getElementById("budget-form-title");
+    const description = (document.getElementById("budget-form-description"));
+    const calendarHeaderDate = document.getElementById("cal-curr-date");
+};
 export default createBudget;
 //# sourceMappingURL=budget.js.map

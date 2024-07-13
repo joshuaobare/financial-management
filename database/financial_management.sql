@@ -44,6 +44,7 @@ CREATE TABLE budgets (
     title VARCHAR(50),
     category VARCHAR(50) NOT NULL,
     amount DECIMAL(15, 2) NOT NULL,
+    description longtext,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

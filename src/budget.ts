@@ -19,4 +19,18 @@ const createBudget = (): HTMLDivElement => {
   return budget;
 };
 
+const submitBudget = () => {
+  const category = <HTMLInputElement>(
+    document.getElementById("budget-form-category-select")
+  );
+  const amount = <HTMLInputElement>(
+    document.getElementById("budget-form-amount")
+  );
+  const title = <HTMLInputElement>document.getElementById("budget-form-title");
+  const description = <HTMLTextAreaElement>(
+    document.getElementById("budget-form-description")
+  );
+  const calendarHeaderDate = document.getElementById("cal-curr-date");
+};
+
 export default createBudget;

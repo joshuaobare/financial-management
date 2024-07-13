@@ -80,26 +80,27 @@ if (isset($_SESSION['user_id'])) {
           <div class="budget-dialog-body">
             <form action="" class="budget-form">
               <div class="budget-form-item">
-                <label for="">Category</label>
-                <select name="" id="budget-form-category-select" class="budget-form-item-input">
+                <label for="budget-form-category-select">Category</label>
+                <select name="category" id="budget-form-category-select" class="budget-form-item-input">
                   <option value="Income">Income</option>
                   <option value="Bills">Bills</option>
                   <option value="Personal">Personal</option>
                   <option value="Savings">Savings</option>
-                  <option value="Savings">Other</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div class="budget-form-item">
-                <label for="">Title</label>
-                <input type="text" class="budget-form-item-input" />
+                <label for="budget-form-item-input">Title</label>
+                <input type="text" class="budget-form-item-input" id="budget-form-title" name="title" />
               </div>
               <div class="budget-form-item">
-                <label for="">Description</label>
-                <textarea name="" id="" class="budget-form-item-input"></textarea>
+                <label for="budget-form-description">Description</label>
+                <textarea name="" id="budget-form-description" name="description"
+                  class="budget-form-item-input"></textarea>
               </div>
               <div class="budget-form-item">
-                <label for="">Amount</label>
-                <input type="number" class="budget-form-item-input" />
+                <label for="budget-form-amount">Amount</label>
+                <input type="number" id="budget-form-amount" class="budget-form-item-input" />
               </div>
               <button class="budget-form-submit-btn">Submit</button>
             </form>
