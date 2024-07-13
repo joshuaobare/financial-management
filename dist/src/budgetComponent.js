@@ -1,8 +1,4 @@
 const dialog = document.getElementById("budget-dialog");
-const closeDialog = document.getElementById("budget-dialog-close");
-closeDialog === null || closeDialog === void 0 ? void 0 : closeDialog.addEventListener("click", () => {
-    dialog.close();
-});
 const createBudgetComponent = (title) => {
     const budgetComponent = document.createElement("div");
     budgetComponent.className = "budget-component";

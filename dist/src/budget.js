@@ -1,4 +1,9 @@
 import createCalendar from "./calendar.js";
+const dialog = document.getElementById("budget-dialog");
+const closeDialog = document.getElementById("budget-dialog-close");
+closeDialog === null || closeDialog === void 0 ? void 0 : closeDialog.addEventListener("click", () => {
+    dialog.close();
+});
 const createBudget = () => {
     const budget = document.createElement("div");
     budget.className = "budget";
