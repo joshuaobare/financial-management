@@ -38,8 +38,10 @@ const getBudgetFormValues = () => {
     const unparsedDate = (_a = calendarHeaderDate === null || calendarHeaderDate === void 0 ? void 0 : calendarHeaderDate.dataset.date) === null || _a === void 0 ? void 0 : _a.split(" ");
     const month = parseInt(unparsedDate[0]);
     const year = parseInt(unparsedDate[1]);
-    const start_date = new Date(year, month, 1);
-    const end_date = new Date(year, month + 1, 0);
+    const start_date = new Date();
+    start_date.setFullYear(year, month, 1);
+    const end_date = new Date();
+    end_date.setFullYear(year, month + 1, 0);
     return {
         category,
         amount,
