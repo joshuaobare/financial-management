@@ -1,5 +1,6 @@
 import createBudgetComponent from "./budgetComponent.js";
 import { Budget } from "./interfaces/budgetInterface.js";
+let budgetData: Budget[] = [];
 
 const fetchBudgetData = async (budgetData: Budget[]) => {
   const userId = localStorage.getItem("user_id");
@@ -20,6 +21,7 @@ const fetchBudgetData = async (budgetData: Budget[]) => {
     console.error(error);
   }
 };
+fetchBudgetData(budgetData);
 
 const createCalendar = (): HTMLDivElement => {
   const date = new Date();
@@ -28,9 +30,7 @@ const createCalendar = (): HTMLDivElement => {
   const calendar = document.createElement("div");
   calendar.className = "cal-cont";
   const calHeader = calendarHeader(date, year, month);
-  let budgetData = [];
-  fetchBudgetData(budgetData);
-  const calBody = calendarBody(date, year, month, budgetData);
+  const calBody = calendarBody(date, year, month);
   calendar.append(calHeader, calBody);
 
   return calendar;
@@ -111,8 +111,7 @@ const calendarHeader = (date: Date, year: number, month: number) => {
 const calendarBody = (
   date: Date,
   year: number,
-  month: number,
-  budgetData: Budget[]
+  month: number
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";

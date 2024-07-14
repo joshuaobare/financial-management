@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import createBudgetComponent from "./budgetComponent.js";
+let budgetData = [];
 const fetchBudgetData = (budgetData) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = localStorage.getItem("user_id");
     try {
@@ -24,6 +25,7 @@ const fetchBudgetData = (budgetData) => __awaiter(void 0, void 0, void 0, functi
         console.error(error);
     }
 });
+fetchBudgetData(budgetData);
 const createCalendar = () => {
     const date = new Date();
     const year = date.getFullYear();
@@ -31,9 +33,7 @@ const createCalendar = () => {
     const calendar = document.createElement("div");
     calendar.className = "cal-cont";
     const calHeader = calendarHeader(date, year, month);
-    let budgetData = [];
-    fetchBudgetData(budgetData);
-    const calBody = calendarBody(date, year, month, budgetData);
+    const calBody = calendarBody(date, year, month);
     calendar.append(calHeader, calBody);
     return calendar;
 };
@@ -96,7 +96,7 @@ const calendarHeader = (date, year, month) => {
     });
     return calendarHeader;
 };
-const calendarBody = (date, year, month, budgetData) => {
+const calendarBody = (date, year, month) => {
     const calendarBody = document.createElement("div");
     calendarBody.className = "cal-body";
     calendarBody.append(createBudgetComponent("Income", budgetData), createBudgetComponent("Bills", budgetData), createBudgetComponent("Personal", budgetData), createBudgetComponent("Savings", budgetData), createBudgetComponent("Other", budgetData));
