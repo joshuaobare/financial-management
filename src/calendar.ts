@@ -2,35 +2,14 @@ import createBudgetComponent from "./budgetComponent.js";
 import { Budget } from "./interfaces/budgetInterface.js";
 let budgetData: Budget[] = [];
 
-const fetchBudgetData = async (budgetData: Budget[]) => {
-  const userId = localStorage.getItem("user_id");
-  try {
-    const request = await fetch(
-      `http://localhost:8080/financial-management/php/fetchBudget.php?user_id=${userId}`,
-      {
-        method: "GET",
-        headers: { "Content-type": "application/json" },
-      }
-    );
-    const response = await request.json();
-
-    if (response.budgets) {
-      budgetData = response.budgets;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-fetchBudgetData(budgetData);
-
-const createCalendar = (): HTMLDivElement => {
+const createCalendar = (budgetData: Budget[]): HTMLDivElement => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
   const calendar = document.createElement("div");
   calendar.className = "cal-cont";
   const calHeader = calendarHeader(date, year, month);
-  const calBody = calendarBody(date, year, month);
+  const calBody = calendarBody(date, year, month, budgetData);
   calendar.append(calHeader, calBody);
 
   return calendar;
@@ -111,7 +90,8 @@ const calendarHeader = (date: Date, year: number, month: number) => {
 const calendarBody = (
   date: Date,
   year: number,
-  month: number
+  month: number,
+  budgetData: Budget[]
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
