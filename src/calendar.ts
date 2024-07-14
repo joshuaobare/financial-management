@@ -1,32 +1,36 @@
 import createBudgetComponent from "./budgetComponent.js";
+import { Budget } from "./interfaces/budgetInterface.js";
 
-const fetchBudgetData = async () => {
+const fetchBudgetData = async (budgetData: Budget[]) => {
   const userId = localStorage.getItem("user_id");
   try {
     const request = await fetch(
-      `localhost:8080/financial-management/php/fetchBudget.php?id=${userId}`,
+      `http://localhost:8080/financial-management/php/fetchBudget.php?user_id=${userId}`,
       {
         method: "GET",
         headers: { "Content-type": "application/json" },
       }
     );
     const response = await request.json();
-    console.log(response);
+
+    if (response.budgets) {
+      budgetData = response.budgets;
+    }
   } catch (error) {
     console.error(error);
   }
 };
-fetchBudgetData();
 
 const createCalendar = (): HTMLDivElement => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
   const calendar = document.createElement("div");
-
   calendar.className = "cal-cont";
   const calHeader = calendarHeader(date, year, month);
-  const calBody = calendarBody(date, year, month);
+  let budgetData = [];
+  fetchBudgetData(budgetData);
+  const calBody = calendarBody(date, year, month, budgetData);
   calendar.append(calHeader, calBody);
 
   return calendar;
@@ -107,17 +111,18 @@ const calendarHeader = (date: Date, year: number, month: number) => {
 const calendarBody = (
   date: Date,
   year: number,
-  month: number
+  month: number,
+  budgetData: Budget[]
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
 
   calendarBody.append(
-    createBudgetComponent("Income"),
-    createBudgetComponent("Bills"),
-    createBudgetComponent("Personal"),
-    createBudgetComponent("Savings"),
-    createBudgetComponent("Other")
+    createBudgetComponent("Income", budgetData),
+    createBudgetComponent("Bills", budgetData),
+    createBudgetComponent("Personal", budgetData),
+    createBudgetComponent("Savings", budgetData),
+    createBudgetComponent("Other", budgetData)
   );
   return calendarBody;
 };

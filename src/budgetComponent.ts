@@ -1,6 +1,7 @@
+import { Budget } from "./interfaces/budgetInterface.js";
 const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
 
-const createBudgetComponent = (title: string) => {
+const createBudgetComponent = (title: string, budgetData: Budget[]) => {
   const budgetComponent = document.createElement("div");
   budgetComponent.className = "budget-component";
   const header = document.createElement("header");

@@ -1,5 +1,5 @@
 const dialog = document.getElementById("budget-dialog");
-const createBudgetComponent = (title) => {
+const createBudgetComponent = (title, budgetData) => {
     const budgetComponent = document.createElement("div");
     budgetComponent.className = "budget-component";
     const header = document.createElement("header");
