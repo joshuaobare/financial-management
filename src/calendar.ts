@@ -1,5 +1,23 @@
 import createBudgetComponent from "./budgetComponent.js";
 
+const fetchBudgetData = async () => {
+  const userId = localStorage.getItem("user_id");
+  try {
+    const request = await fetch(
+      `localhost:8080/financial-management/php/fetchBudget.php?id=${userId}`,
+      {
+        method: "GET",
+        headers: { "Content-type": "application/json" },
+      }
+    );
+    const response = await request.json();
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+fetchBudgetData();
+
 const createCalendar = (): HTMLDivElement => {
   const date = new Date();
   const year = date.getFullYear();
