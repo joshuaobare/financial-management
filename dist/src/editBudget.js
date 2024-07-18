@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
 const populateBudgetForm = (budgetData) => {
     const category = (document.getElementById("edit-budget-form-category-select"));
     category.value = budgetData.category;
@@ -16,6 +17,10 @@ const populateBudgetForm = (budgetData) => {
     title.value = budgetData.title;
     const description = (document.getElementById("edit-budget-form-description"));
     description.value = budgetData.description;
+    const startDate = (document.getElementById("edit-budget-form-start-date"));
+    startDate.value = budgetData.start_date.toString();
+    const endDate = (document.getElementById("edit-budget-form-end-date"));
+    endDate.value = budgetData.end_date.toString();
 };
 const getEditBudgetFormValues = () => {
     var _a;
@@ -42,8 +47,19 @@ const getEditBudgetFormValues = () => {
         end_date,
     };
 };
-const updateBudget = () => __awaiter(void 0, void 0, void 0, function* () {
-    const request = yield fetch("http://localhost:8080/financial-management/php/updateBudget.php");
+const updateBudget = (budgetData) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const request = yield fetch("http://localhost:8080/financial-management/php/updateBudget.php", {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(budgetData),
+        });
+        const response = yield request.json();
+        console.log(response);
+    }
+    catch (error) {
+        console.error(error);
+    }
 });
-export {};
+export default { updateBudget, getEditBudgetFormValues, populateBudgetForm };
 //# sourceMappingURL=editBudget.js.map

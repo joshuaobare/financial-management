@@ -1,4 +1,7 @@
+import editBudget from "./editBudget.js";
 const dialog = document.getElementById("budget-dialog");
+const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
+const { updateBudget, getEditBudgetFormValues, populateBudgetForm } = editBudget;
 const createBudgetComponent = (title, budgetData) => {
     console.log(budgetData);
     const budgetComponent = document.createElement("div");
@@ -47,7 +50,15 @@ const row = (budgetData) => {
     rowRight.className = "budget-row-right";
     rowRight.textContent = "KShs. 0.00";
     singleRow.append(rowLeft, rowMid, rowRight);
+    singleRow.addEventListener("click", () => {
+        populateBudgetForm(budgetData);
+        editBudgetDialog.show();
+    });
     return singleRow;
+};
+const editBudgetItem = (budgetData) => {
+    const budgetFormData = Object.assign(Object.assign({}, budgetData), { getEditBudgetFormValues });
+    updateBudget(budgetFormData);
 };
 export default createBudgetComponent;
 //# sourceMappingURL=budgetComponent.js.map
