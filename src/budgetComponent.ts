@@ -1,6 +1,7 @@
 import { Budget } from "./interfaces/budgetInterface.js";
 import editBudget from "./editBudget.js";
 import openBudget from "./index.js";
+import deleteBudget from "./deleteBudget.js";
 
 const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
 const editBudgetDialog = <HTMLDialogElement>(
@@ -77,6 +78,9 @@ const row = (budgetData: Budget) => {
   rowMain.addEventListener("click", () => {
     populateBudgetForm(budgetData);
     editBudgetDialog.show();
+  });
+  deleteIcon.addEventListener("click", () => {
+    deleteBudget(budgetData.budget_id);
   });
 
   singleRow.append(deleteIcon, rowMain);

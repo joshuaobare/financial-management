@@ -1,4 +1,5 @@
 import editBudget from "./editBudget.js";
+import deleteBudget from "./deleteBudget.js";
 const dialog = document.getElementById("budget-dialog");
 const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
 const { updateBudget, getEditBudgetFormValues, populateBudgetForm } = editBudget;
@@ -57,6 +58,9 @@ const row = (budgetData) => {
     rowMain.addEventListener("click", () => {
         populateBudgetForm(budgetData);
         editBudgetDialog.show();
+    });
+    deleteIcon.addEventListener("click", () => {
+        deleteBudget(budgetData.budget_id);
     });
     singleRow.append(deleteIcon, rowMain);
     return singleRow;
