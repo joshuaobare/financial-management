@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id'])) {
       <dialog id="edit-budget-dialog">
         <div class="budget-dialog-cont">
           <div class="budget-dialog=header">
-            <button class="budget-dialog-close" id="budget-dialog-close">
+            <button class="budget-dialog-close" id="edit-budget-dialog-close">
               X
             </button>
           </div>
@@ -147,6 +147,7 @@ if (isset($_SESSION['user_id'])) {
                 <label for="edit-budget-form-end-date">End Date</label>
                 <input type="date" id="edit-budget-form-end-date" class="budget-form-item-input" />
               </div>
+              <input type="hidden" id="edit-budget-form-budget-id">
               <button class="budget-form-submit-btn" id="edit-budget-form-submit-btn">Submit</button>
             </form>
           </div>

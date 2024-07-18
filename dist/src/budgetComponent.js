@@ -3,7 +3,6 @@ const dialog = document.getElementById("budget-dialog");
 const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
 const { updateBudget, getEditBudgetFormValues, populateBudgetForm } = editBudget;
 const createBudgetComponent = (title, budgetData) => {
-    console.log(budgetData);
     const budgetComponent = document.createElement("div");
     budgetComponent.className = "budget-component";
     const header = document.createElement("header");
@@ -55,10 +54,6 @@ const row = (budgetData) => {
         editBudgetDialog.show();
     });
     return singleRow;
-};
-const editBudgetItem = (budgetData) => {
-    const budgetFormData = Object.assign(Object.assign({}, budgetData), { getEditBudgetFormValues });
-    updateBudget(budgetFormData);
 };
 export default createBudgetComponent;
 //# sourceMappingURL=budgetComponent.js.map

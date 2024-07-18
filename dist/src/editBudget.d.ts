@@ -3,12 +3,13 @@ declare const _default: {
     updateBudget: (budgetData: Budget) => Promise<void>;
     getEditBudgetFormValues: () => {
         category: string;
-        amount: string;
+        amount: number;
         title: string;
         description: string;
-        user_id: string | null;
+        user_id: number;
         start_date: Date;
         end_date: Date;
+        budget_id: number;
     };
     populateBudgetForm: (budgetData: Budget) => void;
 };

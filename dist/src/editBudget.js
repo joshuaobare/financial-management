@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import openBudget from "./index.js";
 const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
 const populateBudgetForm = (budgetData) => {
     const category = (document.getElementById("edit-budget-form-category-select"));
@@ -21,14 +22,18 @@ const populateBudgetForm = (budgetData) => {
     startDate.value = budgetData.start_date.toString();
     const endDate = (document.getElementById("edit-budget-form-end-date"));
     endDate.value = budgetData.end_date.toString();
+    const budgetId = (document.getElementById("edit-budget-form-budget-id"));
+    budgetId.value = budgetData.budget_id.toString();
 };
 const getEditBudgetFormValues = () => {
     var _a;
     const category = (document.getElementById("edit-budget-form-category-select")).value;
-    const amount = (document.getElementById("edit-budget-form-amount")).value;
+    const amount = parseInt(document.getElementById("edit-budget-form-amount").value);
     const title = (document.getElementById("edit-budget-form-title")).value;
     const description = (document.getElementById("edit-budget-form-description")).value;
-    const user_id = localStorage.getItem("user_id");
+    const budget_id = parseInt(document.getElementById("edit-budget-form-budget-id")
+        .value);
+    const user_id = parseInt(localStorage.getItem("user_id").toString());
     const calendarHeaderDate = document.getElementById("cal-curr-date");
     const unparsedDate = (_a = calendarHeaderDate === null || calendarHeaderDate === void 0 ? void 0 : calendarHeaderDate.dataset.date) === null || _a === void 0 ? void 0 : _a.split(" ");
     const month = parseInt(unparsedDate[0]);
@@ -45,9 +50,11 @@ const getEditBudgetFormValues = () => {
         user_id,
         start_date,
         end_date,
+        budget_id,
     };
 };
 const updateBudget = (budgetData) => __awaiter(void 0, void 0, void 0, function* () {
+    //console.log(budgetData);
     try {
         const request = yield fetch("http://localhost:8080/financial-management/php/updateBudget.php", {
             method: "POST",
@@ -56,6 +63,10 @@ const updateBudget = (budgetData) => __awaiter(void 0, void 0, void 0, function*
         });
         const response = yield request.json();
         console.log(response);
+        if (response.message) {
+            editBudgetDialog.close();
+            openBudget();
+        }
     }
     catch (error) {
         console.error(error);

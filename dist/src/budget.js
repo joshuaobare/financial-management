@@ -9,11 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import createCalendar from "./calendar.js";
 import openBudget from "./index.js";
+import editBudget from "./editBudget.js";
 const dialog = document.getElementById("budget-dialog");
+const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
 const budgetForm = document.getElementById("budget-form");
+const editBudgetForm = (document.getElementById("edit-budget-form"));
 const closeDialog = document.getElementById("budget-dialog-close");
+const editBudgetDialogClose = document.getElementById("edit-budget-dialog-close");
+const { updateBudget, getEditBudgetFormValues, populateBudgetForm } = editBudget;
 closeDialog === null || closeDialog === void 0 ? void 0 : closeDialog.addEventListener("click", () => {
     dialog.close();
+});
+editBudgetDialogClose === null || editBudgetDialogClose === void 0 ? void 0 : editBudgetDialogClose.addEventListener("click", () => {
+    editBudgetDialog.close();
 });
 const createBudget = (budgetData) => {
     const budget = document.createElement("div");
@@ -69,6 +77,7 @@ const submitBudgetForm = () => __awaiter(void 0, void 0, void 0, function* () {
         if (response.message) {
             resetBudgetForm();
             dialog.close();
+            openBudget();
         }
     }
     catch (error) {
@@ -78,7 +87,12 @@ const submitBudgetForm = () => __awaiter(void 0, void 0, void 0, function* () {
 budgetForm === null || budgetForm === void 0 ? void 0 : budgetForm.addEventListener("submit", (e) => {
     e.preventDefault();
     submitBudgetForm();
-    openBudget();
+});
+editBudgetForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const budgetData = Object.assign(Object.assign({}, getEditBudgetFormValues()), { created_at: null });
+    console.log(budgetData);
+    updateBudget(budgetData);
 });
 export default { createBudget, resetBudgetForm, getBudgetFormValues };
 //# sourceMappingURL=budget.js.map

@@ -1,4 +1,5 @@
 import { Budget } from "./interfaces/budgetInterface.js";
+import openBudget from "./index.js";
 
 const editBudgetDialog = <HTMLDialogElement>(
   document.getElementById("edit-budget-dialog")
@@ -29,22 +30,30 @@ const populateBudgetForm = (budgetData: Budget) => {
     document.getElementById("edit-budget-form-end-date")
   );
   endDate.value = budgetData.end_date.toString();
+  const budgetId = <HTMLInputElement>(
+    document.getElementById("edit-budget-form-budget-id")
+  );
+  budgetId.value = budgetData.budget_id.toString();
 };
 
 const getEditBudgetFormValues = () => {
   const category = (<HTMLInputElement>(
     document.getElementById("edit-budget-form-category-select")
   )).value;
-  const amount = (<HTMLInputElement>(
-    document.getElementById("edit-budget-form-amount")
-  )).value;
+  const amount = parseInt(
+    (<HTMLInputElement>document.getElementById("edit-budget-form-amount")).value
+  );
   const title = (<HTMLInputElement>(
     document.getElementById("edit-budget-form-title")
   )).value;
   const description = (<HTMLTextAreaElement>(
     document.getElementById("edit-budget-form-description")
   )).value;
-  const user_id = localStorage.getItem("user_id");
+  const budget_id = parseInt(
+    (<HTMLTextAreaElement>document.getElementById("edit-budget-form-budget-id"))
+      .value
+  );
+  const user_id = parseInt(localStorage.getItem("user_id")!.toString());
 
   const calendarHeaderDate = document.getElementById("cal-curr-date");
   const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
@@ -63,10 +72,12 @@ const getEditBudgetFormValues = () => {
     user_id,
     start_date,
     end_date,
+    budget_id,
   };
 };
 
 const updateBudget = async (budgetData: Budget) => {
+  //console.log(budgetData);
   try {
     const request = await fetch(
       "http://localhost:8080/financial-management/php/updateBudget.php",
@@ -78,6 +89,10 @@ const updateBudget = async (budgetData: Budget) => {
     );
     const response = await request.json();
     console.log(response);
+    if (response.message) {
+      editBudgetDialog.close();
+      openBudget();
+    }
   } catch (error) {
     console.error(error);
   }

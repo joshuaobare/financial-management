@@ -1,13 +1,29 @@
 import createCalendar from "./calendar.js";
 import { Budget } from "./interfaces/budgetInterface.js";
 import openBudget from "./index.js";
+import editBudget from "./editBudget.js";
 
 const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
+const editBudgetDialog = <HTMLDialogElement>(
+  document.getElementById("edit-budget-dialog")
+);
 const budgetForm = document.getElementById("budget-form");
+const editBudgetForm = <HTMLFormElement>(
+  document.getElementById("edit-budget-form")
+);
 const closeDialog = document.getElementById("budget-dialog-close");
+const editBudgetDialogClose = document.getElementById(
+  "edit-budget-dialog-close"
+);
+const { updateBudget, getEditBudgetFormValues, populateBudgetForm } =
+  editBudget;
 
 closeDialog?.addEventListener("click", () => {
   dialog!.close();
+});
+
+editBudgetDialogClose?.addEventListener("click", () => {
+  editBudgetDialog!.close();
 });
 
 const createBudget = (budgetData: Budget[]): HTMLDivElement => {
@@ -82,6 +98,7 @@ const submitBudgetForm = async () => {
     if (response.message) {
       resetBudgetForm();
       dialog.close();
+      openBudget();
     }
   } catch (error) {
     console.error(error);
@@ -91,7 +108,13 @@ const submitBudgetForm = async () => {
 budgetForm?.addEventListener("submit", (e) => {
   e.preventDefault();
   submitBudgetForm();
-  openBudget();
+});
+
+editBudgetForm.addEventListener("submit", (e: Event) => {
+  e.preventDefault();
+  const budgetData = { ...getEditBudgetFormValues(), created_at: null };
+  console.log(budgetData);
+  updateBudget(budgetData);
 });
 
 export default { createBudget, resetBudgetForm, getBudgetFormValues };
