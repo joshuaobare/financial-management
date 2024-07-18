@@ -1,5 +1,6 @@
 import createCalendar from "./calendar.js";
 import { Budget } from "./interfaces/budgetInterface.js";
+import openBudget from "./index.js";
 
 const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
 const budgetForm = document.getElementById("budget-form");
@@ -90,6 +91,7 @@ const submitBudgetForm = async () => {
 budgetForm?.addEventListener("submit", (e) => {
   e.preventDefault();
   submitBudgetForm();
+  openBudget();
 });
 
 export default createBudget;

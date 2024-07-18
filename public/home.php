@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id'])) {
                 <label for="budget-form-amount">Amount</label>
                 <input type="number" id="budget-form-amount" class="budget-form-item-input" />
               </div>
-              <button class="budget-form-submit-btn">Submit</button>
+              <button class="budget-form-submit-btn" id="budget-form-submit-btn">Submit</button>
             </form>
           </div>
         </div>

@@ -42,8 +42,8 @@ homeBtn?.addEventListener("click", (e: Event) => {
 
 const openBudget = async () => {
   const budgetData = await fetchBudgetData();
-  const budget = createBudget(budgetData);
   container?.replaceChildren();
+  const budget = createBudget(budgetData);
   container?.appendChild(budget);
 };
 
@@ -52,3 +52,5 @@ budgetBtn?.addEventListener("click", (e: Event) => {
 });
 
 openHome();
+
+export default openBudget;

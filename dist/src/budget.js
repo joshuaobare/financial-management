@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import createCalendar from "./calendar.js";
+import openBudget from "./index.js";
 const dialog = document.getElementById("budget-dialog");
 const budgetForm = document.getElementById("budget-form");
 const closeDialog = document.getElementById("budget-dialog-close");
@@ -77,6 +78,7 @@ const submitBudgetForm = () => __awaiter(void 0, void 0, void 0, function* () {
 budgetForm === null || budgetForm === void 0 ? void 0 : budgetForm.addEventListener("submit", (e) => {
     e.preventDefault();
     submitBudgetForm();
+    openBudget();
 });
 export default createBudget;
 //# sourceMappingURL=budget.js.map
