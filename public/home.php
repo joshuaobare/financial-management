@@ -139,6 +139,14 @@ if (isset($_SESSION['user_id'])) {
                 <label for="edit-budget-form-amount">Amount</label>
                 <input type="number" id="edit-budget-form-amount" class="budget-form-item-input" />
               </div>
+              <div class="budget-form-item">
+                <label for="edit-budget-form-start-date">Start Date</label>
+                <input type="date" id="edit-budget-form-start-date" class="budget-form-item-input" />
+              </div>
+              <div class="budget-form-item">
+                <label for="edit-budget-form-end-date">End Date</label>
+                <input type="date" id="edit-budget-form-end-date" class="budget-form-item-input" />
+              </div>
               <button class="budget-form-submit-btn" id="edit-budget-form-submit-btn">Submit</button>
             </form>
           </div>
