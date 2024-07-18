@@ -49,15 +49,5 @@ const row = (budgetData) => {
     singleRow.append(rowLeft, rowMid, rowRight);
     return singleRow;
 };
-const populateBudgetForm = (budgetData) => {
-    const category = (document.getElementById("budget-form-category-select"));
-    category.value = budgetData.category;
-    const amount = (document.getElementById("budget-form-amount"));
-    amount.value = budgetData.amount.toString();
-    const title = document.getElementById("budget-form-title");
-    title.value = budgetData.title;
-    const description = (document.getElementById("budget-form-description"));
-    description.value = budgetData.description;
-};
 export default createBudgetComponent;
 //# sourceMappingURL=budgetComponent.js.map
