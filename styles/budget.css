@@ -16,14 +16,15 @@
 .budget-item {
   display: flex;
   align-items: center;
+  border-bottom: 1px solid lightgray;
 }
 .budget-item-del-icon {
   cursor: pointer;
 }
 .budget-row {
-  border-bottom: 1px solid lightgray;
   padding: 10px;
   cursor: pointer;
+  width: 100%;
 }
 .budget-header-left {
   font-size: 1rem;
