@@ -38,7 +38,12 @@ const createBudgetComponent = (title, budgetData) => {
 };
 const row = (budgetData) => {
     const singleRow = document.createElement("div");
-    singleRow.className = "budget-row";
+    singleRow.className = "budget-item";
+    const deleteIcon = document.createElement("span");
+    deleteIcon.textContent = "delete";
+    deleteIcon.className = "material-symbols-outlined budget-item-del-icon";
+    const rowMain = document.createElement("div");
+    rowMain.className = "budget-row";
     const rowLeft = document.createElement("div");
     rowLeft.className = "budget-row-left budget-row-left-input";
     rowLeft.textContent = budgetData.title;
@@ -48,11 +53,12 @@ const row = (budgetData) => {
     const rowRight = document.createElement("div");
     rowRight.className = "budget-row-right";
     rowRight.textContent = "KShs. 0.00";
-    singleRow.append(rowLeft, rowMid, rowRight);
-    singleRow.addEventListener("click", () => {
+    rowMain.append(rowLeft, rowMid, rowRight);
+    rowMain.addEventListener("click", () => {
         populateBudgetForm(budgetData);
         editBudgetDialog.show();
     });
+    singleRow.append(deleteIcon, rowMain);
     return singleRow;
 };
 export default createBudgetComponent;

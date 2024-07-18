@@ -113,7 +113,6 @@ budgetForm?.addEventListener("submit", (e) => {
 editBudgetForm.addEventListener("submit", (e: Event) => {
   e.preventDefault();
   const budgetData = { ...getEditBudgetFormValues(), created_at: null };
-  console.log(budgetData);
   updateBudget(budgetData);
 });
 

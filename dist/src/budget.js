@@ -91,7 +91,6 @@ budgetForm === null || budgetForm === void 0 ? void 0 : budgetForm.addEventListe
 editBudgetForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const budgetData = Object.assign(Object.assign({}, getEditBudgetFormValues()), { created_at: null });
-    console.log(budgetData);
     updateBudget(budgetData);
 });
 export default { createBudget, resetBudgetForm, getBudgetFormValues };
