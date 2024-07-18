@@ -16,6 +16,7 @@
 .budget-row {
   border-bottom: 1px solid lightgray;
   padding: 10px;
+  cursor: pointer;
 }
 .budget-header-left {
   font-size: 1rem;

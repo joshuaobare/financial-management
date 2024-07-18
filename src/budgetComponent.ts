@@ -1,4 +1,6 @@
+import resetBudgetForm from "./budget.js";
 import { Budget } from "./interfaces/budgetInterface.js";
+
 const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
 
 const createBudgetComponent = (title: string, budgetData: Budget[]) => {
@@ -62,6 +64,23 @@ const row = (budgetData: Budget) => {
   singleRow.append(rowLeft, rowMid, rowRight);
 
   return singleRow;
+};
+
+const populateBudgetForm = (budgetData: Budget) => {
+  const category = <HTMLInputElement>(
+    document.getElementById("budget-form-category-select")
+  );
+  category.value = budgetData.category;
+  const amount = <HTMLInputElement>(
+    document.getElementById("budget-form-amount")
+  );
+  amount.value = budgetData.amount.toString();
+  const title = <HTMLInputElement>document.getElementById("budget-form-title");
+  title.value = budgetData.title;
+  const description = <HTMLTextAreaElement>(
+    document.getElementById("budget-form-description")
+  );
+  description.value = budgetData.description;
 };
 
 export default createBudgetComponent;

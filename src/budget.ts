@@ -94,4 +94,4 @@ budgetForm?.addEventListener("submit", (e) => {
   openBudget();
 });
 
-export default createBudget;
+export default { createBudget, resetBudgetForm, getBudgetFormValues };

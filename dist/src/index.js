@@ -42,7 +42,7 @@ homeBtn === null || homeBtn === void 0 ? void 0 : homeBtn.addEventListener("clic
 const openBudget = () => __awaiter(void 0, void 0, void 0, function* () {
     const budgetData = yield fetchBudgetData();
     container === null || container === void 0 ? void 0 : container.replaceChildren();
-    const budget = createBudget(budgetData);
+    const budget = createBudget.createBudget(budgetData);
     container === null || container === void 0 ? void 0 : container.appendChild(budget);
 });
 budgetBtn === null || budgetBtn === void 0 ? void 0 : budgetBtn.addEventListener("click", (e) => {
