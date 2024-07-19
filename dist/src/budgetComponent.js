@@ -4,6 +4,7 @@ const dialog = document.getElementById("budget-dialog");
 const editBudgetDialog = (document.getElementById("edit-budget-dialog"));
 const { updateBudget, getEditBudgetFormValues, populateBudgetForm } = editBudget;
 const createBudgetComponent = (title, budgetData) => {
+    console.log(budgetData);
     const budgetComponent = document.createElement("div");
     budgetComponent.className = "budget-component";
     const header = document.createElement("header");
@@ -20,6 +21,7 @@ const createBudgetComponent = (title, budgetData) => {
     header.append(headerLeft, headerMid, headerRight);
     const main = document.createElement("div");
     const componentData = budgetData.filter((budgetItem) => budgetItem.category === title);
+    console.log(componentData);
     componentData.forEach((item) => {
         main.append(row(item));
     });

@@ -1,7 +1,8 @@
+import { Budget } from "./interfaces/budgetInterface";
 declare class BudgetCalculator {
     constructor();
-    budgetCategoryCalculator(): void;
-    totalMonthlyAllocation(): void;
+    budgetCategoryCalculator(categoryData: Budget[]): number;
+    totalMonthlyAllocation(budgetData: Budget[]): void;
     monthlyExcessCalculator(): void;
 }
 export default BudgetCalculator;

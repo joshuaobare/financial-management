@@ -1,9 +1,16 @@
+import { Budget } from "./interfaces/budgetInterface";
 class BudgetCalculator {
   constructor() {}
 
-  budgetCategoryCalculator() {}
+  budgetCategoryCalculator(categoryData: Budget[]) {
+    let sum = 0;
 
-  totalMonthlyAllocation() {}
+    categoryData.forEach((item) => (sum += item.amount));
+
+    return sum;
+  }
+
+  totalMonthlyAllocation(budgetData: Budget[]) {}
 
   monthlyExcessCalculator() {}
 }
