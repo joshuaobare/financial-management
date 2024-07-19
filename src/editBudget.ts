@@ -1,5 +1,5 @@
-import { Budget } from "./interfaces/budgetInterface.js";
-import openBudget from "./index.js";
+import { Budget } from "./interfaces/budgetInterface";
+import { openBudget } from "./index";
 
 const editBudgetDialog = <HTMLDialogElement>(
   document.getElementById("edit-budget-dialog")
@@ -98,4 +98,4 @@ const updateBudget = async (budgetData: Budget) => {
   }
 };
 
-export default { updateBudget, getEditBudgetFormValues, populateBudgetForm };
+export { updateBudget, getEditBudgetFormValues, populateBudgetForm };

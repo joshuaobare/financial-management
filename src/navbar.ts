@@ -7,4 +7,4 @@ const navbarMid = document.createElement("div");
 const navbarRight = document.createElement("div");
 navbar.append(navbarLeft, navbarMid, navbarRight);
 
-export default navbar;
+export { navbar };

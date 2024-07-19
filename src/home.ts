@@ -28,4 +28,4 @@ const createHeader = (): HTMLDivElement => {
   return header;
 };
 
-export default createHome;
+export { createHome };

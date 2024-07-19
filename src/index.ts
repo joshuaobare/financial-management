@@ -1,7 +1,7 @@
-import createHome from "./home.js";
-import createBudget from "./budget.js";
-import navbar from "./navbar.js";
-import { Budget } from "./interfaces/budgetInterface.js";
+import { createHome } from "./home";
+import { createBudget } from "./budget";
+import { navbar } from "./navbar";
+import { Budget } from "./interfaces/budgetInterface";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
@@ -43,7 +43,7 @@ homeBtn?.addEventListener("click", (e: Event) => {
 const openBudget = async () => {
   const budgetData = await fetchBudgetData();
   container?.replaceChildren();
-  const budget = createBudget.createBudget(budgetData);
+  const budget = createBudget(budgetData);
   container?.appendChild(budget);
 };
 
@@ -53,4 +53,4 @@ budgetBtn?.addEventListener("click", (e: Event) => {
 
 openHome();
 
-export default openBudget;
+export { openBudget };

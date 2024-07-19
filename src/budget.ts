@@ -1,7 +1,11 @@
-import createCalendar from "./calendar.js";
-import { Budget } from "./interfaces/budgetInterface.js";
-import openBudget from "./index.js";
-import editBudget from "./editBudget.js";
+import { createCalendar } from "./calendar";
+import { Budget } from "./interfaces/budgetInterface";
+import { openBudget } from "./index";
+import {
+  updateBudget,
+  getEditBudgetFormValues,
+  populateBudgetForm,
+} from "./editBudget";
 
 const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
 const editBudgetDialog = <HTMLDialogElement>(
@@ -15,8 +19,6 @@ const closeDialog = document.getElementById("budget-dialog-close");
 const editBudgetDialogClose = document.getElementById(
   "edit-budget-dialog-close"
 );
-const { updateBudget, getEditBudgetFormValues, populateBudgetForm } =
-  editBudget;
 
 closeDialog?.addEventListener("click", () => {
   dialog!.close();
@@ -116,4 +118,4 @@ editBudgetForm.addEventListener("submit", (e: Event) => {
   updateBudget(budgetData);
 });
 
-export default { createBudget, resetBudgetForm, getBudgetFormValues };
+export { createBudget, resetBudgetForm, getBudgetFormValues };

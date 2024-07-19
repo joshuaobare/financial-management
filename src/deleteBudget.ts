@@ -1,4 +1,4 @@
-import openBudget from "./index.js";
+import { openBudget } from "./index";
 
 const deleteBudget = async (budget_id: number) => {
   try {
@@ -19,4 +19,4 @@ const deleteBudget = async (budget_id: number) => {
   }
 };
 
-export default deleteBudget;
+export { deleteBudget };

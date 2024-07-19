@@ -1,6 +1,5 @@
-import createBudgetComponent from "./budgetComponent.js";
-import { Budget } from "./interfaces/budgetInterface.js";
-let budgetData: Budget[] = [];
+import { createBudgetComponent } from "./budgetComponent";
+import { Budget } from "./interfaces/budgetInterface";
 
 const createCalendar = (budgetData: Budget[]): HTMLDivElement => {
   const date = new Date();
@@ -106,4 +105,4 @@ const calendarBody = (
   return calendarBody;
 };
 
-export default createCalendar;
+export { createCalendar };

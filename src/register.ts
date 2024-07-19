@@ -1,3 +1,5 @@
+import { InputErrorMap } from "./interfaces/errorMapInterface";
+
 const registerForm: HTMLElement | null =
   document.getElementById("register-form");
 const first_name: HTMLInputElement = <HTMLInputElement>(
@@ -39,7 +41,7 @@ const inputs: HTMLInputElement[] = [
   date_of_birth,
 ];
 
-const inputErrorMap = {
+const inputErrorMap: InputErrorMap = {
   email: email_error,
   first_name: first_name_error,
   last_name: last_name_error,
@@ -101,7 +103,7 @@ inputs.forEach((input: HTMLInputElement) => {
     // if valid, remove any error messages, else display error message
     if (input.validity.valid) {
       // the corresponding errorNode is retrieved and emptied
-      inputErrorMap[input.id]!.textContent = "";
+      inputErrorMap[input.id as keyof InputErrorMap]!.textContent = "";
     } else {
       displayError(input);
     }
@@ -155,5 +157,3 @@ registerForm?.addEventListener("submit", (e: Event) => {
     e.preventDefault();
   }
 });
-
-export {};
