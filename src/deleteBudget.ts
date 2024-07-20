@@ -1,6 +1,6 @@
 import { openBudget } from "./index";
 
-const deleteBudget = async (budget_id: number) => {
+const deleteBudget = async (budget_id: string) => {
   try {
     const request = await fetch(
       `http://localhost:8080/financial-management/php/deleteBudget.php?budget_id=${budget_id}`,

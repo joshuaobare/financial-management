@@ -1,11 +1,11 @@
 export interface Budget {
-  amount: number;
-  budget_id: number;
+  amount: string;
+  budget_id: string;
   category: string;
-  created_at: Date | null;
+  created_at: string | null;
   description: string;
-  end_date: Date;
-  start_date: Date;
+  end_date: string;
+  start_date: string;
   title: string;
-  user_id: number;
+  user_id: string;
 }

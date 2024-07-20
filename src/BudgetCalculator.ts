@@ -6,40 +6,40 @@ class BudgetCalculator {
     this.budgetData = budgetData;
   }
 
-  budgetCategoryCalculator(category: string) {
+  budgetCategoryCalculator(category: string): number {
     let sum = 0;
 
     this.budgetData.forEach((item) => {
       if (item.category === category) {
-        sum += item.amount;
+        sum += parseInt(item.amount);
       }
     });
 
     return sum;
   }
 
-  totalMonthlyAllocation() {
+  totalMonthlyAllocation(): number {
     let sum = 0;
 
     this.budgetData.forEach((item) => {
       if (item.category === "Income" || item.category === "Savings") return;
-      sum += item.amount;
+      sum += parseInt(item.amount);
     });
 
     return sum;
   }
 
-  monthlyExcessCalculator() {
+  monthlyExcessCalculator(): number {
     let incomeTotal = 0;
     let totalSpend = 0;
 
     this.budgetData.forEach((item) => {
       if (item.category === "Income") {
-        incomeTotal += item.amount;
+        incomeTotal += parseInt(item.amount);
         return;
       }
       if (item.category === "Savings") return;
-      totalSpend += item.amount;
+      totalSpend += parseInt(item.amount);
     });
 
     return incomeTotal - totalSpend;

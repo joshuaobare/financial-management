@@ -41,7 +41,8 @@ homeBtn?.addEventListener("click", (e: Event) => {
 });
 
 const openBudget = async () => {
-  const budgetData = await fetchBudgetData();
+  const budgetData = <Budget[]>await fetchBudgetData();
+  console.log(budgetData);
   container?.replaceChildren();
   const budget = createBudget(budgetData);
   container?.appendChild(budget);

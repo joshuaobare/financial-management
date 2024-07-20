@@ -40,29 +40,30 @@ const getEditBudgetFormValues = () => {
   const category = (<HTMLInputElement>(
     document.getElementById("edit-budget-form-category-select")
   )).value;
-  const amount = parseInt(
-    (<HTMLInputElement>document.getElementById("edit-budget-form-amount")).value
-  );
+  const amount = (<HTMLInputElement>(
+    document.getElementById("edit-budget-form-amount")
+  )).value;
   const title = (<HTMLInputElement>(
     document.getElementById("edit-budget-form-title")
   )).value;
   const description = (<HTMLTextAreaElement>(
     document.getElementById("edit-budget-form-description")
   )).value;
-  const budget_id = parseInt(
-    (<HTMLTextAreaElement>document.getElementById("edit-budget-form-budget-id"))
-      .value
-  );
-  const user_id = parseInt(localStorage.getItem("user_id")!.toString());
+  const budget_id = (<HTMLTextAreaElement>(
+    document.getElementById("edit-budget-form-budget-id")
+  )).value;
+  const user_id = localStorage.getItem("user_id")!.toString();
 
   const calendarHeaderDate = document.getElementById("cal-curr-date");
   const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
   const month = parseInt(unparsedDate[0]);
   const year = parseInt(unparsedDate[1]);
-  const start_date = new Date();
-  start_date.setFullYear(year, month, 1);
-  const end_date = new Date();
-  end_date.setFullYear(year, month + 1, 0);
+  const start_date_obj = new Date();
+  start_date_obj.setFullYear(year, month, 1);
+  const end_date_obj = new Date();
+  end_date_obj.setFullYear(year, month + 1, 0);
+  const start_date = start_date_obj.toISOString().split("T")[0];
+  const end_date = end_date_obj.toISOString().split("T")[0];
 
   return {
     category,

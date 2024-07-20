@@ -1,6 +1,7 @@
 import { budgetData } from "../tests/testValues";
 import { createBudgetComponent } from "./budgetComponent";
 import { Budget } from "./interfaces/budgetInterface";
+import { calendarSidebar } from "./calendarSidebar";
 
 const createCalendar = (budgetData: Budget[]): HTMLDivElement => {
   const date = new Date();
@@ -128,13 +129,19 @@ const calendarBody = (
     return itemStart >= currentStart && itemEnd <= currentEnd;
   });
 
-  calendarBody.append(
+  const calendarBodyLeft = document.createElement("div");
+  const calendarBodyRight = document.createElement("div");
+  const calSidebar = calendarSidebar(monthlyData);
+
+  calendarBodyLeft.append(
     createBudgetComponent("Income", monthlyData),
     createBudgetComponent("Bills", monthlyData),
     createBudgetComponent("Personal", monthlyData),
     createBudgetComponent("Savings", monthlyData),
     createBudgetComponent("Other", monthlyData)
   );
+  calendarBodyRight.append(calSidebar);
+  calendarBody.append(calendarBodyLeft, calendarBodyRight);
   return calendarBody;
 };
 
