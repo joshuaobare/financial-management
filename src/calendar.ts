@@ -1,3 +1,4 @@
+import { budgetData } from "../tests/testValues";
 import { createBudgetComponent } from "./budgetComponent";
 import { Budget } from "./interfaces/budgetInterface";
 
@@ -7,8 +8,10 @@ const createCalendar = (budgetData: Budget[]): HTMLDivElement => {
   const month = date.getMonth();
   const calendar = document.createElement("div");
   calendar.className = "cal-cont";
-  const calHeader = calendarHeader(date, year, month);
-  const calBody = calendarBody(date, year, month, budgetData);
+  const calBody = document.createElement("div");
+  const calHeader = calendarHeader(calBody, date, year, month, budgetData);
+  calBody.id = "cal-body-cont";
+  renderCalendarBody(calBody, date, year, month, budgetData);
   calendar.append(calHeader, calBody);
 
   return calendar;
@@ -38,7 +41,13 @@ const renderCalendarDate = (
   calendarHeaderDate.dataset.date = `${month} ${year}`;
 };
 
-const calendarHeader = (date: Date, year: number, month: number) => {
+const calendarHeader = (
+  calBody: HTMLDivElement,
+  date: Date,
+  year: number,
+  month: number,
+  budgetData: Budget[]
+) => {
   const calendarHeader = document.createElement("div");
   calendarHeader.className = "cal-header";
 
@@ -79,11 +88,24 @@ const calendarHeader = (date: Date, year: number, month: number) => {
         date = new Date();
       }
       renderCalendarDate(calendarHeaderDate, date, year, month);
+      renderCalendarBody(calBody, date, year, month, budgetData);
       //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
     });
   });
 
   return calendarHeader;
+};
+
+const renderCalendarBody = (
+  calBody: HTMLDivElement,
+  date: Date,
+  year: number,
+  month: number,
+  budgetData: Budget[]
+) => {
+  const calBodyContainer = document.getElementById("cal-body-cont");
+  calBody.appendChild(calendarBody(date, year, month, budgetData));
+  //calBodyContainer?.appendChild(calBody);
 };
 
 const calendarBody = (
