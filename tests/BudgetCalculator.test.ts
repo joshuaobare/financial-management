@@ -5,12 +5,17 @@ const budgetCalculator = new BudgetCalculator();
 
 describe("For a category, return total of its values", () => {
   test("return total for a category", () => {
-    expect(budgetCalculator.budgetCategoryCalculator(categoryData)).toEqual(
-      9200
-    );
+    expect(
+      budgetCalculator.budgetCategoryCalculator(budgetData, "Bills")
+    ).toEqual(104200);
   });
   test("return zero if array is empty", () => {
-    expect(budgetCalculator.budgetCategoryCalculator([])).toEqual(0);
+    expect(budgetCalculator.budgetCategoryCalculator([], "Bills")).toEqual(0);
+  });
+  test("needs to work for all categories", () => {
+    expect(
+      budgetCalculator.budgetCategoryCalculator(budgetData, "Income")
+    ).toEqual(760000);
   });
 });
 

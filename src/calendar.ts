@@ -94,6 +94,7 @@ const calendarBody = (
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
+  console.log(date, year, month);
 
   calendarBody.append(
     createBudgetComponent("Income", budgetData),

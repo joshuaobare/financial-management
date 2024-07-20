@@ -2,10 +2,14 @@ import { Budget } from "./interfaces/budgetInterface";
 class BudgetCalculator {
   constructor() {}
 
-  budgetCategoryCalculator(categoryData: Budget[]) {
+  budgetCategoryCalculator(budgetData: Budget[], category: string) {
     let sum = 0;
 
-    categoryData.forEach((item) => (sum += item.amount));
+    budgetData.forEach((item) => {
+      if (item.category === category) {
+        sum += item.amount;
+      }
+    });
 
     return sum;
   }
