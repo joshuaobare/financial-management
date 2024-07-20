@@ -89,7 +89,6 @@ const calendarHeader = (
       }
       renderCalendarDate(calendarHeaderDate, date, year, month);
       renderCalendarBody(calBody, date, year, month, budgetData);
-      //renderCalendarDates(date, year, month, calDates, calendarHeaderDate);
     });
   });
 
@@ -103,9 +102,8 @@ const renderCalendarBody = (
   month: number,
   budgetData: Budget[]
 ) => {
-  const calBodyContainer = document.getElementById("cal-body-cont");
+  calBody.replaceChildren();
   calBody.appendChild(calendarBody(date, year, month, budgetData));
-  //calBodyContainer?.appendChild(calBody);
 };
 
 const calendarBody = (
@@ -116,14 +114,26 @@ const calendarBody = (
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
-  console.log(date, year, month);
+  const start_date = new Date();
+  start_date.setFullYear(year, month, 1);
+  const end_date = new Date();
+  end_date.setFullYear(year, month + 1, 0);
+
+  const monthlyData = budgetData.filter((item) => {
+    const itemStart = new Date(item.start_date).toISOString().split("T")[0];
+    const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
+    const currentStart = new Date(start_date).toISOString().split("T")[0];
+    const currentEnd = new Date(end_date).toISOString().split("T")[0];
+
+    return itemStart >= currentStart && itemEnd <= currentEnd;
+  });
 
   calendarBody.append(
-    createBudgetComponent("Income", budgetData),
-    createBudgetComponent("Bills", budgetData),
-    createBudgetComponent("Personal", budgetData),
-    createBudgetComponent("Savings", budgetData),
-    createBudgetComponent("Other", budgetData)
+    createBudgetComponent("Income", monthlyData),
+    createBudgetComponent("Bills", monthlyData),
+    createBudgetComponent("Personal", monthlyData),
+    createBudgetComponent("Savings", monthlyData),
+    createBudgetComponent("Other", monthlyData)
   );
   return calendarBody;
 };
