@@ -8,7 +8,7 @@ const createCalendar = (budgetData: Budget[]): HTMLDivElement => {
   const year = date.getFullYear();
   const month = date.getMonth();
   const calendar = document.createElement("div");
-  calendar.className = "cal-cont";
+  calendar.className = "cal";
   const calBody = document.createElement("div");
   const calHeader = calendarHeader(calBody, date, year, month, budgetData);
   calBody.id = "cal-body-cont";
@@ -130,7 +130,9 @@ const calendarBody = (
   });
 
   const calendarBodyLeft = document.createElement("div");
+  calendarBodyLeft.className = "cal-body-left";
   const calendarBodyRight = document.createElement("div");
+  calendarBodyRight.className = "cal-body-right";
   const calSidebar = calendarSidebar(monthlyData);
 
   calendarBodyLeft.append(

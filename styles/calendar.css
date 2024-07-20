@@ -13,6 +13,7 @@
   justify-content: space-between;
   background-color: #f5f7f8;
   border-bottom: 1px solid lightgray;
+  width: 100%;
 }
 
 .cal-curr-date {
@@ -37,10 +38,24 @@
 .cal-body {
   padding: 30px;
   display: flex;
+  gap: 20px;
+  background-color: #f5f7f8;
+  width: 100%;
+}
+.cal-body-left {
+  width: 60%;
+  display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  background-color: #f5f7f8;
+}
+
+.cal-sidebar {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  position: sticky;
+  top: 20px;
 }
 
 .cal-body-header,

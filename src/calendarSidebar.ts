@@ -3,6 +3,7 @@ import BudgetCalculator from "./BudgetCalculator";
 
 const calendarSidebar = (budgetData: Budget[]) => {
   const sidebar = document.createElement("div");
+  sidebar.className = "cal-sidebar";
 
   sidebar.append(sidebarTop(budgetData), sidebarBottom(budgetData));
 
