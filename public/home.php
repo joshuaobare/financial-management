@@ -41,6 +41,12 @@ if (isset($_SESSION['user_id'])) {
             </span>
             <span>Budget</span>
           </div>
+          <div class="home-nav-item" id="transaction-btn">
+            <span class="material-symbols-outlined home-icon">
+              shopping_cart
+            </span>
+            <span>Transactions</span>
+          </div>
           <div class="home-nav-item" id="goals-btn">
             <span class="material-symbols-outlined home-icon"> target </span>
             <span>Goals</span>
@@ -50,12 +56,6 @@ if (isset($_SESSION['user_id'])) {
               currency_bitcoin
             </span>
             <span>Investments</span>
-          </div>
-          <div class="home-nav-item" id="spending-btn">
-            <span class="material-symbols-outlined home-icon">
-              shopping_cart
-            </span>
-            <span>Spending</span>
           </div>
           <div class="home-nav-item" id="spending-btn">
             <span class="material-symbols-outlined home-icon">
