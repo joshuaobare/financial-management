@@ -1,7 +1,7 @@
 import { createCalendar } from "./calendar";
-import { Budget } from "./interfaces/budgetInterface";
+import { Transaction } from "./interfaces/transactionInterfact";
 
-const createTransaction = (transactionData: Budget[]) => {
+const createTransaction = (transactionData: Transaction[]) => {
   const transaction = document.createElement("div");
   transaction.className = "transaction";
 

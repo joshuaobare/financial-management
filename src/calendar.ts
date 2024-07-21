@@ -1,18 +1,21 @@
-import { budgetData } from "../tests/testValues";
 import { createBudgetComponent } from "./budgetComponent";
 import { Budget } from "./interfaces/budgetInterface";
+import { Transaction } from "./interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
+import { createTransactionComponent } from "./transactionComponent";
 
-const createCalendar = (budgetData: Budget[]): HTMLDivElement => {
+const createCalendar = (
+  financialData: Budget[] | Transaction[]
+): HTMLDivElement => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
   const calendar = document.createElement("div");
   calendar.className = "cal";
   const calBody = document.createElement("div");
-  const calHeader = calendarHeader(calBody, date, year, month, budgetData);
+  const calHeader = calendarHeader(calBody, date, year, month, financialData);
   calBody.id = "cal-body-cont";
-  renderCalendarBody(calBody, date, year, month, budgetData);
+  renderCalendarBody(calBody, date, year, month, financialData);
   calendar.append(calHeader, calBody);
 
   return calendar;
@@ -47,7 +50,7 @@ const calendarHeader = (
   date: Date,
   year: number,
   month: number,
-  budgetData: Budget[]
+  financialData: Budget[] | Transaction[]
 ) => {
   const calendarHeader = document.createElement("div");
   calendarHeader.className = "cal-header";
@@ -89,7 +92,7 @@ const calendarHeader = (
         date = new Date();
       }
       renderCalendarDate(calendarHeaderDate, date, year, month);
-      renderCalendarBody(calBody, date, year, month, budgetData);
+      renderCalendarBody(calBody, date, year, month, financialData);
     });
   });
 
@@ -101,17 +104,17 @@ const renderCalendarBody = (
   date: Date,
   year: number,
   month: number,
-  budgetData: Budget[]
+  financialData: Budget[] | Transaction[]
 ) => {
   calBody.replaceChildren();
-  calBody.appendChild(calendarBody(date, year, month, budgetData));
+  calBody.appendChild(calendarBody(date, year, month, financialData));
 };
 
 const calendarBody = (
   date: Date,
   year: number,
   month: number,
-  budgetData: Budget[]
+  financialData: Budget[] | Transaction[]
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
@@ -120,7 +123,7 @@ const calendarBody = (
   const end_date = new Date();
   end_date.setFullYear(year, month + 1, 0);
 
-  const monthlyData = budgetData.filter((item) => {
+  const monthlyData = financialData.filter((item) => {
     const itemStart = new Date(item.start_date).toISOString().split("T")[0];
     const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
     const currentStart = new Date(start_date).toISOString().split("T")[0];
@@ -135,13 +138,21 @@ const calendarBody = (
   calendarBodyRight.className = "cal-body-right";
   const calSidebar = calendarSidebar(monthlyData);
 
-  calendarBodyLeft.append(
-    createBudgetComponent("Income", monthlyData),
-    createBudgetComponent("Bills", monthlyData),
-    createBudgetComponent("Personal", monthlyData),
-    createBudgetComponent("Savings", monthlyData),
-    createBudgetComponent("Other", monthlyData)
-  );
+  if (financialData as Budget[]) {
+    calendarBodyLeft.append(
+      createBudgetComponent("Income", monthlyData as Budget[]),
+      createBudgetComponent("Bills", monthlyData as Budget[]),
+      createBudgetComponent("Personal", monthlyData as Budget[]),
+      createBudgetComponent("Savings", monthlyData as Budget[]),
+      createBudgetComponent("Other", monthlyData as Budget[])
+    );
+  } else {
+    createTransactionComponent("Income", monthlyData as Transaction[]),
+      createTransactionComponent("Bills", monthlyData as Transaction[]),
+      createTransactionComponent("Personal", monthlyData as Transaction[]),
+      createTransactionComponent("Savings", monthlyData as Transaction[]),
+      createTransactionComponent("Other", monthlyData as Transaction[]);
+  }
   calendarBodyRight.append(calSidebar);
   calendarBody.append(calendarBodyLeft, calendarBodyRight);
   return calendarBody;

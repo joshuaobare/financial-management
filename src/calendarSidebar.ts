@@ -1,7 +1,8 @@
 import { Budget } from "./interfaces/budgetInterface";
+import { Transaction } from "./interfaces/transactionInterfact";
 import BudgetCalculator from "./BudgetCalculator";
 
-const calendarSidebar = (budgetData: Budget[]) => {
+const calendarSidebar = (budgetData: Budget[] | Transaction[]) => {
   const sidebar = document.createElement("div");
   sidebar.className = "cal-sidebar";
 
@@ -10,7 +11,7 @@ const calendarSidebar = (budgetData: Budget[]) => {
   return sidebar;
 };
 
-const sidebarTop = (budgetData: Budget[]) => {
+const sidebarTop = (budgetData: Budget[] | Transaction[]) => {
   const budgetCalculator = new BudgetCalculator(budgetData);
   const section = document.createElement("div");
   const sectionHeader = document.createElement("h2");
@@ -32,7 +33,7 @@ const sidebarTop = (budgetData: Budget[]) => {
   return section;
 };
 
-const sidebarBottom = (budgetData: Budget[]) => {
+const sidebarBottom = (budgetData: Budget[] | Transaction[]) => {
   const section = document.createElement("div");
   return section;
 };

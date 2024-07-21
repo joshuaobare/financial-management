@@ -1,8 +1,8 @@
-import { Budget } from "./interfaces/budgetInterface";
+import { Transaction } from "./interfaces/transactionInterfact";
 
 const createTransactionComponent = (
   title: string,
-  transactionData: Budget[]
+  transactionData: Transaction[]
 ) => {
   const transactionComponent = document.createElement("div");
   transactionComponent.className = "transaction-component";

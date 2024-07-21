@@ -2,6 +2,7 @@ import { createHome } from "./home";
 import { createBudget } from "./budget";
 import { navbar } from "./navbar";
 import { Budget } from "./interfaces/budgetInterface";
+import { Transaction } from "./interfaces/transactionInterfact";
 import { createTransaction } from "./transaction";
 
 const container = document.getElementById("container");
@@ -74,7 +75,7 @@ budgetBtn?.addEventListener("click", (e: Event) => {
 });
 
 const openTransaction = async () => {
-  const transactionData = await fetchTransactionData();
+  const transactionData = <Transaction[]>await fetchTransactionData();
   container?.replaceChildren();
   const transaction = createTransaction(transactionData);
   container?.appendChild(transaction);

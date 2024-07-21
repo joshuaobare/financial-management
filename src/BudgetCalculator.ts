@@ -1,15 +1,16 @@
 import { Budget } from "./interfaces/budgetInterface";
-class BudgetCalculator {
-  budgetData: Budget[] = [];
+import { Transaction } from "./interfaces/transactionInterfact";
+class FinanceCalculator {
+  financeData: Budget[] | Transaction[] = [];
 
-  constructor(budgetData: Budget[]) {
-    this.budgetData = budgetData;
+  constructor(financeData: Budget[] | Transaction[]) {
+    this.financeData = financeData;
   }
 
-  budgetCategoryCalculator(category: string): number {
+  financeCategoryCalculator(category: string): number {
     let sum = 0;
 
-    this.budgetData.forEach((item) => {
+    this.financeData.forEach((item) => {
       if (item.category === category) {
         sum += parseInt(item.amount);
       }
@@ -18,10 +19,10 @@ class BudgetCalculator {
     return sum;
   }
 
-  totalMonthlyAllocation(): number {
+  totalMonthlySpend(): number {
     let sum = 0;
 
-    this.budgetData.forEach((item) => {
+    this.financeData.forEach((item) => {
       if (item.category === "Income" || item.category === "Savings") return;
       sum += parseInt(item.amount);
     });
@@ -33,7 +34,7 @@ class BudgetCalculator {
     let incomeTotal = 0;
     let totalSpend = 0;
 
-    this.budgetData.forEach((item) => {
+    this.financeData.forEach((item) => {
       if (item.category === "Income") {
         incomeTotal += parseInt(item.amount);
         return;
@@ -46,4 +47,4 @@ class BudgetCalculator {
   }
 }
 
-export default BudgetCalculator;
+export default FinanceCalculator;
