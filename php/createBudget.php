@@ -1,6 +1,7 @@
 <?php
 include_once ("../config/pdo.php");
 include_once ("./header.php");
+include_once ("./createTransaction.php");
 
 $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
@@ -21,6 +22,9 @@ if (isset($_POST["user_id"]) && isset($_POST["title"]) && isset($_POST["category
             )
         );
         $data = array("message" => "Budget item created successfully");
+        echo json_encode($data);
+        createTransaction($_POST, $pdo);
+        $data = array("message" => "Transaction item created successfully");
         echo json_encode($data);
     } catch (PDOException $e) {
         echo json_encode(array("error" => $e->getMessage()));

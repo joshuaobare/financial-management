@@ -30,7 +30,7 @@ function createTransaction($_POST, $pdo)
                     ":description" => $_POST["description"]
                 )
             );
-            $data = array("message" => "Budget item created successfully");
+            $data = array("message" => "Transaction item created successfully");
             echo json_encode($data);
         } catch (PDOException $e) {
             echo json_encode(array("error" => $e->getMessage()));
