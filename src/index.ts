@@ -4,6 +4,15 @@ import { navbar } from "./navbar";
 import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
 import { createTransaction } from "./transaction";
+import "./login";
+import "./register";
+import "../styles/budget.css";
+import "../styles/calendar.css";
+import "../styles/home.css";
+import "../styles/login.css";
+import "../styles/main.css";
+import "../styles/navbar.css";
+import "../styles/register.css";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");

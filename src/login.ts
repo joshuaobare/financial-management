@@ -1,3 +1,7 @@
+import "../styles/login.css";
+import "../styles/main.css";
+import "../styles/navbar.css";
+
 const loginForm: HTMLElement | null = document.getElementById("login-form");
 const email: HTMLInputElement = <HTMLInputElement>(
   document.getElementById("email")
