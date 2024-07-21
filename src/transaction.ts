@@ -5,7 +5,7 @@ const createTransaction = (transactionData: Transaction[]) => {
   const transaction = document.createElement("div");
   transaction.className = "transaction";
 
-  const calendar = createCalendar(transactionData);
+  const calendar = createCalendar(transactionData, "Transaction");
   transaction.appendChild(calendar);
 
   return transaction;

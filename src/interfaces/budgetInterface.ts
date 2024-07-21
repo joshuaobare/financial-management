@@ -1,4 +1,4 @@
-export interface Budget {
+interface Budget {
   amount: string;
   budget_id: string;
   category: string;
@@ -9,3 +9,9 @@ export interface Budget {
   title: string;
   user_id: string;
 }
+
+const isBudget = (financeData: Budget): financeData is Budget => {
+  return "budget_id" in financeData;
+};
+
+export { Budget, isBudget };

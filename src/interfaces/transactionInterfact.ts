@@ -1,4 +1,4 @@
-export interface Transaction {
+interface Transaction {
   amount: string;
   transaction_id: string;
   category: string;
@@ -9,3 +9,11 @@ export interface Transaction {
   title: string;
   user_id: string;
 }
+
+const isTransaction = (
+  financeData: Transaction
+): financeData is Transaction => {
+  return "transaction_id" in financeData;
+};
+
+export { Transaction, isTransaction };

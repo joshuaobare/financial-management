@@ -34,7 +34,7 @@ const createBudget = (budgetData: Budget[]): HTMLDivElement => {
   //newDiv?.setAttribute("background-color", "black");
   const heading = document.createElement("h1");
   heading.textContent = "BUDGET HEADING";
-  const calendar = createCalendar(budgetData);
+  const calendar = createCalendar(budgetData, "Budget");
   const budgetSidebar = document.createElement("div");
   budget.appendChild(calendar);
   budget.appendChild(budgetSidebar);

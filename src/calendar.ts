@@ -1,11 +1,12 @@
 import { createBudgetComponent } from "./budgetComponent";
-import { Budget } from "./interfaces/budgetInterface";
-import { Transaction } from "./interfaces/transactionInterfact";
+import { Budget, isBudget } from "./interfaces/budgetInterface";
+import { Transaction, isTransaction } from "./interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
 import { createTransactionComponent } from "./transactionComponent";
 
 const createCalendar = (
-  financialData: Budget[] | Transaction[]
+  financialData: Budget[] | Transaction[],
+  parent: string
 ): HTMLDivElement => {
   const date = new Date();
   const year = date.getFullYear();
@@ -13,9 +14,16 @@ const createCalendar = (
   const calendar = document.createElement("div");
   calendar.className = "cal";
   const calBody = document.createElement("div");
-  const calHeader = calendarHeader(calBody, date, year, month, financialData);
+  const calHeader = calendarHeader(
+    calBody,
+    date,
+    year,
+    month,
+    financialData,
+    parent
+  );
   calBody.id = "cal-body-cont";
-  renderCalendarBody(calBody, date, year, month, financialData);
+  renderCalendarBody(calBody, date, year, month, financialData, parent);
   calendar.append(calHeader, calBody);
 
   return calendar;
@@ -50,7 +58,8 @@ const calendarHeader = (
   date: Date,
   year: number,
   month: number,
-  financialData: Budget[] | Transaction[]
+  financialData: Budget[] | Transaction[],
+  parent: string
 ) => {
   const calendarHeader = document.createElement("div");
   calendarHeader.className = "cal-header";
@@ -92,7 +101,7 @@ const calendarHeader = (
         date = new Date();
       }
       renderCalendarDate(calendarHeaderDate, date, year, month);
-      renderCalendarBody(calBody, date, year, month, financialData);
+      renderCalendarBody(calBody, date, year, month, financialData, parent);
     });
   });
 
@@ -104,17 +113,19 @@ const renderCalendarBody = (
   date: Date,
   year: number,
   month: number,
-  financialData: Budget[] | Transaction[]
+  financialData: Budget[] | Transaction[],
+  parent: string
 ) => {
   calBody.replaceChildren();
-  calBody.appendChild(calendarBody(date, year, month, financialData));
+  calBody.appendChild(calendarBody(date, year, month, financialData, parent));
 };
 
 const calendarBody = (
   date: Date,
   year: number,
   month: number,
-  financialData: Budget[] | Transaction[]
+  financialData: Budget[] | Transaction[],
+  parent: string
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
@@ -138,7 +149,7 @@ const calendarBody = (
   calendarBodyRight.className = "cal-body-right";
   let calSidebar = null;
 
-  if (financialData as Budget[]) {
+  if (parent === "Budget") {
     calSidebar = calendarSidebar(monthlyData as Budget[]);
     calendarBodyLeft.append(
       createBudgetComponent("Income", monthlyData as Budget[]),
