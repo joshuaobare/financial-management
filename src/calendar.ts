@@ -136,9 +136,10 @@ const calendarBody = (
   calendarBodyLeft.className = "cal-body-left";
   const calendarBodyRight = document.createElement("div");
   calendarBodyRight.className = "cal-body-right";
-  const calSidebar = calendarSidebar(monthlyData);
+  let calSidebar = null;
 
   if (financialData as Budget[]) {
+    calSidebar = calendarSidebar(monthlyData as Budget[]);
     calendarBodyLeft.append(
       createBudgetComponent("Income", monthlyData as Budget[]),
       createBudgetComponent("Bills", monthlyData as Budget[]),
@@ -147,11 +148,14 @@ const calendarBody = (
       createBudgetComponent("Other", monthlyData as Budget[])
     );
   } else {
-    createTransactionComponent("Income", monthlyData as Transaction[]),
+    calSidebar = calendarSidebar(monthlyData as Transaction[]);
+    calendarBodyLeft.append(
+      createTransactionComponent("Income", monthlyData as Transaction[]),
       createTransactionComponent("Bills", monthlyData as Transaction[]),
       createTransactionComponent("Personal", monthlyData as Transaction[]),
       createTransactionComponent("Savings", monthlyData as Transaction[]),
-      createTransactionComponent("Other", monthlyData as Transaction[]);
+      createTransactionComponent("Other", monthlyData as Transaction[])
+    );
   }
   calendarBodyRight.append(calSidebar);
   calendarBody.append(calendarBodyLeft, calendarBodyRight);
