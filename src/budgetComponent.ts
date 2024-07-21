@@ -32,7 +32,6 @@ const createBudgetComponent = (title: string, budgetData: Budget[]) => {
   const componentData = budgetData.filter(
     (budgetItem) => budgetItem.category === title
   );
-  console.log(componentData);
   componentData.forEach((item) => {
     main.append(row(item));
   });
