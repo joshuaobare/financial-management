@@ -27,14 +27,14 @@ CREATE TABLE financial_accounts (
 
 CREATE TABLE transactions (
     transaction_id INT AUTO_INCREMENT PRIMARY KEY,
-    account_id INT NOT NULL,
     user_id INT NOT NULL,
-    transaction_date DATE NOT NULL,
+    title VARCHAR(50),
     description VARCHAR(255),
+	start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
     category VARCHAR(50),
     amount DECIMAL(15, 2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (account_id) REFERENCES financial_accounts(account_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
