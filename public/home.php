@@ -153,6 +153,89 @@ if (isset($_SESSION['user_id'])) {
           </div>
         </div>
       </dialog>
+      <dialog id="transaction-dialog">
+        <div class="transaction-dialog-cont">
+          <div class="transaction-dialog=header">
+            <button class="transaction-dialog-close" id="transaction-dialog-close">
+              X
+            </button>
+          </div>
+          <div class="transaction-dialog-body">
+            <form action="" class="transaction-form" id="transaction-form">
+              <div class="transaction-form-item">
+                <label for="transaction-form-category-select">Category</label>
+                <select name="category" id="transaction-form-category-select" class="transaction-form-item-input">
+                  <option value="Income">Income</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Savings">Savings</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="transaction-form-item">
+                <label for="transaction-form-title">Title</label>
+                <input type="text" class="transaction-form-item-input" id="transaction-form-title" name="title" />
+              </div>
+              <div class="transaction-form-item">
+                <label for="transaction-form-description">Description</label>
+                <textarea name="" id="transaction-form-description" name="description"
+                  class="transaction-form-item-input"></textarea>
+              </div>
+              <div class="transaction-form-item">
+                <label for="transaction-form-amount">Amount</label>
+                <input type="number" id="transaction-form-amount" class="transaction-form-item-input" />
+              </div>
+              <button class="transaction-form-submit-btn" id="transaction-form-submit-btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+      <dialog id="edit-transaction-dialog">
+        <div class="transaction-dialog-cont">
+          <div class="transaction-dialog=header">
+            <button class="transaction-dialog-close" id="edit-transaction-dialog-close">
+              X
+            </button>
+          </div>
+          <div class="transaction-dialog-body">
+            <form action="" class="transaction-form" id="edit-transaction-form">
+              <div class="transaction-form-item">
+                <label for="edit-transaction-form-category-select">Category</label>
+                <select name="category" id="edit-transaction-form-category-select" class="transaction-form-item-input">
+                  <option value="Income">Income</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Savings">Savings</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="transaction-form-item">
+                <label for="edit-transaction-form-title">Title</label>
+                <input type="text" class="transaction-form-item-input" id="edit-transaction-form-title" name="title" />
+              </div>
+              <div class="transaction-form-item">
+                <label for="edit-transaction-form-description">Description</label>
+                <textarea name="" id="edit-transaction-form-description" name="description"
+                  class="transaction-form-item-input"></textarea>
+              </div>
+              <div class="transaction-form-item">
+                <label for="edit-transaction-form-amount">Amount</label>
+                <input type="number" id="edit-transaction-form-amount" class="transaction-form-item-input" />
+              </div>
+              <div class="transaction-form-item">
+                <label for="edit-transaction-form-start-date">Start Date</label>
+                <input type="date" id="edit-transaction-form-start-date" class="transaction-form-item-input" />
+              </div>
+              <div class="transaction-form-item">
+                <label for="edit-transaction-form-end-date">End Date</label>
+                <input type="date" id="edit-transaction-form-end-date" class="transaction-form-item-input" />
+              </div>
+              <input type="hidden" id="edit-transaction-form-transaction-id">
+              <button class="transaction-form-submit-btn" id="edit-transaction-form-submit-btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
   </div>
 </body>
