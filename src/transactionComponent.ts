@@ -30,7 +30,14 @@ const createTransactionComponent = (
 
   main.className = "transaction-component-main";
 
-  transactionComponent.appendChild(header);
+  const footer = document.createElement("div");
+  footer.className = "transaction-component-footer";
+  const addBtn = document.createElement("button");
+  addBtn.textContent = "Add Item";
+
+  footer.appendChild(addBtn);
+
+  transactionComponent.append(header, main, footer);
 
   return transactionComponent;
 };

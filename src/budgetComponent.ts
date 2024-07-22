@@ -38,7 +38,7 @@ const createBudgetComponent = (title: string, budgetData: Budget[]) => {
 
   main.className = "budget-main";
 
-  const footer = document.createElement("footer");
+  const footer = document.createElement("div");
   footer.className = "budget-footer";
   const addBtn = document.createElement("button");
   addBtn.textContent = "Add Item";
