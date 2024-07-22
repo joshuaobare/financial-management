@@ -2,19 +2,6 @@ import { Transaction } from "./interfaces/transactionInterfact";
 const transactionDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")
 );
-const editTransactionDialog = <HTMLDialogElement>(
-  document.getElementById("edit-transaction-dialog")
-);
-const closeTransactionDialog = document.getElementById(
-  "transaction-dialog-close"
-);
-const clostEditTransactionDialog = document.getElementById(
-  "edit-transaction-dialog-close"
-);
-
-closeTransactionDialog?.addEventListener("click", () => {
-  transactionDialog.close();
-});
 
 const createTransactionComponent = (
   title: string,
