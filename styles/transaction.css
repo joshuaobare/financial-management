@@ -1,0 +1,66 @@
+.transaction-component {
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.transaction-component-row,
+.transaction-component-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.transaction-component-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.transaction-component-item-del-icon {
+  cursor: pointer;
+}
+.transaction-component-row {
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+.transaction-component-header-left {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.transaction-component-header-mid,
+.transaction-component-header-right {
+  font-size: 0.875rem;
+  color: #8e999e;
+}
+.transaction-component-row-left {
+  width: 50%;
+}
+
+.transaction-component-row-left-input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.transaction-component-row-mid {
+  width: 25%;
+}
+
+.transaction-component-row-right {
+  width: 25%;
+}
+
+.transaction-component-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.transaction-component-footer {
+  margin-top: 10px;
+}
