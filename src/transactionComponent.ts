@@ -1,4 +1,20 @@
 import { Transaction } from "./interfaces/transactionInterfact";
+const transactionDialog = <HTMLDialogElement>(
+  document.getElementById("transaction-dialog")
+);
+const editTransactionDialog = <HTMLDialogElement>(
+  document.getElementById("edit-transaction-dialog")
+);
+const closeTransactionDialog = document.getElementById(
+  "transaction-dialog-close"
+);
+const clostEditTransactionDialog = document.getElementById(
+  "edit-transaction-dialog-close"
+);
+
+closeTransactionDialog?.addEventListener("click", () => {
+  transactionDialog.close();
+});
 
 const createTransactionComponent = (
   title: string,
@@ -34,6 +50,10 @@ const createTransactionComponent = (
   footer.className = "transaction-component-footer";
   const addBtn = document.createElement("button");
   addBtn.textContent = "Add Item";
+
+  addBtn.addEventListener("click", () => {
+    transactionDialog?.show();
+  });
 
   footer.appendChild(addBtn);
 
