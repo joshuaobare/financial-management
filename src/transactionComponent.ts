@@ -70,8 +70,8 @@ const row = (transactionData: Transaction) => {
   rowRight.className = "budget-row-right";
   rowRight.textContent = `KShs. ${transactionData.amount}`;
 
-  rowMain.append(rowLeft, rowRight);
-
+  rowMain.append(deleteIcon, rowLeft, rowRight);
+  singleRow.append(rowMain);
   return singleRow;
 };
 
