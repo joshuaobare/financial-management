@@ -39,6 +39,10 @@ const createTransactionComponent = (
   addBtn.textContent = "Add Item";
 
   addBtn.addEventListener("click", () => {
+    const transactionFormSelect = <HTMLSelectElement>(
+      document.getElementById("transaction-form-category-select")
+    );
+    transactionFormSelect.value = title;
     transactionDialog?.show();
   });
 

@@ -4,6 +4,7 @@ import { navbar } from "./navbar";
 import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
 import { createTransaction } from "./transaction";
+import { config } from "./config";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
@@ -17,7 +18,7 @@ const fetchBudgetData = async () => {
   const userId = localStorage.getItem("user_id");
   try {
     const request = await fetch(
-      `http://localhost:8080/financial-management/php/fetchBudget.php?user_id=${userId}`,
+      config.BASE_URL + `fetchBudget.php?user_id=${userId}`,
       {
         method: "GET",
         headers: { "Content-type": "application/json" },
@@ -37,7 +38,7 @@ const fetchTransactionData = async () => {
   const userId = localStorage.getItem("user_id");
   try {
     const request = await fetch(
-      `http://localhost:8080/financial-management/php/fetchTransactions.php?user_id=${userId}`,
+      config.BASE_URL + `fetchTransactions.php?user_id=${userId}`,
       {
         method: "GET",
         headers: { "Content-type": "application/json" },
@@ -87,4 +88,4 @@ transactionBtn?.addEventListener("click", () => {
 
 openHome();
 
-export { openBudget };
+export { openBudget, openTransaction };
