@@ -1,16 +1,11 @@
 import { Budget } from "./interfaces/budgetInterface";
-import {
-  updateBudget,
-  getEditBudgetFormValues,
-  populateBudgetForm,
-} from "./editBudget";
 import { openBudget } from "./index";
 import { deleteBudget } from "./deleteBudget";
-
-const dialog = <HTMLDialogElement>document.getElementById("budget-dialog");
-const editBudgetDialog = <HTMLDialogElement>(
-  document.getElementById("edit-budget-dialog")
-);
+import {
+  budgetFormDialog,
+  populateBudgetForm,
+  editBudgetFormDialog,
+} from "./budget";
 
 const createBudgetComponent = (title: string, budgetData: Budget[]) => {
   console.log(budgetData);
@@ -48,7 +43,7 @@ const createBudgetComponent = (title: string, budgetData: Budget[]) => {
       document.getElementById("budget-form-category-select")
     );
     budgetFormSelect.value = title;
-    dialog!.showModal();
+    budgetFormDialog!.showModal();
   });
 
   footer.appendChild(addBtn);
@@ -79,7 +74,7 @@ const row = (budgetData: Budget) => {
 
   rowMain.addEventListener("click", () => {
     populateBudgetForm(budgetData);
-    editBudgetDialog.show();
+    editBudgetFormDialog.show();
   });
   deleteIcon.addEventListener("click", () => {
     deleteBudget(budgetData.budget_id);
