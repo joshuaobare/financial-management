@@ -1,6 +1,7 @@
 import { createCalendar } from "./calendar";
 import { Budget } from "./interfaces/budgetInterface";
 import { openBudget } from "./index";
+import { config } from "./config";
 import {
   updateBudget,
   getEditBudgetFormValues,
@@ -87,14 +88,11 @@ const resetBudgetForm = () => {
 };
 const submitBudgetForm = async () => {
   try {
-    const request = await fetch(
-      "http://localhost:8080/financial-management/php/createBudget.php",
-      {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(getBudgetFormValues()),
-      }
-    );
+    const request = await fetch(config.BASE_URL + "createBudget.php", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(getBudgetFormValues()),
+    });
     const response = await request.json();
 
     if (response.message) {
@@ -107,9 +105,27 @@ const submitBudgetForm = async () => {
   }
 };
 
+const createTransactionRecord = async () => {
+  try {
+    const request = await fetch(config.BASE_URL + "createTransaction.php", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ ...getBudgetFormValues(), amount: 0 }),
+    });
+    const response = await request.json();
+
+    if (response.message) {
+      console.log(response.message);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 budgetForm?.addEventListener("submit", (e) => {
   e.preventDefault();
   submitBudgetForm();
+  createTransactionRecord();
 });
 
 editBudgetForm.addEventListener("submit", (e: Event) => {

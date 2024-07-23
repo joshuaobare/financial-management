@@ -2,7 +2,6 @@
 // Include the database connection configuration , header file and createTransaction function
 include_once ("../config/pdo.php");
 include_once ("./header.php");
-include_once ("./createTransaction.php");
 
 // Read the raw POST data from the request body
 $data = file_get_contents('php://input');
@@ -31,20 +30,10 @@ if (isset($_POST["user_id"]) && isset($_POST["title"]) && isset($_POST["category
                 ":description" => $_POST["description"]
             )
         );
-
-        // Respond with a success message for the budget item creation
+        // Respond with a success message for the transaction item creation
         $data = array("message" => "Budget item created successfully");
         echo json_encode($data);
 
-        // Reset the amount in the POST data to 0, transaction amount should be 0
-        $_POST["amount"] = 0;
-
-        // Create a transaction item using the createTransaction function
-        createTransaction($_POST, $pdo);
-
-        // Respond with a success message for the transaction item creation
-        $data = array("message" => "Transaction item created successfully");
-        echo json_encode($data);
     } catch (PDOException $e) {
         // If there's a PDO exception, respond with the error message
         echo json_encode(array("error" => $e->getMessage()));

@@ -7,6 +7,7 @@ import "../styles/transaction.css";
 const transactionDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")
 );
+const transactionForm = document.getElementById("transaction-form");
 
 const editTransactionDialog = <HTMLDialogElement>(
   document.getElementById("edit-transaction-dialog")
@@ -97,4 +98,10 @@ const submitTransactionForm = async () => {
     console.error(error);
   }
 };
+
+transactionForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  submitTransactionForm();
+});
+
 export { createTransaction };
