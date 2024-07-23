@@ -1,14 +1,14 @@
 import { Budget } from "./interfaces/budgetInterface";
 import { openBudget } from "./index";
-import { deleteBudget } from "./deleteBudget";
+import { BudgetService } from "./budgetService";
 import {
   budgetFormDialog,
-  populateBudgetForm,
+  populateEditBudgetForm,
   editBudgetFormDialog,
 } from "./budget";
 
+const budgetService = new BudgetService();
 const createBudgetComponent = (title: string, budgetData: Budget[]) => {
-  console.log(budgetData);
   const budgetComponent = document.createElement("div");
   budgetComponent.className = "budget-component";
   const header = document.createElement("header");
@@ -73,11 +73,11 @@ const row = (budgetData: Budget) => {
   rowMain.append(rowLeft, rowMid, rowRight);
 
   rowMain.addEventListener("click", () => {
-    populateBudgetForm(budgetData);
+    populateEditBudgetForm(budgetData);
     editBudgetFormDialog.show();
   });
   deleteIcon.addEventListener("click", () => {
-    deleteBudget(budgetData.budget_id);
+    budgetService.deleteBudget(budgetData.budget_id);
   });
 
   singleRow.append(deleteIcon, rowMain);

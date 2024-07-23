@@ -1,6 +1,6 @@
 import { config } from "./config";
 import { Budget } from "./interfaces/budgetInterface";
-import { openBudget } from "./index";
+import { openBudget as resetBudgetComponent } from "./index";
 import {
   budgetFormDialog,
   resetBudgetForm,
@@ -10,7 +10,7 @@ import {
 class BudgetService {
   constructor() {}
 
-  fetchBudgetData = async () => {
+  fetchBudget = async () => {
     const userId = localStorage.getItem("user_id");
     try {
       const request = await fetch(
@@ -30,7 +30,7 @@ class BudgetService {
     }
   };
 
-  submitBudgetForm = async (budgetFormValues: any) => {
+  createBudget = async (budgetFormValues: any) => {
     try {
       const request = await fetch(config.BASE_URL + "createBudget.php", {
         method: "POST",
@@ -42,7 +42,7 @@ class BudgetService {
       if (response.message) {
         resetBudgetForm();
         budgetFormDialog.close();
-        openBudget();
+        resetBudgetComponent();
       }
     } catch (error) {
       console.error(error);
@@ -51,18 +51,34 @@ class BudgetService {
 
   updateBudget = async (budgetData: Budget) => {
     try {
-      const request = await fetch(
-        "http://localhost:8080/financial-management/php/updateBudget.php",
-        {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify(budgetData),
-        }
-      );
+      const request = await fetch(config.BASE_URL + "updateBudget.php", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(budgetData),
+      });
       const response = await request.json();
       if (response.message) {
         editBudgetFormDialog.close();
-        openBudget();
+        resetBudgetComponent();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  deleteBudget = async (budget_id: string) => {
+    try {
+      const request = await fetch(
+        config.BASE_URL + `deleteBudget.php?budget_id=${budget_id}`,
+        {
+          method: "GET",
+          headers: { "Content-type": "application/json" },
+        }
+      );
+      const response = await request.json();
+
+      if (response.message) {
+        resetBudgetComponent();
       }
     } catch (error) {
       console.error(error);
