@@ -6,6 +6,8 @@ import "../styles/transaction.css";
 import { TransactionService } from "./services/TransactionService";
 import { Helper } from "./helpers/Helper";
 
+const transactionService = new TransactionService();
+const helper = new Helper();
 const transactionFormDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")
 );
@@ -31,9 +33,12 @@ const editTransactionIncrementBtn = document.getElementById(
 const editTransactionDecrementBtn = document.getElementById(
   "transaction-decrement-btn"
 );
-
-const transactionService = new TransactionService();
-const helper = new Helper();
+const editTransactionIncrementInput = <HTMLInputElement>(
+  document.getElementById("transaction-increment-value")
+);
+const editTransactionAmountInput: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById("edit-transaction-form-amount")
+);
 
 const createTransactionModule = (transactionData: Transaction[]) => {
   const transaction = document.createElement("div");
@@ -180,9 +185,20 @@ editTransactionDialogCloseBtn?.addEventListener("click", () => {
   editTransactionFormDialog!.close();
 });
 
-editTransactionDecrementBtn?.addEventListener("click", () => {});
+editTransactionDecrementBtn?.addEventListener("click", () => {
+  const currentValue = parseInt(editTransactionAmountInput?.value);
+  const decrementValue = parseInt(editTransactionIncrementInput?.value);
+  editTransactionAmountInput.value = Math.max(
+    0,
+    currentValue - decrementValue
+  ).toString();
+});
 
-editTransactionIncrementBtn?.addEventListener("click", () => {});
+editTransactionIncrementBtn?.addEventListener("click", () => {
+  const currentValue = parseInt(editTransactionAmountInput?.value);
+  const incrementValue = parseInt(editTransactionIncrementInput?.value);
+  editTransactionAmountInput.value = (currentValue + incrementValue).toString();
+});
 
 export {
   createTransactionModule,
