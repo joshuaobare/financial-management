@@ -106,6 +106,39 @@ const getEditTransactionFormValues = () => {
   };
 };
 
+// this function populates the edit form fields with the record
+// that needs to be edited
+const populateEditTransactionForm = (transactionData: Transaction) => {
+  const category = <HTMLInputElement>(
+    document.getElementById("edit-transaction-form-category-select")
+  );
+  category.value = transactionData.category;
+  const amount = <HTMLInputElement>(
+    document.getElementById("edit-transaction-form-amount")
+  );
+  amount.value = transactionData.amount.toString();
+  const title = <HTMLInputElement>(
+    document.getElementById("edit-transaction-form-title")
+  );
+  title.value = transactionData.title;
+  const description = <HTMLTextAreaElement>(
+    document.getElementById("edit-transaction-form-description")
+  );
+  description.value = transactionData.description;
+  const startDate = <HTMLInputElement>(
+    document.getElementById("edit-transaction-form-start-date")
+  );
+  startDate.value = transactionData.start_date.toString();
+  const endDate = <HTMLInputElement>(
+    document.getElementById("edit-transaction-form-end-date")
+  );
+  endDate.value = transactionData.end_date.toString();
+  const transactionId = <HTMLInputElement>(
+    document.getElementById("edit-transaction-form-transaction-id")
+  );
+  transactionId.value = transactionData.transaction_id.toString();
+};
+
 const resetTransactionForm = () => {
   const amount = ((<HTMLInputElement>(
     document.getElementById("transaction-form-amount")
@@ -146,4 +179,5 @@ export {
   resetTransactionForm,
   transactionFormDialog,
   editTransactionFormDialog,
+  populateEditTransactionForm,
 };

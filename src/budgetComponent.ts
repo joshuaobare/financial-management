@@ -1,6 +1,6 @@
 import { Budget } from "./interfaces/budgetInterface";
 import { openBudget } from "./index";
-import { BudgetService } from "./BudgetService";
+import { BudgetService } from "./budgetService";
 import {
   budgetFormDialog,
   populateEditBudgetForm,

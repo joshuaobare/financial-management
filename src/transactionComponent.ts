@@ -1,6 +1,12 @@
 import { Transaction } from "./interfaces/transactionInterfact";
-import { transactionFormDialog } from "./transaction";
+import {
+  editTransactionFormDialog,
+  populateEditTransactionForm,
+  transactionFormDialog,
+} from "./transaction";
+import { TransactionService } from "./TransactionService";
 
+const transactionService = new TransactionService();
 const createTransactionComponent = (
   title: string,
   transactionData: Transaction[]
@@ -69,6 +75,15 @@ const row = (transactionData: Transaction) => {
   rowRight.textContent = `KShs. ${transactionData.amount}`;
 
   rowMain.append(deleteIcon, rowLeft, rowRight);
+
+  rowMain.addEventListener("click", () => {
+    populateEditTransactionForm(transactionData);
+    editTransactionFormDialog.show();
+  });
+  deleteIcon.addEventListener("click", () => {
+    transactionService.deleteTransaction(transactionData.transaction_id);
+  });
+
   singleRow.append(rowMain);
   return singleRow;
 };
