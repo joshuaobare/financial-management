@@ -25,6 +25,12 @@ const transactionDialogCloseBtn = document.getElementById(
 const editTransactionDialogCloseBtn = document.getElementById(
   "edit-transaction-dialog-close"
 );
+const editTransactionIncrementBtn = document.getElementById(
+  "transaction-increment-btn"
+);
+const editTransactionDecrementBtn = document.getElementById(
+  "transaction-decrement-btn"
+);
 
 const transactionService = new TransactionService();
 const helper = new Helper();
@@ -173,6 +179,10 @@ transactionDialogCloseBtn?.addEventListener("click", () => {
 editTransactionDialogCloseBtn?.addEventListener("click", () => {
   editTransactionFormDialog!.close();
 });
+
+editTransactionDecrementBtn?.addEventListener("click", () => {});
+
+editTransactionIncrementBtn?.addEventListener("click", () => {});
 
 export {
   createTransactionModule,

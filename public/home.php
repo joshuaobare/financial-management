@@ -220,7 +220,16 @@ if (isset($_SESSION['user_id'])) {
               </div>
               <div class="transaction-form-item">
                 <label for="edit-transaction-form-amount">Amount</label>
-                <input type="number" id="edit-transaction-form-amount" class="transaction-form-item-input" />
+                <input type="number" id="edit-transaction-form-amount" min="0" class="transaction-form-item-input" />
+              </div>
+              <div class="transaction-form-item">
+                <label for="transaction-increment-input">Adjust Amount</label>
+                <div class="transaction-increment-input" id="transaction-increment-input">
+                  <div class="transaction-decrement-btn" id="transaction-decrement-btn">-</div>
+                  <input type="number" class="transaction-increment-value" id="transaction-increment-value" value="1"
+                    min="1">
+                  <div class="transaction-increment-btn" id="transaction-increment-btn">+</div>
+                </div>
               </div>
               <div class="transaction-form-item">
                 <label for="edit-transaction-form-start-date">Start Date</label>
