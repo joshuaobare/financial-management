@@ -5,7 +5,7 @@ include_once ("./header.php");
 
 if (isset($_GET["transaction_id"])) {
     try {
-        $sql = "DELETE FROM BUDGETS WHERE TRANSACTION_ID = :transaction_id";
+        $sql = "DELETE FROM TRANSACTIONS WHERE TRANSACTION_ID = :transaction_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(
             array(
