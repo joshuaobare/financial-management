@@ -9,24 +9,25 @@ import { Helper } from "./Helper";
 const transactionFormDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")
 );
-const transactionForm = document.getElementById("transaction-form");
+const transactionForm = <HTMLFormElement>(
+  document.getElementById("transaction-form")
+);
 
-const editTransactionDialog = <HTMLDialogElement>(
+const editTransactionFormDialog = <HTMLDialogElement>(
   document.getElementById("edit-transaction-dialog")
 );
-const closeTransactionDialog = document.getElementById(
+const editTransactionForm = <HTMLFormElement>(
+  document.getElementById("edit-transaction-form")
+);
+const transactionDialogCloseBtn = document.getElementById(
   "transaction-dialog-close"
 );
-const clostEditTransactionDialog = document.getElementById(
+const editTransactionDialogCloseBtn = document.getElementById(
   "edit-transaction-dialog-close"
 );
 
 const transactionService = new TransactionService();
 const helper = new Helper();
-
-closeTransactionDialog?.addEventListener("click", () => {
-  transactionFormDialog.close();
-});
 
 const createTransactionModule = (transactionData: Transaction[]) => {
   const transaction = document.createElement("div");
@@ -68,6 +69,43 @@ const getTransactionFormValues = () => {
   };
 };
 
+// this function gathers and values from the edit transaction form for use while
+// updating a transaction record
+const getEditTransactionFormValues = () => {
+  const category = (<HTMLInputElement>(
+    document.getElementById("edit-transaction-form-category-select")
+  )).value;
+  const amount = (<HTMLInputElement>(
+    document.getElementById("edit-transaction-form-amount")
+  )).value;
+  const title = (<HTMLInputElement>(
+    document.getElementById("edit-transaction-form-title")
+  )).value;
+  const description = (<HTMLTextAreaElement>(
+    document.getElementById("edit-transaction-form-description")
+  )).value;
+  const transaction_id = (<HTMLInputElement>(
+    document.getElementById("edit-transaction-form-transaction-id")
+  )).value;
+  const user_id = localStorage.getItem("user_id")!.toString();
+
+  // the calendar header node is passed into the helper function to get start and end dates
+  const calendarHeaderDate = document.getElementById("cal-curr-date");
+  const { start_date, end_date } =
+    helper.getMonthStartAndEndDates(calendarHeaderDate);
+
+  return {
+    category,
+    amount,
+    title,
+    description,
+    user_id,
+    start_date,
+    end_date,
+    transaction_id,
+  };
+};
+
 const resetTransactionForm = () => {
   const amount = ((<HTMLInputElement>(
     document.getElementById("transaction-form-amount")
@@ -86,4 +124,26 @@ transactionForm?.addEventListener("submit", (e) => {
   transactionService.createTransaction(transactionFormValues);
 });
 
-export { createTransactionModule, resetTransactionForm, transactionFormDialog };
+editTransactionForm.addEventListener("submit", (e: Event) => {
+  e.preventDefault();
+  const transactionData = {
+    ...getEditTransactionFormValues(),
+    created_at: null,
+  };
+  transactionService.updateTransaction(transactionData);
+});
+
+transactionDialogCloseBtn?.addEventListener("click", () => {
+  transactionFormDialog.close();
+});
+
+editTransactionDialogCloseBtn?.addEventListener("click", () => {
+  editTransactionFormDialog!.close();
+});
+
+export {
+  createTransactionModule,
+  resetTransactionForm,
+  transactionFormDialog,
+  editTransactionFormDialog,
+};

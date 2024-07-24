@@ -126,7 +126,7 @@ const getEditBudgetFormValues = () => {
   const description = (<HTMLTextAreaElement>(
     document.getElementById("edit-budget-form-description")
   )).value;
-  const budget_id = (<HTMLTextAreaElement>(
+  const budget_id = (<HTMLInputElement>(
     document.getElementById("edit-budget-form-budget-id")
   )).value;
   const user_id = localStorage.getItem("user_id")!.toString();
