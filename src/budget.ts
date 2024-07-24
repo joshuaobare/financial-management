@@ -154,7 +154,7 @@ budgetForm?.addEventListener("submit", (e) => {
   transactionService.createTransaction(transactionFormValues);
 });
 
-editBudgetForm.addEventListener("submit", (e: Event) => {
+editBudgetForm?.addEventListener("submit", (e: Event) => {
   e.preventDefault();
   const budgetData = { ...getEditBudgetFormValues(), created_at: null };
   budgetService.updateBudget(budgetData);

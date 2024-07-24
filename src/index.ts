@@ -7,6 +7,8 @@ import { createTransactionModule } from "./transaction";
 import { config } from "./config";
 import { BudgetService } from "./services/BudgetService";
 import { TransactionService } from "./services/TransactionService";
+import "./login";
+import "./register";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");

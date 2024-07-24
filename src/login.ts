@@ -3,11 +3,11 @@ import "../styles/main.css";
 import "../styles/navbar.css";
 
 const loginForm: HTMLElement | null = document.getElementById("login-form");
-const email: HTMLInputElement = <HTMLInputElement>(
+const email: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("email")
 );
 const email_error: HTMLElement | null = document.getElementById("email_error");
-const password: HTMLInputElement = <HTMLInputElement>(
+const password: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("password")
 );
 const password_error: HTMLElement | null =
@@ -29,7 +29,7 @@ const displayError = (node: HTMLElement) => {
   }
 };
 
-email.addEventListener("input", (e: Event) => {
+email?.addEventListener("input", (e: Event) => {
   if (email.validity.valid) {
     email_error!.textContent = "";
   } else {
@@ -37,7 +37,7 @@ email.addEventListener("input", (e: Event) => {
   }
 });
 
-password.addEventListener("input", (e: Event) => {
+password?.addEventListener("input", (e: Event) => {
   if (password.validity.valid) {
     password_error!.textContent = "";
   } else {

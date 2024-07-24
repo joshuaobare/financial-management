@@ -74,7 +74,7 @@ const row = (transactionData: Transaction) => {
   rowRight.className = "budget-row-right";
   rowRight.textContent = `KShs. ${transactionData.amount}`;
 
-  rowMain.append(deleteIcon, rowLeft, rowRight);
+  rowMain.append(rowLeft, rowRight);
 
   rowMain.addEventListener("click", () => {
     populateEditTransactionForm(transactionData);
@@ -84,7 +84,7 @@ const row = (transactionData: Transaction) => {
     transactionService.deleteTransaction(transactionData.transaction_id);
   });
 
-  singleRow.append(rowMain);
+  singleRow.append(deleteIcon, rowMain);
   return singleRow;
 };
 

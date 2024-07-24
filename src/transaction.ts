@@ -157,7 +157,7 @@ transactionForm?.addEventListener("submit", (e) => {
   transactionService.createTransaction(transactionFormValues);
 });
 
-editTransactionForm.addEventListener("submit", (e: Event) => {
+editTransactionForm?.addEventListener("submit", (e: Event) => {
   e.preventDefault();
   const transactionData = {
     ...getEditTransactionFormValues(),

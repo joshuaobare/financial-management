@@ -1,32 +1,35 @@
 import { InputErrorMap } from "./interfaces/errorMapInterface";
+import "../styles/register.css";
+import "../styles/main.css";
+import "../styles/navbar.css";
 
 const registerForm: HTMLElement | null =
   document.getElementById("register-form");
-const first_name: HTMLInputElement = <HTMLInputElement>(
+const first_name: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("first_name")
 );
 const first_name_error: HTMLElement | null =
   document.getElementById("first_name_error");
-const last_name: HTMLInputElement = <HTMLInputElement>(
+const last_name: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("last_name")
 );
 const last_name_error: HTMLElement | null =
   document.getElementById("last_name_error");
-const email: HTMLInputElement = <HTMLInputElement>(
+const email: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("email")
 );
 const email_error: HTMLElement | null = document.getElementById("email_error");
-const date_of_birth: HTMLInputElement = <HTMLInputElement>(
+const date_of_birth: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("date_of_birth")
 );
 const date_of_birth_error: HTMLElement | null =
   document.getElementById("date_of_birth");
-const password: HTMLInputElement = <HTMLInputElement>(
+const password: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("password")
 );
 const password_error: HTMLElement | null =
   document.getElementById("password_error");
-const confirm_password: HTMLInputElement = <HTMLInputElement>(
+const confirm_password: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("confirm_password")
 );
 const confirm_password_error: HTMLElement | null = document.getElementById(
@@ -52,13 +55,15 @@ const inputErrorMap: InputErrorMap = {
 
 // The minimum birthdate is set to 18 years ago
 const currentDate = new Date();
-date_of_birth.max = new Date(
-  currentDate.getFullYear() - 18,
-  currentDate.getMonth(),
-  currentDate.getDate()
-)
-  .toISOString()
-  .split("T")[0];
+if (date_of_birth) {
+  date_of_birth.max = new Date(
+    currentDate.getFullYear() - 18,
+    currentDate.getMonth(),
+    currentDate.getDate()
+  )
+    .toISOString()
+    .split("T")[0];
+}
 
 const displayError = (node: HTMLElement) => {
   if (node === email) {
@@ -110,7 +115,7 @@ inputs.forEach((input: HTMLInputElement) => {
   });
 });
 
-confirm_password.addEventListener("input", (e: Event) => {
+confirm_password?.addEventListener("input", (e: Event) => {
   if (password.value !== confirm_password.value) {
     displayError(password);
     displayError(confirm_password);
@@ -119,7 +124,7 @@ confirm_password.addEventListener("input", (e: Event) => {
   }
 });
 
-password.addEventListener("input", (e: Event) => {
+password?.addEventListener("input", (e: Event) => {
   if (password.value === confirm_password.value) {
     confirm_password_error!.textContent = "";
   }
