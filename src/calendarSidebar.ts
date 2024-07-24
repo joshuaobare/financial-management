@@ -1,6 +1,6 @@
 import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
-import FinanceCalculator from "./FinanceCalculator";
+import FinanceCalculator from "./helpers/FinanceCalculator";
 
 const calendarSidebar = (financialData: Budget[] | Transaction[]) => {
   const sidebar = document.createElement("div");

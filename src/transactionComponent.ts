@@ -4,7 +4,7 @@ import {
   populateEditTransactionForm,
   transactionFormDialog,
 } from "./transaction";
-import { TransactionService } from "./TransactionService";
+import { TransactionService } from "./services/TransactionService";
 
 const transactionService = new TransactionService();
 const createTransactionComponent = (

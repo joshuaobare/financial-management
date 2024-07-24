@@ -1,10 +1,8 @@
 import { createCalendar } from "./calendar";
 import { Budget } from "./interfaces/budgetInterface";
-import { openBudget } from "./index";
-import { config } from "./config";
-import { BudgetService } from "./budgetService";
-import { TransactionService } from "./TransactionService";
-import { Helper } from "./Helper";
+import { BudgetService } from "./services/BudgetService";
+import { TransactionService } from "./services/TransactionService";
+import { Helper } from "./helpers/Helper";
 
 const budgetFormDialog = <HTMLDialogElement>(
   document.getElementById("budget-dialog")

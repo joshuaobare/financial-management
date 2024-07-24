@@ -1,5 +1,5 @@
-import { Budget } from "./interfaces/budgetInterface";
-import { Transaction } from "./interfaces/transactionInterfact";
+import { Budget } from "../interfaces/budgetInterface";
+import { Transaction } from "../interfaces/transactionInterfact";
 class FinanceCalculator {
   financeData: Budget[] | Transaction[] = [];
 

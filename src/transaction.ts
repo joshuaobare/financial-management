@@ -3,8 +3,8 @@ import { Transaction } from "./interfaces/transactionInterfact";
 import { config } from "./config";
 import { openTransaction } from "./index";
 import "../styles/transaction.css";
-import { TransactionService } from "./TransactionService";
-import { Helper } from "./Helper";
+import { TransactionService } from "./services/TransactionService";
+import { Helper } from "./helpers/Helper";
 
 const transactionFormDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")

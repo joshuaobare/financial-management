@@ -1,11 +1,11 @@
-import { config } from "./config";
-import { Budget } from "./interfaces/budgetInterface";
-import { openBudget as resetBudgetComponent } from "./index";
+import { config } from "../config";
+import { Budget } from "../interfaces/budgetInterface";
+import { openBudget as resetBudgetComponent } from "../index";
 import {
   budgetFormDialog,
   resetBudgetForm,
   editBudgetFormDialog,
-} from "./budget";
+} from "../budget";
 
 class BudgetService {
   constructor() {}

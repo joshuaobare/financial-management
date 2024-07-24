@@ -1,11 +1,11 @@
-import { config } from "./config";
+import { config } from "../config";
 import {
   resetTransactionForm,
   transactionFormDialog,
   editTransactionFormDialog,
-} from "./transaction";
-import { openTransaction as resetTransactionModule } from "./index";
-import { Transaction } from "./interfaces/transactionInterfact";
+} from "../transaction";
+import { openTransaction as resetTransactionModule } from "../index";
+import { Transaction } from "../interfaces/transactionInterfact";
 
 class TransactionService {
   constructor() {}

@@ -1,4 +1,4 @@
-import FinanceCalculator from "../src/FinanceCalculator";
+import FinanceCalculator from "../src/helpers/FinanceCalculator";
 import { budgetData } from "./testValues";
 
 describe("For a category, return total of its values", () => {

@@ -5,8 +5,8 @@ import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
 import { createTransactionModule } from "./transaction";
 import { config } from "./config";
-import { BudgetService } from "./budgetService";
-import { TransactionService } from "./TransactionService";
+import { BudgetService } from "./services/BudgetService";
+import { TransactionService } from "./services/TransactionService";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
