@@ -1,7 +1,5 @@
 import { Transaction } from "./interfaces/transactionInterfact";
-const transactionDialog = <HTMLDialogElement>(
-  document.getElementById("transaction-dialog")
-);
+import { transactionFormDialog } from "./transaction";
 
 const createTransactionComponent = (
   title: string,
@@ -43,7 +41,7 @@ const createTransactionComponent = (
       document.getElementById("transaction-form-category-select")
     );
     transactionFormSelect.value = title;
-    transactionDialog?.show();
+    transactionFormDialog?.show();
   });
 
   footer.appendChild(addBtn);

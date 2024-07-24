@@ -3,8 +3,10 @@ import { Transaction } from "./interfaces/transactionInterfact";
 import { config } from "./config";
 import { openTransaction } from "./index";
 import "../styles/transaction.css";
+import { TransactionService } from "./TransactionService";
+import { Helper } from "./Helper";
 
-const transactionDialog = <HTMLDialogElement>(
+const transactionFormDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")
 );
 const transactionForm = document.getElementById("transaction-form");
@@ -19,11 +21,14 @@ const clostEditTransactionDialog = document.getElementById(
   "edit-transaction-dialog-close"
 );
 
+const transactionService = new TransactionService();
+const helper = new Helper();
+
 closeTransactionDialog?.addEventListener("click", () => {
-  transactionDialog.close();
+  transactionFormDialog.close();
 });
 
-const createTransaction = (transactionData: Transaction[]) => {
+const createTransactionModule = (transactionData: Transaction[]) => {
   const transaction = document.createElement("div");
   transaction.className = "transaction";
 
@@ -49,13 +54,8 @@ const getTransactionFormValues = () => {
   const user_id = localStorage.getItem("user_id");
 
   const calendarHeaderDate = document.getElementById("cal-curr-date");
-  const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
-  const month = parseInt(unparsedDate[0]);
-  const year = parseInt(unparsedDate[1]);
-  const start_date = new Date();
-  start_date.setFullYear(year, month, 1);
-  const end_date = new Date();
-  end_date.setFullYear(year, month + 1, 0);
+  const { start_date, end_date } =
+    helper.getMonthStartAndEndDates(calendarHeaderDate);
 
   return {
     category,
@@ -80,28 +80,10 @@ const resetTransactionForm = () => {
   )).value = "");
 };
 
-const submitTransactionForm = async () => {
-  try {
-    const request = await fetch(config.BASE_URL + "createTransaction.php", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(getTransactionFormValues()),
-    });
-    const response = await request.json();
-
-    if (response.message) {
-      resetTransactionForm();
-      transactionDialog.close();
-      openTransaction();
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 transactionForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  submitTransactionForm();
+  const transactionFormValues = getTransactionFormValues();
+  transactionService.createTransaction(transactionFormValues);
 });
 
-export { createTransaction };
+export { createTransactionModule, resetTransactionForm, transactionFormDialog };

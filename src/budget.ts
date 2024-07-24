@@ -3,6 +3,8 @@ import { Budget } from "./interfaces/budgetInterface";
 import { openBudget } from "./index";
 import { config } from "./config";
 import { BudgetService } from "./budgetService";
+import { TransactionService } from "./TransactionService";
+import { Helper } from "./Helper";
 
 const budgetFormDialog = <HTMLDialogElement>(
   document.getElementById("budget-dialog")
@@ -19,8 +21,10 @@ const editBudgetFormDialog = <HTMLDialogElement>(
   document.getElementById("edit-budget-dialog")
 );
 const budgetService = new BudgetService();
+const transactionService = new TransactionService();
+const helper = new Helper();
 
-const createBudget = (budgetData: Budget[]): HTMLDivElement => {
+const createBudgetModule = (budgetData: Budget[]): HTMLDivElement => {
   const budget = document.createElement("div");
   budget.className = "budget";
   const calendar = createCalendar(budgetData, "Budget");
@@ -28,29 +32,6 @@ const createBudget = (budgetData: Budget[]): HTMLDivElement => {
   budget.appendChild(calendar);
   budget.appendChild(budgetSidebar);
   return budget;
-};
-
-// this function takes the month and year in the calender header and returns
-// the month's start and end date
-const getMonthStartAndEndDates = () => {
-  const calendarHeaderDate = document.getElementById("cal-curr-date");
-  const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
-  const month = parseInt(unparsedDate[0]);
-  const year = parseInt(unparsedDate[1]);
-
-  // Create a new Date object for the start date and set it to the first day of the specified month and year
-  const start_date_obj = new Date();
-  start_date_obj.setFullYear(year, month, 1);
-
-  // Create a new Date object for the end date and set it to the last day of the specified month and year
-  const end_date_obj = new Date();
-  end_date_obj.setFullYear(year, month + 1, 0);
-
-  // Retrieve the days in YYYY-MM-DD format
-  const start_date = start_date_obj.toISOString().split("T")[0];
-  const end_date = end_date_obj.toISOString().split("T")[0];
-
-  return { start_date, end_date };
 };
 
 // this function gathers and values from the budget form for use during submission
@@ -67,7 +48,11 @@ const getBudgetFormValues = () => {
     document.getElementById("budget-form-description")
   )).value;
   const user_id = localStorage.getItem("user_id");
-  const { start_date, end_date } = getMonthStartAndEndDates();
+
+  // the calendar header node is passed into the helper function to get start and end dates
+  const calendarHeaderDate = document.getElementById("cal-curr-date");
+  const { start_date, end_date } =
+    helper.getMonthStartAndEndDates(calendarHeaderDate);
 
   return {
     category,
@@ -145,7 +130,11 @@ const getEditBudgetFormValues = () => {
     document.getElementById("edit-budget-form-budget-id")
   )).value;
   const user_id = localStorage.getItem("user_id")!.toString();
-  const { start_date, end_date } = getMonthStartAndEndDates();
+
+  // the calendar header node is passed into the helper function to get start and end dates
+  const calendarHeaderDate = document.getElementById("cal-curr-date");
+  const { start_date, end_date } =
+    helper.getMonthStartAndEndDates(calendarHeaderDate);
 
   return {
     category,
@@ -159,29 +148,12 @@ const getEditBudgetFormValues = () => {
   };
 };
 
-const createTransactionRecord = async () => {
-  try {
-    const request = await fetch(config.BASE_URL + "createTransaction.php", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ ...getBudgetFormValues(), amount: 0 }),
-    });
-    const response = await request.json();
-
-    if (response.message) {
-      console.log(response.message);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 budgetForm?.addEventListener("submit", (e) => {
   e.preventDefault();
   const budgetFormValues = getBudgetFormValues();
   const transactionFormValues = { ...getBudgetFormValues(), amount: 0 };
   budgetService.createBudget(budgetFormValues);
-  createTransactionRecord();
+  transactionService.createTransaction(transactionFormValues);
 });
 
 editBudgetForm.addEventListener("submit", (e: Event) => {
@@ -199,9 +171,8 @@ editBudgetDialogCloseBtn?.addEventListener("click", () => {
 });
 
 export {
-  createBudget,
+  createBudgetModule,
   resetBudgetForm,
-  getBudgetFormValues,
   budgetFormDialog,
   editBudgetFormDialog,
   populateEditBudgetForm,
