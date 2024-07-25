@@ -151,7 +151,7 @@ budgetForm?.addEventListener("submit", (e) => {
   const budgetFormValues = getBudgetFormValues();
   const transactionFormValues = { ...getBudgetFormValues(), amount: 0 };
   budgetService.createBudget(budgetFormValues);
-  transactionService.createTransaction(transactionFormValues);
+  transactionService.createTransaction(transactionFormValues, false);
 });
 
 editBudgetForm?.addEventListener("submit", (e: Event) => {

@@ -165,7 +165,7 @@ const resetTransactionForm = () => {
 transactionForm?.addEventListener("submit", (e) => {
   e.preventDefault();
   const transactionFormValues = getTransactionFormValues();
-  transactionService.createTransaction(transactionFormValues);
+  transactionService.createTransaction(transactionFormValues, true);
 });
 
 editTransactionForm?.addEventListener("submit", (e: Event) => {

@@ -30,7 +30,10 @@ class TransactionService {
     }
   };
 
-  createTransaction = async (transactionFormValues: any) => {
+  createTransaction = async (
+    transactionFormValues: any,
+    resetModule: boolean
+  ) => {
     try {
       const request = await fetch(config.BASE_URL + "createTransaction.php", {
         method: "POST",
@@ -42,7 +45,7 @@ class TransactionService {
       if (response.message) {
         resetTransactionForm();
         transactionFormDialog.close();
-        resetTransactionModule();
+        if (resetModule) resetTransactionModule();
       }
     } catch (error) {
       console.error(error);
