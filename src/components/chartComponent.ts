@@ -1,4 +1,4 @@
-import FinanceCalculator from "./FinanceCalculator";
+import FinanceCalculator from "../helpers/FinanceCalculator";
 import {
   DoughnutController,
   Chart,
@@ -71,6 +71,7 @@ const renderChart = (ctx: HTMLCanvasElement, financeData: any) => {
       plugins: {
         legend: {
           display: !allZero, // Hide legend when no data
+          position: "bottom",
         },
         tooltip: {
           callbacks: {

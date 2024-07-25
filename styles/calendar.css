@@ -57,6 +57,9 @@
   position: sticky;
   top: 20px;
 }
+.cal-sidebar-chart-cont {
+  margin-top: 10px;
+}
 
 .cal-body-header,
 .cal-body-date {
