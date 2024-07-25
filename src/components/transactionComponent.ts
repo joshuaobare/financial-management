@@ -1,10 +1,10 @@
-import { Transaction } from "./interfaces/transactionInterfact";
+import { Transaction } from "../interfaces/transactionInterfact";
 import {
   editTransactionFormDialog,
   populateEditTransactionForm,
   transactionFormDialog,
-} from "./transaction";
-import { TransactionService } from "./services/TransactionService";
+} from "../modules/transaction";
+import { TransactionService } from "../services/TransactionService";
 
 const transactionService = new TransactionService();
 const createTransactionComponent = (

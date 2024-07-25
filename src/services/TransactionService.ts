@@ -3,7 +3,7 @@ import {
   resetTransactionForm,
   transactionFormDialog,
   editTransactionFormDialog,
-} from "../transaction";
+} from "../modules/transaction";
 import { openTransaction as resetTransactionModule } from "../index";
 import { Transaction } from "../interfaces/transactionInterfact";
 

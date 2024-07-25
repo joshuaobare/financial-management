@@ -38,6 +38,31 @@ const renderChart = (ctx: HTMLCanvasElement, financeData: any) => {
 
   const allZero = financeCalculator.totalMonthlySpend() === 0;
 
+  const noDataPlugin = {
+    id: "noData",
+    afterDraw(chart: Chart) {
+      const { datasets } = chart.data;
+      let hasData = false;
+
+      for (const dataset of datasets) {
+        if (dataset.data.some((value) => value !== 0)) {
+          hasData = true;
+          break;
+        }
+      }
+
+      if (!hasData) {
+        const { ctx, width, height } = chart;
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.font = "16px sans-serif";
+        ctx.fillText("No data to visualize", width / 2, height / 2);
+        ctx.restore();
+      }
+    },
+  };
+
   new Chart(ctx, {
     type: "doughnut",
     data: data,
@@ -58,31 +83,6 @@ const renderChart = (ctx: HTMLCanvasElement, financeData: any) => {
     },
     plugins: [noDataPlugin],
   });
-};
-
-const noDataPlugin = {
-  id: "noData",
-  afterDraw(chart: Chart) {
-    const { datasets } = chart.data;
-    let hasData = false;
-
-    for (const dataset of datasets) {
-      if (dataset.data.some((value) => value !== 0)) {
-        hasData = true;
-        break;
-      }
-    }
-
-    if (!hasData) {
-      const { ctx, width, height } = chart;
-      ctx.save();
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.font = "16px sans-serif";
-      ctx.fillText("No data to visualize", width / 2, height / 2);
-      ctx.restore();
-    }
-  },
 };
 
 export { renderChart };

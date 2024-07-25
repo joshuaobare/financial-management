@@ -1,10 +1,8 @@
-import { createCalendar } from "./calendar";
-import { Transaction } from "./interfaces/transactionInterfact";
-import { config } from "./config";
-import { openTransaction } from "./index";
-import "../styles/transaction.css";
-import { TransactionService } from "./services/TransactionService";
-import { Helper } from "./helpers/Helper";
+import { createCalendar } from "../components/calendar";
+import { Transaction } from "../interfaces/transactionInterfact";
+import "../../styles/transaction.css";
+import { TransactionService } from "../services/TransactionService";
+import { Helper } from "../helpers/Helper";
 
 const transactionService = new TransactionService();
 const helper = new Helper();

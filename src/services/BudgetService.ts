@@ -5,7 +5,7 @@ import {
   budgetFormDialog,
   resetBudgetForm,
   editBudgetFormDialog,
-} from "../budget";
+} from "../modules/budget";
 
 class BudgetService {
   constructor() {}

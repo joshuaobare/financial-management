@@ -1,11 +1,11 @@
-import { Budget } from "./interfaces/budgetInterface";
-import { openBudget } from "./index";
-import { BudgetService } from "./services/BudgetService";
+import { Budget } from "../interfaces/budgetInterface";
+import { openBudget } from "../index";
+import { BudgetService } from "../services/BudgetService";
 import {
   budgetFormDialog,
   populateEditBudgetForm,
   editBudgetFormDialog,
-} from "./budget";
+} from "../modules/budget";
 
 const budgetService = new BudgetService();
 const createBudgetComponent = (title: string, budgetData: Budget[]) => {

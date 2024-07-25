@@ -1,6 +1,6 @@
 import { createBudgetComponent } from "./budgetComponent";
-import { Budget, isBudget } from "./interfaces/budgetInterface";
-import { Transaction, isTransaction } from "./interfaces/transactionInterfact";
+import { Budget } from "../interfaces/budgetInterface";
+import { Transaction } from "../interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
 import { createTransactionComponent } from "./transactionComponent";
 

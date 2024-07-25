@@ -1,10 +1,9 @@
-import { createHome } from "./home";
-import { createBudgetModule } from "./budget";
-import { navbar } from "./navbar";
+import { createHome } from "./modules/home";
+import { createBudgetModule } from "./modules/budget";
+import { navbar } from "./components/navbar";
 import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
-import { createTransactionModule } from "./transaction";
-import { config } from "./config";
+import { createTransactionModule } from "./modules/transaction";
 import { BudgetService } from "./services/BudgetService";
 import { TransactionService } from "./services/TransactionService";
 import "./login";
