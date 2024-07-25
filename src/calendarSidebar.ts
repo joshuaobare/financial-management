@@ -1,6 +1,7 @@
 import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
 import FinanceCalculator from "./helpers/FinanceCalculator";
+import { renderChart } from "./helpers/chartComponent";
 
 const calendarSidebar = (financialData: Budget[] | Transaction[]) => {
   const sidebar = document.createElement("div");
@@ -37,6 +38,13 @@ const sidebarTop = (financialData: Budget[] | Transaction[]) => {
 
 const sidebarBottom = (financialData: Budget[] | Transaction[]) => {
   const section = document.createElement("div");
+  const canvasCont = document.createElement("div");
+  const canvas = document.createElement("canvas");
+  canvas.id = "sidebar-chart";
+
+  renderChart(canvas, financialData);
+  canvasCont.append(canvas);
+  section.append(canvasCont);
   return section;
 };
 
