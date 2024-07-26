@@ -35,8 +35,8 @@ describe("BudgetService", () => {
 
   describe("fetchBudget", () => {
     it("should fetch budget successfully", async () => {
-      const mockUserId = "123";
-      const mockBudgets = [{ id: 1, name: "Budget 1" }];
+      const mockUserId = "1";
+      const mockBudgets = budgetData;
 
       mockLocalStorage.getItem.mockReturnValue(mockUserId);
       mockFetch.mockResolvedValueOnce({
