@@ -30,10 +30,7 @@ class TransactionService {
     }
   };
 
-  createTransaction = async (
-    transactionFormValues: any,
-    resetModule: boolean
-  ) => {
+  createTransaction = async (transactionFormValues: any) => {
     try {
       const request = await fetch(config.BASE_URL + "createTransaction.php", {
         method: "POST",
@@ -43,12 +40,11 @@ class TransactionService {
       const response = await request.json();
 
       if (response.message) {
-        resetTransactionForm();
-        transactionFormDialog.close();
-        if (resetModule) resetTransactionModule();
+        return true;
       }
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 
@@ -61,11 +57,11 @@ class TransactionService {
       });
       const response = await request.json();
       if (response.message) {
-        editTransactionFormDialog.close();
-        resetTransactionModule();
+        return true;
       }
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 

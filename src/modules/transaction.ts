@@ -3,6 +3,7 @@ import { Transaction } from "../interfaces/transactionInterfact";
 import "../../styles/transaction.css";
 import { TransactionService } from "../services/TransactionService";
 import { Helper } from "../helpers/Helper";
+import { openTransaction } from "../index";
 
 const transactionService = new TransactionService();
 const helper = new Helper();
@@ -160,19 +161,42 @@ const resetTransactionForm = () => {
   )).value = "");
 };
 
-transactionForm?.addEventListener("submit", (e) => {
+const createNewTransactionItem = async (e: Event) => {
   e.preventDefault();
   const transactionFormValues = getTransactionFormValues();
-  transactionService.createTransaction(transactionFormValues, true);
-});
+  const successfulSubmission = await transactionService.createTransaction(
+    transactionFormValues
+  );
 
-editTransactionForm?.addEventListener("submit", (e: Event) => {
+  if (successfulSubmission) {
+    resetTransactionForm();
+    transactionFormDialog.close();
+    openTransaction();
+  }
+};
+
+const updateTransactionItem = async (e: Event) => {
   e.preventDefault();
   const transactionData = {
     ...getEditTransactionFormValues(),
     created_at: null,
   };
-  transactionService.updateTransaction(transactionData);
+  const successfulSubmission = await transactionService.updateTransaction(
+    transactionData
+  );
+
+  if (successfulSubmission) {
+    editTransactionFormDialog.close();
+    openTransaction();
+  }
+};
+
+transactionForm?.addEventListener("submit", (e) => {
+  createNewTransactionItem(e);
+});
+
+editTransactionForm?.addEventListener("submit", (e: Event) => {
+  updateTransactionItem(e);
 });
 
 transactionDialogCloseBtn?.addEventListener("click", () => {

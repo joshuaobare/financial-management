@@ -3,7 +3,8 @@ import { Budget } from "../interfaces/budgetInterface";
 import { BudgetService } from "../services/BudgetService";
 import { TransactionService } from "../services/TransactionService";
 import { Helper } from "../helpers/Helper";
-import { openBudget } from "../index";
+import { openBudget, openTransaction } from "../index";
+import { resetTransactionForm, transactionFormDialog } from "./transaction";
 
 const budgetFormDialog = <HTMLDialogElement>(
   document.getElementById("budget-dialog")
@@ -151,17 +152,23 @@ const createNewBudgetItem = async (e: Event) => {
   e.preventDefault();
   const budgetFormValues = getBudgetFormValues();
   const transactionFormValues = { ...getBudgetFormValues(), amount: 0 };
-  const successfulSubmission = await budgetService.createBudget(
+  const successfulBudgetSubmission = await budgetService.createBudget(
     budgetFormValues
   );
 
-  if (successfulSubmission) {
+  if (successfulBudgetSubmission) {
     resetBudgetForm();
     budgetFormDialog.close();
     openBudget();
   }
 
-  transactionService.createTransaction(transactionFormValues, false);
+  const successfulTransactionSubmission =
+    await transactionService.createTransaction(transactionFormValues);
+
+  if (successfulTransactionSubmission) {
+    resetTransactionForm();
+    transactionFormDialog.close();
+  }
 };
 
 const updateBudgetItem = async (e: Event) => {
