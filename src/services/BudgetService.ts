@@ -78,10 +78,11 @@ class BudgetService {
       const response = await request.json();
 
       if (response.message) {
-        resetBudgetComponent();
+        return true;
       }
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 }

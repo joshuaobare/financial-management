@@ -77,12 +77,22 @@ const row = (budgetData: Budget) => {
     editBudgetFormDialog.show();
   });
   deleteIcon.addEventListener("click", () => {
-    budgetService.deleteBudget(budgetData.budget_id);
+    deleteBudgetItem(budgetData);
   });
 
   singleRow.append(deleteIcon, rowMain);
 
   return singleRow;
+};
+
+const deleteBudgetItem = async (budgetData: Budget) => {
+  const successfulSubmission = await budgetService.deleteBudget(
+    budgetData.budget_id
+  );
+
+  if (successfulSubmission) {
+    openBudget();
+  }
 };
 
 export { createBudgetComponent };

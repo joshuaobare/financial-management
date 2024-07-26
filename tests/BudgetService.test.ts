@@ -4,21 +4,38 @@ import { budgetData } from "./testValues";
 import { localStorageMock } from "./localStorageMock";
 import { Budget } from "../src/interfaces/budgetInterface";
 
+// Mock the imported functions
+jest.mock("../index", () => ({
+  openBudget: jest.fn(),
+}));
+
+jest.mock("../modules/budget", () => ({
+  budgetFormDialog: { close: jest.fn() },
+  resetBudgetForm: jest.fn(),
+  editBudgetFormDialog: { close: jest.fn() },
+}));
+
+// Define a type for the mocked fetch function
 type MockFetch = jest.Mock<Promise<Response>> & {
   mockResolvedValueOnce: (value: Partial<Response>) => MockFetch;
 };
-const mockedFetch = jest.fn() as MockFetch;
-global.fetch = mockedFetch;
 
-global.localStorage = localStorageMock;
+// Create the mocked fetch function
+const mockFetch = jest.fn() as MockFetch;
 
-// Mock external functions
-jest.mock("../src/modules/budget", () => ({
-  resetBudgetForm: jest.fn(),
-  budgetFormDialog: { close: jest.fn() },
-  resetBudgetComponent: jest.fn(),
-  editBudgetFormDialog: { close: jest.fn() },
-}));
+// Replace the global fetch with our mock
+global.fetch = mockFetch;
+
+// Mock localStorage
+const mockLocalStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+  removeItem: jest.fn(),
+  key: jest.fn(),
+  length: 0,
+};
+Object.defineProperty(window, "localStorage", { value: mockLocalStorage });
 
 describe("BudgetService", () => {
   let budgetService: BudgetService;
@@ -31,17 +48,17 @@ describe("BudgetService", () => {
   describe("fetchBudget", () => {
     it("should fetch budget successfully", async () => {
       const mockUserId = "123";
-      const mockBudgets = budgetData;
+      const mockBudgets = [{ id: 1, name: "Budget 1" }];
 
-      localStorageMock.getItem.mockReturnValue(mockUserId);
-      mockedFetch.mockResolvedValueOnce({
-        json: jest.fn().mockResolvedValueOnce({ budgets: mockBudgets }),
-      });
+      mockLocalStorage.getItem.mockReturnValue(mockUserId);
+      mockFetch.mockResolvedValueOnce({
+        json: jest.fn().mockResolvedValue({ budgets: mockBudgets }),
+      } as Partial<Response>);
 
       const result = await budgetService.fetchBudget();
 
-      expect(localStorageMock.getItem).toHaveBeenCalledWith("user_id");
-      expect(global.fetch).toHaveBeenCalledWith(
+      expect(mockLocalStorage.getItem).toHaveBeenCalledWith("user_id");
+      expect(mockFetch).toHaveBeenCalledWith(
         `${config.BASE_URL}fetchBudget.php?user_id=${mockUserId}`,
         expect.any(Object)
       );
@@ -49,14 +66,15 @@ describe("BudgetService", () => {
     });
 
     it("should handle fetch error", async () => {
-      localStorageMock.getItem.mockReturnValue("123");
-      mockedFetch.mockRejectedValueOnce(new Error("Fetch error"));
+      mockLocalStorage.getItem.mockReturnValue("123");
+      mockFetch.mockRejectedValueOnce(new Error("Fetch error"));
 
       console.error = jest.fn();
 
-      await budgetService.fetchBudget();
+      const result = await budgetService.fetchBudget();
 
       expect(console.error).toHaveBeenCalledWith(new Error("Fetch error"));
+      expect(result).toBeUndefined();
     });
   });
 
@@ -64,66 +82,65 @@ describe("BudgetService", () => {
     it("should create budget successfully", async () => {
       const mockBudgetFormValues = { name: "New Budget", amount: 1000 };
 
-      mockedFetch.mockResolvedValueOnce({
-        json: jest.fn().mockResolvedValueOnce({ message: "Budget created" }),
-      });
+      mockFetch.mockResolvedValueOnce({
+        json: jest.fn().mockResolvedValue({ message: "Budget created" }),
+      } as Partial<Response>);
 
-      await budgetService.createBudget(mockBudgetFormValues);
+      const result = await budgetService.createBudget(mockBudgetFormValues);
 
-      expect(global.fetch).toHaveBeenCalledWith(
+      expect(mockFetch).toHaveBeenCalledWith(
         `${config.BASE_URL}createBudget.php`,
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify(mockBudgetFormValues),
         })
       );
-      expect(require("./someModule").resetBudgetForm).toHaveBeenCalled();
-      expect(require("./someModule").budgetFormDialog.close).toHaveBeenCalled();
-      expect(require("./someModule").resetBudgetComponent).toHaveBeenCalled();
+      expect(result).toBe(true);
     });
 
     it("should handle create error", async () => {
-      mockedFetch.mockRejectedValueOnce(new Error("Create error"));
+      const mockBudgetFormValues = { name: "New Budget", amount: 1000 };
+      mockFetch.mockRejectedValueOnce(new Error("Create error"));
 
       console.error = jest.fn();
 
-      await budgetService.createBudget({});
+      const result = await budgetService.createBudget(mockBudgetFormValues);
 
       expect(console.error).toHaveBeenCalledWith(new Error("Create error"));
+      expect(result).toBe(false);
     });
   });
 
   describe("updateBudget", () => {
     it("should update budget successfully", async () => {
-      const mockBudgetData = budgetData;
+      const mockBudgetData: Budget = budgetData[0];
 
-      mockedFetch.mockResolvedValueOnce({
-        json: jest.fn().mockResolvedValueOnce({ message: "Budget updated" }),
-      });
+      mockFetch.mockResolvedValueOnce({
+        json: jest.fn().mockResolvedValue({ message: "Budget updated" }),
+      } as Partial<Response>);
 
-      await budgetService.updateBudget(mockBudgetData[0]);
+      const result = await budgetService.updateBudget(mockBudgetData);
 
-      expect(global.fetch).toHaveBeenCalledWith(
+      expect(mockFetch).toHaveBeenCalledWith(
         `${config.BASE_URL}updateBudget.php`,
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify(mockBudgetData),
         })
       );
-      expect(
-        require("./someModule").editBudgetFormDialog.close
-      ).toHaveBeenCalled();
-      expect(require("./someModule").resetBudgetComponent).toHaveBeenCalled();
+      expect(result).toBe(true);
     });
 
     it("should handle update error", async () => {
-      mockedFetch.mockRejectedValueOnce(new Error("Update error"));
+      const mockBudgetData: Budget = budgetData[0];
+      mockFetch.mockRejectedValueOnce(new Error("Update error"));
 
       console.error = jest.fn();
 
-      await budgetService.updateBudget({} as Budget);
+      const result = await budgetService.updateBudget(mockBudgetData);
 
       expect(console.error).toHaveBeenCalledWith(new Error("Update error"));
+      expect(result).toBe(false);
     });
   });
 
@@ -131,27 +148,29 @@ describe("BudgetService", () => {
     it("should delete budget successfully", async () => {
       const mockBudgetId = "1";
 
-      mockedFetch.mockResolvedValueOnce({
-        json: jest.fn().mockResolvedValueOnce({ message: "Budget deleted" }),
-      });
+      mockFetch.mockResolvedValueOnce({
+        json: jest.fn().mockResolvedValue({ message: "Budget deleted" }),
+      } as Partial<Response>);
 
-      await budgetService.deleteBudget(mockBudgetId);
+      const result = await budgetService.deleteBudget(mockBudgetId);
 
-      expect(global.fetch).toHaveBeenCalledWith(
+      expect(mockFetch).toHaveBeenCalledWith(
         `${config.BASE_URL}deleteBudget.php?budget_id=${mockBudgetId}`,
         expect.any(Object)
       );
-      expect(require("./someModule").resetBudgetComponent).toHaveBeenCalled();
+      expect(result).toBe(true);
     });
 
     it("should handle delete error", async () => {
-      mockedFetch.mockRejectedValueOnce(new Error("Delete error"));
+      const mockBudgetId = "1";
+      mockFetch.mockRejectedValueOnce(new Error("Delete error"));
 
       console.error = jest.fn();
 
-      await budgetService.deleteBudget("1");
+      const result = await budgetService.deleteBudget(mockBudgetId);
 
       expect(console.error).toHaveBeenCalledWith(new Error("Delete error"));
+      expect(result).toBe(false);
     });
   });
 });
