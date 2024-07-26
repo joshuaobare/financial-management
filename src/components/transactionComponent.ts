@@ -1,3 +1,4 @@
+import { openTransaction } from "../index";
 import { Transaction } from "../interfaces/transactionInterfact";
 import {
   editTransactionFormDialog,
@@ -81,11 +82,21 @@ const row = (transactionData: Transaction) => {
     editTransactionFormDialog.show();
   });
   deleteIcon.addEventListener("click", () => {
-    transactionService.deleteTransaction(transactionData.transaction_id);
+    deleteTransactionItem(transactionData);
   });
 
   singleRow.append(deleteIcon, rowMain);
   return singleRow;
+};
+
+const deleteTransactionItem = async (transactionData: Transaction) => {
+  const successfulSubmission = await transactionService.deleteTransaction(
+    transactionData.transaction_id
+  );
+
+  if (successfulSubmission) {
+    openTransaction();
+  }
 };
 
 export { createTransactionComponent };

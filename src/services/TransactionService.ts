@@ -78,10 +78,11 @@ class TransactionService {
       const response = await request.json();
 
       if (response.message) {
-        resetTransactionModule();
+        return true;
       }
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 }
