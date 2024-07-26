@@ -56,12 +56,13 @@ class BudgetService {
         body: JSON.stringify(budgetData),
       });
       const response = await request.json();
+
       if (response.message) {
-        editBudgetFormDialog.close();
-        resetBudgetComponent();
+        return true;
       }
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 

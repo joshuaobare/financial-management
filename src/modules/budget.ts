@@ -147,7 +147,7 @@ const getEditBudgetFormValues = () => {
   };
 };
 
-const createBudgetItem = async (e: Event) => {
+const createNewBudgetItem = async (e: Event) => {
   e.preventDefault();
   const budgetFormValues = getBudgetFormValues();
   const transactionFormValues = { ...getBudgetFormValues(), amount: 0 };
@@ -164,14 +164,23 @@ const createBudgetItem = async (e: Event) => {
   transactionService.createTransaction(transactionFormValues, false);
 };
 
+const updateBudgetItem = async (e: Event) => {
+  e.preventDefault();
+  const budgetData = { ...getEditBudgetFormValues(), created_at: null };
+  const successfulSubmission = await budgetService.updateBudget(budgetData);
+
+  if (successfulSubmission) {
+    editBudgetFormDialog.close();
+    openBudget();
+  }
+};
+
 budgetForm?.addEventListener("submit", (e) => {
-  createBudgetItem(e);
+  createNewBudgetItem(e);
 });
 
 editBudgetForm?.addEventListener("submit", (e: Event) => {
-  e.preventDefault();
-  const budgetData = { ...getEditBudgetFormValues(), created_at: null };
-  budgetService.updateBudget(budgetData);
+  updateBudgetItem(e);
 });
 
 budgetDialogCloseBtn?.addEventListener("click", () => {
