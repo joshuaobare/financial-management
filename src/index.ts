@@ -6,6 +6,7 @@ import { Transaction } from "./interfaces/transactionInterfact";
 import { createTransactionModule } from "./modules/transaction";
 import { BudgetService } from "./services/BudgetService";
 import { TransactionService } from "./services/TransactionService";
+import { createInsightsModule } from "./modules/insights";
 import "./login";
 import "./register";
 
@@ -14,6 +15,7 @@ const homeBtn = document.getElementById("home-btn");
 const budgetBtn = document.getElementById("budget-btn");
 const mainNavCont = document.getElementById("main-nav");
 const transactionBtn = document.getElementById("transaction-btn");
+const insightsBtn = document.getElementById("insights-btn");
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 
@@ -51,6 +53,20 @@ const openTransaction = async () => {
 
 transactionBtn?.addEventListener("click", () => {
   openTransaction();
+});
+
+const openInsights = async () => {
+  const transactionData = <Transaction[]>(
+    await transactionService.fetchTransactions()
+  );
+  const budgetData = <Budget[]>await budgetService.fetchBudget();
+  container?.replaceChildren();
+  const transaction = createInsightsModule(budgetData, transactionData);
+  container?.appendChild(transaction);
+};
+
+insightsBtn?.addEventListener("click", () => {
+  openInsights();
 });
 
 openHome();
