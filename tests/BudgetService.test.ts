@@ -35,17 +35,15 @@ describe("BudgetService", () => {
 
   describe("fetchBudget", () => {
     it("should fetch budget successfully", async () => {
-      const mockUserId = "1";
+      const mockUserId = "123";
       const mockBudgets = budgetData;
 
-      mockLocalStorage.getItem.mockReturnValue(mockUserId);
       mockFetch.mockResolvedValueOnce({
         json: jest.fn().mockResolvedValue({ budgets: mockBudgets }),
       } as Partial<Response>);
 
       const result = await budgetService.fetchBudget(mockUserId);
 
-      expect(mockLocalStorage.getItem).toHaveBeenCalledWith("user_id");
       expect(mockFetch).toHaveBeenCalledWith(
         `${config.BASE_URL}fetchBudget.php?user_id=${mockUserId}`,
         expect.any(Object)
@@ -54,7 +52,7 @@ describe("BudgetService", () => {
     });
 
     it("should handle fetch error", async () => {
-      mockLocalStorage.getItem.mockReturnValue("123");
+      const mockUserId = "123";
       mockFetch.mockRejectedValueOnce(new Error("Fetch error"));
 
       console.error = jest.fn();
@@ -68,7 +66,7 @@ describe("BudgetService", () => {
 
   describe("createBudget", () => {
     it("should create budget successfully", async () => {
-      const mockBudgetFormValues = { name: "New Budget", amount: 1000 };
+      const mockBudgetFormValues = budgetData[0];
 
       mockFetch.mockResolvedValueOnce({
         json: jest.fn().mockResolvedValue({ message: "Budget created" }),
@@ -87,7 +85,7 @@ describe("BudgetService", () => {
     });
 
     it("should handle create error", async () => {
-      const mockBudgetFormValues = { name: "New Budget", amount: 1000 };
+      const mockBudgetFormValues = budgetData[0];
       mockFetch.mockRejectedValueOnce(new Error("Create error"));
 
       console.error = jest.fn();
