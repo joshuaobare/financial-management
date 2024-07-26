@@ -3,6 +3,7 @@ import { Budget } from "../interfaces/budgetInterface";
 import { BudgetService } from "../services/BudgetService";
 import { TransactionService } from "../services/TransactionService";
 import { Helper } from "../helpers/Helper";
+import { openBudget } from "../index";
 
 const budgetFormDialog = <HTMLDialogElement>(
   document.getElementById("budget-dialog")
@@ -146,12 +147,25 @@ const getEditBudgetFormValues = () => {
   };
 };
 
-budgetForm?.addEventListener("submit", (e) => {
+const createBudgetItem = async (e: Event) => {
   e.preventDefault();
   const budgetFormValues = getBudgetFormValues();
   const transactionFormValues = { ...getBudgetFormValues(), amount: 0 };
-  budgetService.createBudget(budgetFormValues);
+  const successfulSubmission = await budgetService.createBudget(
+    budgetFormValues
+  );
+
+  if (successfulSubmission) {
+    resetBudgetForm();
+    budgetFormDialog.close();
+    openBudget();
+  }
+
   transactionService.createTransaction(transactionFormValues, false);
+};
+
+budgetForm?.addEventListener("submit", (e) => {
+  createBudgetItem(e);
 });
 
 editBudgetForm?.addEventListener("submit", (e: Event) => {

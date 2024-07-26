@@ -40,12 +40,11 @@ class BudgetService {
       const response = await request.json();
 
       if (response.message) {
-        resetBudgetForm();
-        budgetFormDialog.close();
-        resetBudgetComponent();
+        return true;
       }
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 
