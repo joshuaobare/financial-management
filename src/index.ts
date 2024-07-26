@@ -32,10 +32,14 @@ homeBtn?.addEventListener("click", (e: Event) => {
 });
 
 const openBudget = async () => {
-  const budgetData = <Budget[]>await budgetService.fetchBudget();
-  container?.replaceChildren();
-  const budget = createBudgetModule(budgetData);
-  container?.appendChild(budget);
+  const user_id = localStorage.getItem("user_id");
+
+  if (user_id) {
+    const budgetData = <Budget[]>await budgetService.fetchBudget(user_id);
+    container?.replaceChildren();
+    const budget = createBudgetModule(budgetData);
+    container?.appendChild(budget);
+  }
 };
 
 budgetBtn?.addEventListener("click", (e: Event) => {
@@ -43,12 +47,16 @@ budgetBtn?.addEventListener("click", (e: Event) => {
 });
 
 const openTransaction = async () => {
-  const transactionData = <Transaction[]>(
-    await transactionService.fetchTransactions()
-  );
-  container?.replaceChildren();
-  const transaction = createTransactionModule(transactionData);
-  container?.appendChild(transaction);
+  const user_id = localStorage.getItem("user_id");
+
+  if (user_id) {
+    const transactionData = <Transaction[]>(
+      await transactionService.fetchTransactions(user_id)
+    );
+    container?.replaceChildren();
+    const transaction = createTransactionModule(transactionData);
+    container?.appendChild(transaction);
+  }
 };
 
 transactionBtn?.addEventListener("click", () => {
@@ -56,13 +64,17 @@ transactionBtn?.addEventListener("click", () => {
 });
 
 const openInsights = async () => {
-  const transactionData = <Transaction[]>(
-    await transactionService.fetchTransactions()
-  );
-  const budgetData = <Budget[]>await budgetService.fetchBudget();
-  container?.replaceChildren();
-  const transaction = createInsightsModule(budgetData, transactionData);
-  container?.appendChild(transaction);
+  const user_id = localStorage.getItem("user_id");
+
+  if (user_id) {
+    const transactionData = <Transaction[]>(
+      await transactionService.fetchTransactions(user_id)
+    );
+    const budgetData = <Budget[]>await budgetService.fetchBudget(user_id);
+    container?.replaceChildren();
+    const transaction = createInsightsModule(budgetData, transactionData);
+    container?.appendChild(transaction);
+  }
 };
 
 insightsBtn?.addEventListener("click", () => {

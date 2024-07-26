@@ -43,7 +43,7 @@ describe("BudgetService", () => {
         json: jest.fn().mockResolvedValue({ budgets: mockBudgets }),
       } as Partial<Response>);
 
-      const result = await budgetService.fetchBudget();
+      const result = await budgetService.fetchBudget(mockUserId);
 
       expect(mockLocalStorage.getItem).toHaveBeenCalledWith("user_id");
       expect(mockFetch).toHaveBeenCalledWith(
@@ -59,7 +59,7 @@ describe("BudgetService", () => {
 
       console.error = jest.fn();
 
-      const result = await budgetService.fetchBudget();
+      const result = await budgetService.fetchBudget(mockUserId);
 
       expect(console.error).toHaveBeenCalledWith(new Error("Fetch error"));
       expect(result).toBeUndefined();

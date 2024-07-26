@@ -10,8 +10,7 @@ import { Transaction } from "../interfaces/transactionInterfact";
 class TransactionService {
   constructor() {}
 
-  fetchTransactions = async () => {
-    const userId = localStorage.getItem("user_id");
+  fetchTransactions = async (userId: string) => {
     try {
       const request = await fetch(
         config.BASE_URL + `fetchTransactions.php?user_id=${userId}`,

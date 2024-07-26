@@ -10,8 +10,7 @@ import {
 class BudgetService {
   constructor() {}
 
-  fetchBudget = async () => {
-    const userId = localStorage.getItem("user_id");
+  fetchBudget = async (userId: string) => {
     try {
       const request = await fetch(
         config.BASE_URL + `fetchBudget.php?user_id=${userId}`,
