@@ -4,17 +4,6 @@ import { budgetData } from "./testValues";
 import { localStorageMock } from "./localStorageMock";
 import { Budget } from "../src/interfaces/budgetInterface";
 
-// Mock the imported functions
-jest.mock("../index", () => ({
-  openBudget: jest.fn(),
-}));
-
-jest.mock("../modules/budget", () => ({
-  budgetFormDialog: { close: jest.fn() },
-  resetBudgetForm: jest.fn(),
-  editBudgetFormDialog: { close: jest.fn() },
-}));
-
 // Define a type for the mocked fetch function
 type MockFetch = jest.Mock<Promise<Response>> & {
   mockResolvedValueOnce: (value: Partial<Response>) => MockFetch;
@@ -35,7 +24,6 @@ const mockLocalStorage = {
   key: jest.fn(),
   length: 0,
 };
-Object.defineProperty(window, "localStorage", { value: mockLocalStorage });
 
 describe("BudgetService", () => {
   let budgetService: BudgetService;
