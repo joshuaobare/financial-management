@@ -161,23 +161,26 @@ const calendarBody = (
     return itemStart >= currentStart && itemEnd <= currentEnd;
   });
 
-  const monthlyInsights = document.createElement("div");
-  const transactionInsights = calendarSidebar(monthlyTransactionData);
-  const budgetInsights = calendarSidebar(monthlyBudgetData);
+  // const monthlyInsights = document.createElement("div");
+  // const transactionInsights = calendarSidebar(monthlyTransactionData);
+  // const budgetInsights = calendarSidebar(monthlyBudgetData);
 
-  monthlyInsights.append(budgetInsights, transactionInsights);
-  calendarBody.appendChild(monthlyInsights);
+  calendarBody.append(insightsTop(monthlyBudgetData, monthlyTransactionData));
+  calendarBody.className = "insights-calendar-body";
   return calendarBody;
 };
 
-const insightsTop = (budgetData: Budget, transactionData: Transaction) => {
+const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
   const component = document.createElement("div");
   component.className = "insights-top";
   const budget = document.createElement("div");
+  budget.className = "insights-budget-section";
   const budgetHeader = document.createElement("header");
   const budgetChartCont = document.createElement("div");
+  budgetChartCont.className = "insights-budget-chart-cont";
   const budgetChart = document.createElement("canvas");
-  budgetChart.id = "insights=budget-chart";
+  budgetChart.id = "insights-budget-chart";
+  budgetChart.className = "insights-budget-chart";
   budgetChartCont.appendChild(budgetChart);
   budgetHeader.textContent = "BUDGET";
   renderChart(budgetChart, budgetData);
@@ -185,10 +188,13 @@ const insightsTop = (budgetData: Budget, transactionData: Transaction) => {
   budget.append(budgetHeader, budgetChart);
 
   const transaction = document.createElement("div");
+  transaction.className = "insights-transaction-section";
   const transactionHeader = document.createElement("header");
   const transactionChartCont = document.createElement("div");
+  transactionChartCont.className = "insights-transaction-chart-cont";
   const transactionChart = document.createElement("canvas");
-  transactionChart.id = "insights=transaction-chart";
+  transactionChart.id = "insights-transaction-chart";
+  transactionChart.className = "insights=transaction-chart";
   transactionChartCont.appendChild(transactionChart);
   transactionHeader.textContent = "TRANSACTION";
   renderChart(transactionChart, transactionData);
@@ -196,6 +202,8 @@ const insightsTop = (budgetData: Budget, transactionData: Transaction) => {
   transaction.append(transactionHeader, transactionChart);
 
   component.append(budget, transaction);
+
+  return component;
 };
 
 export { createInsightsCalendar };

@@ -1,3 +1,36 @@
+.insights-calendar-body {
+  padding: 30px;
+  display: flex;
+  background-color: #f5f7f8;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .insights-top {
   display: flex;
+  width: 90%;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.insights-budget-chart-cont,
+.insights-transaction-chart-cont {
+  width: 100%;
+}
+
+.insights-budget-chart,
+.insights-transaction-chart {
+  width: 65%;
+}
+.insights-budget-section,
+.insights-transaction-section {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
