@@ -21,6 +21,40 @@ class Helper {
 
     return { start_date, end_date };
   };
+
+  getMonthStartAndEndByDate = (year: number, month: number) => {
+    const start_date = new Date();
+    start_date.setFullYear(year, month, 1);
+    const end_date = new Date();
+    end_date.setFullYear(year, month + 1, 0);
+
+    return { start_date, end_date };
+  };
+
+  getPreviousMonthDates(
+    startDate: Date,
+    endDate: Date
+  ): { prevStartDate: string; prevEndDate: string } {
+    // Determine the previous month and year
+    let prevMonth = startDate.getMonth() - 1;
+    let prevYear = startDate.getFullYear();
+
+    // Handle the case where the current month is January (month index 0)
+    if (prevMonth < 0) {
+      prevMonth = 11; // December (month index 11)
+      prevYear -= 1; // Previous year
+    }
+
+    // Start date of the previous month
+    const prevStartDate = new Date(prevYear, prevMonth, 1);
+    // End date of the previous month
+    const prevEndDate = new Date(prevYear, prevMonth + 1, 0); // 0th day of the next month gives last day of current month
+
+    return {
+      prevStartDate: prevStartDate.toISOString().split("T")[0],
+      prevEndDate: prevEndDate.toISOString().split("T")[0],
+    };
+  }
 }
 
 export { Helper };

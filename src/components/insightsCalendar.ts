@@ -3,6 +3,9 @@ import { Transaction } from "../interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
 import { renderChart } from "./chartComponent";
 import "../../styles/insights.css";
+import { Helper } from "../helpers/Helper";
+
+const helper = new Helper();
 
 const createInsightsCalendar = (
   budgetData: Budget[],
@@ -138,16 +141,21 @@ const calendarBody = (
 ): HTMLDivElement => {
   const calendarBody = document.createElement("div");
   calendarBody.className = "cal-body";
-  const start_date = new Date();
-  start_date.setFullYear(year, month, 1);
-  const end_date = new Date();
-  end_date.setFullYear(year, month + 1, 0);
+
+  const { start_date, end_date } = helper.getMonthStartAndEndByDate(
+    year,
+    month
+  );
+  const { prevStartDate, prevEndDate } = helper.getPreviousMonthDates(
+    start_date,
+    end_date
+  );
 
   const monthlyBudgetData = budgetData.filter((item) => {
     const itemStart = new Date(item.start_date).toISOString().split("T")[0];
     const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
-    const currentStart = new Date(start_date).toISOString().split("T")[0];
-    const currentEnd = new Date(end_date).toISOString().split("T")[0];
+    const currentStart = start_date.toISOString().split("T")[0];
+    const currentEnd = end_date.toISOString().split("T")[0];
 
     return itemStart >= currentStart && itemEnd <= currentEnd;
   });
@@ -155,10 +163,26 @@ const calendarBody = (
   const monthlyTransactionData = transactionData.filter((item) => {
     const itemStart = new Date(item.start_date).toISOString().split("T")[0];
     const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
-    const currentStart = new Date(start_date).toISOString().split("T")[0];
-    const currentEnd = new Date(end_date).toISOString().split("T")[0];
+    const currentStart = start_date.toISOString().split("T")[0];
+    const currentEnd = end_date.toISOString().split("T")[0];
 
     return itemStart >= currentStart && itemEnd <= currentEnd;
+  });
+
+  const prevMonthlyBudgetData = budgetData.filter((item) => {
+    const itemStart = new Date(item.start_date).toISOString().split("T")[0];
+    const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
+
+    console.log(prevStartDate, prevEndDate);
+
+    return itemStart >= prevStartDate && itemEnd <= prevEndDate;
+  });
+
+  const prevMonthlyTransactionData = transactionData.filter((item) => {
+    const itemStart = new Date(item.start_date).toISOString().split("T")[0];
+    const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
+
+    return itemStart >= prevStartDate && itemEnd <= prevEndDate;
   });
 
   // const monthlyInsights = document.createElement("div");
@@ -181,11 +205,13 @@ const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
   const budgetChart = document.createElement("canvas");
   budgetChart.id = "insights-budget-chart";
   budgetChart.className = "insights-budget-chart";
-  budgetChartCont.appendChild(budgetChart);
+  const budgetChartDesc = document.createElement("div");
+  budgetChartDesc.textContent = "Budget allocation by category";
+  budgetChartCont.append(budgetChart, budgetChartDesc);
   budgetHeader.textContent = "BUDGET";
   renderChart(budgetChart, budgetData);
 
-  budget.append(budgetHeader, budgetChart);
+  budget.append(budgetHeader, budgetChartCont);
 
   const transaction = document.createElement("div");
   transaction.className = "insights-transaction-section";
@@ -195,11 +221,14 @@ const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
   const transactionChart = document.createElement("canvas");
   transactionChart.id = "insights-transaction-chart";
   transactionChart.className = "insights=transaction-chart";
-  transactionChartCont.appendChild(transactionChart);
+  const transactionChartDesc = document.createElement("div");
+  transactionChartDesc.textContent = "Actual spending by category";
+
+  transactionChartCont.append(transactionChart, transactionChartDesc);
   transactionHeader.textContent = "TRANSACTION";
   renderChart(transactionChart, transactionData);
 
-  transaction.append(transactionHeader, transactionChart);
+  transaction.append(transactionHeader, transactionChartCont);
 
   component.append(budget, transaction);
 
