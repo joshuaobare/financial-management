@@ -1,6 +1,8 @@
 import { Budget } from "../interfaces/budgetInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
+import { renderChart } from "./chartComponent";
+import "../../styles/insights.css";
 
 const createInsightsCalendar = (
   budgetData: Budget[],
@@ -166,6 +168,34 @@ const calendarBody = (
   monthlyInsights.append(budgetInsights, transactionInsights);
   calendarBody.appendChild(monthlyInsights);
   return calendarBody;
+};
+
+const insightsTop = (budgetData: Budget, transactionData: Transaction) => {
+  const component = document.createElement("div");
+  component.className = "insights-top";
+  const budget = document.createElement("div");
+  const budgetHeader = document.createElement("header");
+  const budgetChartCont = document.createElement("div");
+  const budgetChart = document.createElement("canvas");
+  budgetChart.id = "insights=budget-chart";
+  budgetChartCont.appendChild(budgetChart);
+  budgetHeader.textContent = "BUDGET";
+  renderChart(budgetChart, budgetData);
+
+  budget.append(budgetHeader, budgetChart);
+
+  const transaction = document.createElement("div");
+  const transactionHeader = document.createElement("header");
+  const transactionChartCont = document.createElement("div");
+  const transactionChart = document.createElement("canvas");
+  transactionChart.id = "insights=transaction-chart";
+  transactionChartCont.appendChild(transactionChart);
+  transactionHeader.textContent = "TRANSACTION";
+  renderChart(transactionChart, transactionData);
+
+  transaction.append(transactionHeader, transactionChart);
+
+  component.append(budget, transaction);
 };
 
 export { createInsightsCalendar };
