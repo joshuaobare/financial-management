@@ -51,8 +51,13 @@ const getBudgetFormValues = () => {
 
   // the calendar header node is passed into the helper function to get start and end dates
   const calendarHeaderDate = document.getElementById("cal-curr-date");
-  const { start_date, end_date } =
-    helper.getMonthStartAndEndDates(calendarHeaderDate);
+  const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
+  const month = parseInt(unparsedDate[0]);
+  const year = parseInt(unparsedDate[1]);
+  const { start_date, end_date } = helper.getMonthStartAndEndByDate(
+    year,
+    month
+  );
 
   return {
     category,
@@ -133,9 +138,13 @@ const getEditBudgetFormValues = () => {
 
   // the calendar header node is passed into the helper function to get start and end dates
   const calendarHeaderDate = document.getElementById("cal-curr-date");
-  const { start_date, end_date } =
-    helper.getMonthStartAndEndDates(calendarHeaderDate);
-
+  const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
+  const month = parseInt(unparsedDate[0]);
+  const year = parseInt(unparsedDate[1]);
+  const { start_date, end_date } = helper.getMonthStartAndEndByDate(
+    year,
+    month
+  );
   return {
     category,
     amount,

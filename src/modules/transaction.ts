@@ -65,9 +65,13 @@ const getTransactionFormValues = () => {
   const user_id = localStorage.getItem("user_id");
 
   const calendarHeaderDate = document.getElementById("cal-curr-date");
-  const { start_date, end_date } =
-    helper.getMonthStartAndEndDates(calendarHeaderDate);
-
+  const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
+  const month = parseInt(unparsedDate[0]);
+  const year = parseInt(unparsedDate[1]);
+  const { start_date, end_date } = helper.getMonthStartAndEndByDate(
+    year,
+    month
+  );
   return {
     category,
     amount,
@@ -101,9 +105,13 @@ const getEditTransactionFormValues = () => {
 
   // the calendar header node is passed into the helper function to get start and end dates
   const calendarHeaderDate = document.getElementById("cal-curr-date");
-  const { start_date, end_date } =
-    helper.getMonthStartAndEndDates(calendarHeaderDate);
-
+  const unparsedDate: string[] = calendarHeaderDate?.dataset.date?.split(" ")!;
+  const month = parseInt(unparsedDate[0]);
+  const year = parseInt(unparsedDate[1]);
+  const { start_date, end_date } = helper.getMonthStartAndEndByDate(
+    year,
+    month
+  );
   return {
     category,
     amount,

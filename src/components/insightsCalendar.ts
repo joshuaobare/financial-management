@@ -148,15 +148,15 @@ const calendarBody = (
     month
   );
   const { prevStartDate, prevEndDate } = helper.getPreviousMonthDates(
-    start_date,
-    end_date
+    new Date(start_date),
+    new Date(end_date)
   );
 
   const monthlyBudgetData = budgetData.filter((item) => {
     const itemStart = new Date(item.start_date).toISOString().split("T")[0];
     const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
-    const currentStart = start_date.toISOString().split("T")[0];
-    const currentEnd = end_date.toISOString().split("T")[0];
+    const currentStart = start_date;
+    const currentEnd = end_date;
 
     return itemStart >= currentStart && itemEnd <= currentEnd;
   });
@@ -164,8 +164,8 @@ const calendarBody = (
   const monthlyTransactionData = transactionData.filter((item) => {
     const itemStart = new Date(item.start_date).toISOString().split("T")[0];
     const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
-    const currentStart = start_date.toISOString().split("T")[0];
-    const currentEnd = end_date.toISOString().split("T")[0];
+    const currentStart = start_date;
+    const currentEnd = end_date;
 
     return itemStart >= currentStart && itemEnd <= currentEnd;
   });
