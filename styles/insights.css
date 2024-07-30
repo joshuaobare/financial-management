@@ -43,6 +43,9 @@
 
 .insights-mid {
   width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
 }
 .insights-monthly-spending-cont {
   width: 100%;

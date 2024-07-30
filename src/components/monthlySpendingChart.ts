@@ -75,6 +75,12 @@ const renderMonthlySpendingChart = (
           beginAtZero: true,
         },
       },
+      plugins: {
+        title: {
+          display: true,
+          text: "Last month vs This month spending",
+        },
+      },
     },
   });
 };
