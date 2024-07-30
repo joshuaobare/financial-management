@@ -173,8 +173,6 @@ const calendarBody = (
     const itemStart = new Date(item.start_date).toISOString().split("T")[0];
     const itemEnd = new Date(item.end_date).toISOString().split("T")[0];
 
-    console.log(prevStartDate, prevEndDate);
-
     return itemStart >= prevStartDate && itemEnd <= prevEndDate;
   });
 
@@ -184,10 +182,6 @@ const calendarBody = (
 
     return itemStart >= prevStartDate && itemEnd <= prevEndDate;
   });
-
-  // const monthlyInsights = document.createElement("div");
-  // const transactionInsights = calendarSidebar(monthlyTransactionData);
-  // const budgetInsights = calendarSidebar(monthlyBudgetData);
 
   calendarBody.append(insightsTop(monthlyBudgetData, monthlyTransactionData));
   calendarBody.className = "insights-calendar-body";
@@ -231,6 +225,13 @@ const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
   transaction.append(transactionHeader, transactionChartCont);
 
   component.append(budget, transaction);
+
+  return component;
+};
+
+const insightsMid = () => {
+  const component = document.createElement("div");
+  const incomeSpendingComparison = document.createElement("div");
 
   return component;
 };
