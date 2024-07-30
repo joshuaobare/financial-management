@@ -232,6 +232,8 @@ const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
 const insightsMid = () => {
   const component = document.createElement("div");
   const incomeSpendingComparison = document.createElement("div");
+  const monthlySpendingComparisonCont = document.createElement("div");
+  const monthlySpendingComparison = document.createElement("canvas");
 
   return component;
 };
