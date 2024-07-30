@@ -46,9 +46,11 @@ class Helper {
     }
 
     // Start date of the previous month
-    const prevStartDate = new Date(prevYear, prevMonth, 1);
+    const prevStartDate = new Date();
+    prevStartDate.setFullYear(prevYear, prevMonth, 1);
     // End date of the previous month
-    const prevEndDate = new Date(prevYear, prevMonth + 1, 0); // 0th day of the next month gives last day of current month
+    const prevEndDate = new Date(); // 0th day of the next month gives last day of current month
+    prevEndDate.setFullYear(prevYear, prevMonth + 1, 0);
 
     return {
       prevStartDate: prevStartDate.toISOString().split("T")[0],
