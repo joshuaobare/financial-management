@@ -254,4 +254,20 @@ const insightsMid = (
   return component;
 };
 
+const insightBottom = (
+  monthlyTransactionData: Transaction[],
+  prevMonthlyTransactionData: Transaction[]
+) => {
+  const component = document.createElement("div");
+  component.className = "insight-bottom";
+  const componentHeader = document.createElement("h2");
+  componentHeader.textContent = "STATISTICS";
+  const incomeVsSpending = document.createElement("div");
+  const spendingCategories = document.createElement("div");
+  const expenseTrends = document.createElement("div");
+  const budgetPerformance = document.createElement("div");
+  const cashFlowAnalysis = document.createElement("div");
+  const spendingForecast = document.createElement("div");
+};
+
 export { createInsightsCalendar };
