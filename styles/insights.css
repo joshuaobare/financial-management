@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex-direction: column;
+  gap: 20px;
 }
 .insights-top {
   display: flex;
@@ -37,4 +39,11 @@
 .insights-budget-chart,
 .insights-transaction-chart {
   width: 65%;
+}
+
+.insights-mid {
+  width: 100%;
+}
+.insights-monthly-spending-cont {
+  width: 100%;
 }

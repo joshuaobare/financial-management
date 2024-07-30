@@ -4,6 +4,7 @@ import { calendarSidebar } from "./calendarSidebar";
 import { renderChart } from "./chartComponent";
 import "../../styles/insights.css";
 import { Helper } from "../helpers/Helper";
+import { renderMonthlySpendingChart } from "./monthlySpendingChart";
 
 const helper = new Helper();
 
@@ -25,7 +26,7 @@ const createInsightsCalendar = (
     budgetData,
     transactionData
   );
-  calBody.id = "cal-body-cont";
+  calBody.id = "cal-body-cont insights-cal-body-cont";
   renderCalendarBody(calBody, date, year, month, budgetData, transactionData);
   calendar.append(calHeader, calBody);
 
@@ -183,7 +184,11 @@ const calendarBody = (
     return itemStart >= prevStartDate && itemEnd <= prevEndDate;
   });
 
-  calendarBody.append(insightsTop(monthlyBudgetData, monthlyTransactionData));
+  calendarBody.append(
+    insightsTop(monthlyBudgetData, monthlyTransactionData),
+    insightsMid(monthlyTransactionData, prevMonthlyTransactionData)
+  );
+
   calendarBody.className = "insights-calendar-body";
   return calendarBody;
 };
@@ -229,11 +234,22 @@ const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
   return component;
 };
 
-const insightsMid = () => {
+const insightsMid = (
+  monthlyTransactionData: Transaction[],
+  prevMonthlyTransactionData: Transaction[]
+) => {
   const component = document.createElement("div");
-  const incomeSpendingComparison = document.createElement("div");
+  component.className = "insights-mid";
   const monthlySpendingComparisonCont = document.createElement("div");
+  monthlySpendingComparisonCont.className = "insights-monthly-spending-cont";
   const monthlySpendingComparison = document.createElement("canvas");
+  renderMonthlySpendingChart(
+    monthlySpendingComparison,
+    monthlyTransactionData,
+    prevMonthlyTransactionData
+  );
+  monthlySpendingComparisonCont.appendChild(monthlySpendingComparison);
+  component.appendChild(monthlySpendingComparisonCont);
 
   return component;
 };

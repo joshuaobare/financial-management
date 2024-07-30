@@ -3,7 +3,7 @@ import { BarController, Chart } from "../../node_modules/chart.js/auto/auto";
 Chart.register(BarController);
 import FinanceCalculator from "../helpers/FinanceCalculator";
 
-const monthlySpendingChart = (
+const renderMonthlySpendingChart = (
   ctx: HTMLCanvasElement,
   currMonth: Transaction[],
   prevMonth: Transaction[]
@@ -23,8 +23,20 @@ const monthlySpendingChart = (
           prevMonthCalculator.financeCategoryCalculator("Savings"),
           prevMonthCalculator.financeCategoryCalculator("Other"),
         ],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(27, 33, 33, 0.2)",
+          "rgba(217, 233, 33, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(27, 33, 33, 0.2)",
+          "rgba(217, 233, 33, 0.2)",
+        ],
         borderWidth: 1,
       },
       {
@@ -36,16 +48,35 @@ const monthlySpendingChart = (
           currMonthCalculator.financeCategoryCalculator("Savings"),
           currMonthCalculator.financeCategoryCalculator("Other"),
         ],
-        backgroundColor: "rgba(54, 162, 235, 0.5)",
-        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(27, 33, 33, 0.2)",
+          "rgba(217, 233, 33, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(27, 33, 33, 0.2)",
+          "rgba(217, 233, 33, 0.2)",
+        ],
         borderWidth: 1,
       },
     ],
   };
   new Chart(ctx, {
     type: "bar",
-    data,
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
   });
 };
 
-export { monthlySpendingChart };
+export { renderMonthlySpendingChart };
