@@ -6,7 +6,7 @@ import "../../styles/insights.css";
 import { Helper } from "../helpers/Helper";
 import { renderMonthlySpendingChart } from "./monthlySpendingChart";
 import FinanceCalculator from "../helpers/FinanceCalculator";
-import { insightStatisticsSection } from "./insightsStatistics";
+import { insightsStatisticsSection } from "./insightsStatistics";
 
 const helper = new Helper();
 const createInsightsCalendar = (
@@ -188,7 +188,7 @@ const calendarBody = (
   calendarBody.append(
     insightsTop(monthlyBudgetData, monthlyTransactionData),
     insightsMid(monthlyTransactionData, prevMonthlyTransactionData),
-    insightStatisticsSection(
+    insightsStatisticsSection(
       monthlyTransactionData,
       monthlyBudgetData,
       prevMonthlyTransactionData

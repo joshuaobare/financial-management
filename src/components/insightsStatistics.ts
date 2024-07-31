@@ -2,7 +2,7 @@ import { Transaction } from "../interfaces/transactionInterfact";
 import FinanceCalculator from "../helpers/FinanceCalculator";
 import { Budget } from "../interfaces/budgetInterface";
 
-const insightStatisticsSection = (
+const insightsStatisticsSection = (
   monthlyTransactionData: Transaction[],
   monthlyBudgetData: Budget[],
   prevMonthlyTransactionData: Transaction[]
@@ -197,4 +197,4 @@ const spendingForecast = (
   return spendingForecastCard;
 };
 
-export { insightStatisticsSection };
+export { insightsStatisticsSection };
