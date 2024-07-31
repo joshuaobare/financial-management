@@ -187,7 +187,11 @@ const calendarBody = (
   calendarBody.append(
     insightsTop(monthlyBudgetData, monthlyTransactionData),
     insightsMid(monthlyTransactionData, prevMonthlyTransactionData),
-    insightBottom(monthlyTransactionData, prevMonthlyTransactionData)
+    insightBottom(
+      monthlyTransactionData,
+      monthlyBudgetData,
+      prevMonthlyTransactionData
+    )
   );
 
   calendarBody.className = "insights-calendar-body";
@@ -257,6 +261,7 @@ const insightsMid = (
 
 const insightBottom = (
   monthlyTransactionData: Transaction[],
+  monthlyBudgetData: Budget[],
   prevMonthlyTransactionData: Transaction[]
 ) => {
   const monthlyTransactionCalculator = new FinanceCalculator(
@@ -265,6 +270,21 @@ const insightBottom = (
   const prevMonthlyTransactionCalculator = new FinanceCalculator(
     prevMonthlyTransactionData
   );
+  const monthlySpend = monthlyTransactionCalculator.totalMonthlySpend();
+  const monthlyIncome =
+    monthlyTransactionCalculator.financeCategoryCalculator("Income");
+  const prevMonthlySpend = prevMonthlyTransactionCalculator.totalMonthlySpend();
+  const prevMonthlyIncome =
+    prevMonthlyTransactionCalculator.financeCategoryCalculator("Income");
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
+  const lastMonthDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  );
+  const daysInMonth = lastMonthDay.getDate();
+
   const component = document.createElement("div");
   component.className = "insight-bottom";
   const componentHeader = document.createElement("h2");
@@ -273,14 +293,11 @@ const insightBottom = (
 
   const incomeVsSpendingCardHeader = document.createElement("div");
   const incomeVsSpendingCardBody = document.createElement("div");
-  const monthlySpend = monthlyTransactionCalculator.totalMonthlySpend();
-  const monthlyIncome =
-    monthlyTransactionCalculator.financeCategoryCalculator("Income");
 
   if (monthlyIncome !== 0) {
     incomeVsSpendingCardBody.textContent = `You have spent ${Math.round(
       (monthlySpend / monthlyIncome) * 100
-    )}% of your income this month`;
+    )}% of your income so far this month`;
   } else {
     incomeVsSpendingCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
   }
@@ -292,7 +309,17 @@ const insightBottom = (
   const spendingCategoriesCard = document.createElement("div");
   const spendingCategoriesCardHeader = document.createElement("div");
   const spendingCategoriesCardBody = document.createElement("div");
-  spendingCategoriesCardBody.textContent = `Your top spending category is [Category Name], accounting for Z% of your total spending`;
+
+  if (monthlySpend !== 0) {
+    const { maxValue, maxCategory } =
+      monthlyTransactionCalculator.maxValueCategory();
+    spendingCategoriesCardBody.textContent = `Your top spending category is ${maxCategory}, accounting for ${Math.round(
+      (maxValue / monthlySpend) * 100
+    )}% of your total spending`;
+  } else {
+    spendingCategoriesCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
+  }
+
   spendingCategoriesCard.append(
     spendingCategoriesCardHeader,
     spendingCategoriesCardBody
@@ -300,7 +327,26 @@ const insightBottom = (
   const expenseTrendsCard = document.createElement("div");
   const expenseTrendsCardHeader = document.createElement("div");
   const expenseTrendsCardBody = document.createElement("div");
-  expenseTrendsCardBody.textContent = `Your spending has increased/decreased by X% compared to last month`;
+  if (monthlySpend !== 0) {
+    if (monthlySpend !== prevMonthlySpend) {
+      expenseTrendsCardBody.textContent = `Your spending has ${
+        prevMonthlySpend > monthlySpend ? "decreased" : "increased"
+      } by ${
+        prevMonthlySpend > monthlySpend
+          ? Math.round(
+              ((prevMonthlySpend - monthlySpend) / prevMonthlySpend) * 100
+            )
+          : Math.round(
+              ((monthlySpend - prevMonthlySpend) / prevMonthlySpend) * 100
+            )
+      }% compared to last month`;
+    } else {
+      expenseTrendsCardBody.textContent = `Your spending this month is equal to last month`;
+    }
+  } else {
+    expenseTrendsCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
+  }
+
   expenseTrendsCard.append(expenseTrendsCardHeader, expenseTrendsCardBody);
 
   const budgetPerformanceCard = document.createElement("div");
@@ -315,7 +361,18 @@ const insightBottom = (
   const cashFlowAnalysisCard = document.createElement("div");
   const cashFlowAnalysisCardHeader = document.createElement("div");
   const cashFlowAnalysisCardBody = document.createElement("div");
-  cashFlowAnalysisCardBody.textContent = `Your net cash flow for this month is [Amount], indicating a [surplus/deficit]`;
+  if (monthlySpend !== 0 && monthlyIncome !== 0) {
+    if (monthlySpend !== monthlyIncome) {
+      const netCashFlow = monthlyIncome - monthlySpend;
+      cashFlowAnalysisCardBody.textContent = `Your net cash flow for this month is KShs. ${netCashFlow}, indicating a ${
+        monthlyIncome > monthlySpend ? "surplus" : "deficit"
+      }`;
+    } else {
+      cashFlowAnalysisCardBody.textContent = `Your net cash flow for this month is KShs. 0. You need to reel back your spending.`;
+    }
+  } else {
+    cashFlowAnalysisCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
+  }
   cashFlowAnalysisCard.append(
     cashFlowAnalysisCardHeader,
     cashFlowAnalysisCardBody
@@ -323,7 +380,9 @@ const insightBottom = (
   const spendingForecastCard = document.createElement("div");
   const spendingForecastCardHeader = document.createElement("div");
   const spendingForecastCardBody = document.createElement("div");
-  spendingForecastCardBody.textContent = `Based on your current spending rate, you are projected to spend [Amount] this month`;
+  spendingForecastCardBody.textContent = `Based on your current spending rate, you are projected to spend KShs. ${
+    (monthlySpend * daysInMonth) / currentDay
+  } this month`;
   spendingForecastCard.append(
     spendingForecastCardHeader,
     spendingForecastCardBody

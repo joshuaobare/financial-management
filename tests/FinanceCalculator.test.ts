@@ -39,7 +39,7 @@ describe("Monthly excess is diff between income and all other expenses", () => {
   });
 });
 
-describe("For a given dataset, return the category with the max value", () => {
+describe("For a given dataset, return the category with the max value and its value", () => {
   let budgetCalculator = new FinanceCalculator(budgetData);
   test("return max category and value", () => {
     expect(budgetCalculator.maxValueCategory()).toEqual({

@@ -52,6 +52,7 @@ class FinanceCalculator {
     const counter = new Map();
 
     this.financeData.forEach((item) => {
+      if (item.category === "Income") return;
       if (counter.has(item.category)) {
         const counterVal = counter.get(item.category);
         const updatedVal = counterVal + parseInt(item.amount);
