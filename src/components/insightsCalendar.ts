@@ -186,7 +186,8 @@ const calendarBody = (
 
   calendarBody.append(
     insightsTop(monthlyBudgetData, monthlyTransactionData),
-    insightsMid(monthlyTransactionData, prevMonthlyTransactionData)
+    insightsMid(monthlyTransactionData, prevMonthlyTransactionData),
+    insightBottom(monthlyTransactionData, prevMonthlyTransactionData)
   );
 
   calendarBody.className = "insights-calendar-body";
@@ -262,12 +263,65 @@ const insightBottom = (
   component.className = "insight-bottom";
   const componentHeader = document.createElement("h2");
   componentHeader.textContent = "STATISTICS";
-  const incomeVsSpending = document.createElement("div");
-  const spendingCategories = document.createElement("div");
-  const expenseTrends = document.createElement("div");
-  const budgetPerformance = document.createElement("div");
-  const cashFlowAnalysis = document.createElement("div");
-  const spendingForecast = document.createElement("div");
+  const incomeVsSpendingCard = document.createElement("div");
+
+  const incomeVsSpendingCardHeader = document.createElement("div");
+  const incomeVsSpendingCardBody = document.createElement("div");
+  incomeVsSpendingCardBody.textContent = `You have spent X% of your income this month`;
+  incomeVsSpendingCard.append(
+    incomeVsSpendingCardHeader,
+    incomeVsSpendingCardBody
+  );
+  const spendingCategoriesCard = document.createElement("div");
+  const spendingCategoriesCardHeader = document.createElement("div");
+  const spendingCategoriesCardBody = document.createElement("div");
+  spendingCategoriesCardBody.textContent = `Your top spending category is [Category Name], accounting for Z% of your total spending`;
+  spendingCategoriesCard.append(
+    spendingCategoriesCardHeader,
+    spendingCategoriesCardBody
+  );
+  const expenseTrendsCard = document.createElement("div");
+  const expenseTrendsCardHeader = document.createElement("div");
+  const expenseTrendsCardBody = document.createElement("div");
+  expenseTrendsCardBody.textContent = `Your spending has increased/decreased by X% compared to last month`;
+  expenseTrendsCard.append(expenseTrendsCardHeader, expenseTrendsCardBody);
+
+  const budgetPerformanceCard = document.createElement("div");
+  const budgetPerformanceCardHeader = document.createElement("div");
+  const budgetPerformanceCardBody = document.createElement("div");
+  budgetPerformanceCardBody.textContent = `You are over/under budget by [Amount] in [Category].`;
+  budgetPerformanceCard.append(
+    budgetPerformanceCardHeader,
+    budgetPerformanceCardBody
+  );
+
+  const cashFlowAnalysisCard = document.createElement("div");
+  const cashFlowAnalysisCardHeader = document.createElement("div");
+  const cashFlowAnalysisCardBody = document.createElement("div");
+  cashFlowAnalysisCardBody.textContent = `Your net cash flow for this month is [Amount], indicating a [surplus/deficit]`;
+  cashFlowAnalysisCard.append(
+    cashFlowAnalysisCardHeader,
+    cashFlowAnalysisCardBody
+  );
+  const spendingForecastCard = document.createElement("div");
+  const spendingForecastCardHeader = document.createElement("div");
+  const spendingForecastCardBody = document.createElement("div");
+  spendingForecastCardBody.textContent = `Based on your current spending rate, you are projected to spend [Amount] this month`;
+  spendingForecastCard.append(
+    spendingForecastCardHeader,
+    spendingForecastCardBody
+  );
+
+  component.append(
+    componentHeader,
+    incomeVsSpendingCard,
+    spendingCategoriesCard,
+    expenseTrendsCard,
+    budgetPerformanceCard,
+    cashFlowAnalysisCard,
+    spendingForecastCard
+  );
+  return component;
 };
 
 export { createInsightsCalendar };
