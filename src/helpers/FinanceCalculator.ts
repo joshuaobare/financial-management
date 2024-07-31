@@ -45,6 +45,29 @@ class FinanceCalculator {
 
     return incomeTotal - totalSpend;
   }
+
+  maxValueCategory() {
+    let maxValue = 0;
+    let maxCategory = "";
+    const counter = new Map();
+
+    this.financeData.forEach((item) => {
+      if (counter.has(item.category)) {
+        const counterVal = counter.get(item.category);
+        const updatedVal = counterVal + parseInt(item.amount);
+        counter.set(item.category, updatedVal);
+
+        if (updatedVal > maxValue) {
+          maxCategory = item.category;
+          maxValue = updatedVal;
+        }
+      } else {
+        counter.set(item.category, parseInt(item.amount));
+      }
+    });
+
+    return { maxValue, maxCategory };
+  }
 }
 
 export default FinanceCalculator;

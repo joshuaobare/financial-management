@@ -5,9 +5,9 @@ import { renderChart } from "./chartComponent";
 import "../../styles/insights.css";
 import { Helper } from "../helpers/Helper";
 import { renderMonthlySpendingChart } from "./monthlySpendingChart";
+import FinanceCalculator from "../helpers/FinanceCalculator";
 
 const helper = new Helper();
-
 const createInsightsCalendar = (
   budgetData: Budget[],
   transactionData: Transaction[]
@@ -259,6 +259,12 @@ const insightBottom = (
   monthlyTransactionData: Transaction[],
   prevMonthlyTransactionData: Transaction[]
 ) => {
+  const monthlyTransactionCalculator = new FinanceCalculator(
+    monthlyTransactionData
+  );
+  const prevMonthlyTransactionCalculator = new FinanceCalculator(
+    prevMonthlyTransactionData
+  );
   const component = document.createElement("div");
   component.className = "insight-bottom";
   const componentHeader = document.createElement("h2");
@@ -267,7 +273,18 @@ const insightBottom = (
 
   const incomeVsSpendingCardHeader = document.createElement("div");
   const incomeVsSpendingCardBody = document.createElement("div");
-  incomeVsSpendingCardBody.textContent = `You have spent X% of your income this month`;
+  const monthlySpend = monthlyTransactionCalculator.totalMonthlySpend();
+  const monthlyIncome =
+    monthlyTransactionCalculator.financeCategoryCalculator("Income");
+
+  if (monthlyIncome !== 0) {
+    incomeVsSpendingCardBody.textContent = `You have spent ${Math.round(
+      (monthlySpend / monthlyIncome) * 100
+    )}% of your income this month`;
+  } else {
+    incomeVsSpendingCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
+  }
+
   incomeVsSpendingCard.append(
     incomeVsSpendingCardHeader,
     incomeVsSpendingCardBody
