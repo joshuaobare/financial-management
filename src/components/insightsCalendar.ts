@@ -6,6 +6,7 @@ import "../../styles/insights.css";
 import { Helper } from "../helpers/Helper";
 import { renderMonthlySpendingChart } from "./monthlySpendingChart";
 import FinanceCalculator from "../helpers/FinanceCalculator";
+import { insightStatisticsSection } from "./insightsStatistics";
 
 const helper = new Helper();
 const createInsightsCalendar = (
@@ -187,7 +188,7 @@ const calendarBody = (
   calendarBody.append(
     insightsTop(monthlyBudgetData, monthlyTransactionData),
     insightsMid(monthlyTransactionData, prevMonthlyTransactionData),
-    insightBottom(
+    insightStatisticsSection(
       monthlyTransactionData,
       monthlyBudgetData,
       prevMonthlyTransactionData
@@ -256,147 +257,6 @@ const insightsMid = (
   monthlySpendingComparisonCont.appendChild(monthlySpendingComparison);
   component.appendChild(monthlySpendingComparisonCont);
 
-  return component;
-};
-
-const insightBottom = (
-  monthlyTransactionData: Transaction[],
-  monthlyBudgetData: Budget[],
-  prevMonthlyTransactionData: Transaction[]
-) => {
-  const monthlyTransactionCalculator = new FinanceCalculator(
-    monthlyTransactionData
-  );
-  const prevMonthlyTransactionCalculator = new FinanceCalculator(
-    prevMonthlyTransactionData
-  );
-  const monthlySpend = monthlyTransactionCalculator.totalMonthlySpend();
-  const monthlyIncome =
-    monthlyTransactionCalculator.financeCategoryCalculator("Income");
-  const prevMonthlySpend = prevMonthlyTransactionCalculator.totalMonthlySpend();
-  const prevMonthlyIncome =
-    prevMonthlyTransactionCalculator.financeCategoryCalculator("Income");
-  const currentDate = new Date();
-  const currentDay = currentDate.getDate();
-  const lastMonthDay = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth() + 1,
-    0
-  );
-  const daysInMonth = lastMonthDay.getDate();
-
-  const component = document.createElement("div");
-  component.className = "insight-bottom";
-  const componentHeader = document.createElement("h2");
-  componentHeader.textContent = "STATISTICS";
-  const incomeVsSpendingCard = document.createElement("div");
-
-  const incomeVsSpendingCardHeader = document.createElement("div");
-  const incomeVsSpendingCardBody = document.createElement("div");
-
-  if (monthlyIncome !== 0) {
-    incomeVsSpendingCardBody.textContent = `You have spent ${Math.round(
-      (monthlySpend / monthlyIncome) * 100
-    )}% of your income so far this month`;
-  } else {
-    incomeVsSpendingCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
-  }
-
-  incomeVsSpendingCard.append(
-    incomeVsSpendingCardHeader,
-    incomeVsSpendingCardBody
-  );
-  const spendingCategoriesCard = document.createElement("div");
-  const spendingCategoriesCardHeader = document.createElement("div");
-  const spendingCategoriesCardBody = document.createElement("div");
-
-  if (monthlySpend !== 0) {
-    const { maxValue, maxCategory } =
-      monthlyTransactionCalculator.maxValueCategory();
-    spendingCategoriesCardBody.textContent = `Your top spending category is ${maxCategory}, accounting for ${Math.round(
-      (maxValue / monthlySpend) * 100
-    )}% of your total spending`;
-  } else {
-    spendingCategoriesCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
-  }
-
-  spendingCategoriesCard.append(
-    spendingCategoriesCardHeader,
-    spendingCategoriesCardBody
-  );
-  const expenseTrendsCard = document.createElement("div");
-  const expenseTrendsCardHeader = document.createElement("div");
-  const expenseTrendsCardBody = document.createElement("div");
-  if (monthlySpend !== 0) {
-    if (monthlySpend !== prevMonthlySpend) {
-      expenseTrendsCardBody.textContent = `Your spending has ${
-        prevMonthlySpend > monthlySpend ? "decreased" : "increased"
-      } by ${
-        prevMonthlySpend > monthlySpend
-          ? Math.round(
-              ((prevMonthlySpend - monthlySpend) / prevMonthlySpend) * 100
-            )
-          : Math.round(
-              ((monthlySpend - prevMonthlySpend) / prevMonthlySpend) * 100
-            )
-      }% compared to last month`;
-    } else {
-      expenseTrendsCardBody.textContent = `Your spending this month is equal to last month`;
-    }
-  } else {
-    expenseTrendsCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
-  }
-
-  expenseTrendsCard.append(expenseTrendsCardHeader, expenseTrendsCardBody);
-
-  const budgetPerformanceCard = document.createElement("div");
-  const budgetPerformanceCardHeader = document.createElement("div");
-  const budgetPerformanceCardBody = document.createElement("div");
-  budgetPerformanceCardBody.textContent = `You are over/under budget by [Amount] in [Category].`;
-  budgetPerformanceCard.append(
-    budgetPerformanceCardHeader,
-    budgetPerformanceCardBody
-  );
-
-  const cashFlowAnalysisCard = document.createElement("div");
-  const cashFlowAnalysisCardHeader = document.createElement("div");
-  const cashFlowAnalysisCardBody = document.createElement("div");
-  if (monthlySpend !== 0 && monthlyIncome !== 0) {
-    if (monthlySpend !== monthlyIncome) {
-      const netCashFlow = monthlyIncome - monthlySpend;
-      cashFlowAnalysisCardBody.textContent = `Your net cash flow for this month is KShs. ${netCashFlow}, indicating a ${
-        monthlyIncome > monthlySpend ? "surplus" : "deficit"
-      }`;
-    } else {
-      cashFlowAnalysisCardBody.textContent = `Your net cash flow for this month is KShs. 0. You need to reel back your spending.`;
-    }
-  } else {
-    cashFlowAnalysisCardBody.textContent = `Unable to display stats: Please input spending data to see insights.`;
-  }
-  cashFlowAnalysisCard.append(
-    cashFlowAnalysisCardHeader,
-    cashFlowAnalysisCardBody
-  );
-  const spendingForecastCard = document.createElement("div");
-  const spendingForecastCardHeader = document.createElement("div");
-  const spendingForecastCardBody = document.createElement("div");
-  spendingForecastCardBody.textContent = `Based on your current spending rate, you are projected to spend KShs. ${
-    (monthlySpend * daysInMonth) / currentDay
-  } this month`;
-  spendingForecastCard.append(
-    spendingForecastCardHeader,
-    spendingForecastCardBody
-  );
-
-  component.append(
-    componentHeader,
-    incomeVsSpendingCard,
-    spendingCategoriesCard,
-    expenseTrendsCard,
-    budgetPerformanceCard,
-    cashFlowAnalysisCard,
-    spendingForecastCard
-  );
   return component;
 };
 
