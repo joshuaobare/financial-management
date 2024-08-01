@@ -53,12 +53,20 @@ describe("get categories close to budget", () => {
   let budgetCalculator = new FinanceCalculator(budgetData);
 
   test("returns categories that are within 10% of the budget and their values", () => {
-    expect(budgetCalculator.categoriesNearBudgetLimit(transactionData)).toEqual(
-      [
-        ["Bills", 10200],
-        ["Personal", 0],
-        ["Other", -100],
-      ]
-    );
+    const result = budgetCalculator.categoriesNearBudgetLimit(transactionData);
+    expect(result).toMatchObject([
+      ["Bills", 10200],
+      ["Personal", 0],
+      ["Other", -100],
+    ]);
+  });
+});
+
+describe("get all categories", () => {
+  let budgetCalculator = new FinanceCalculator(budgetData);
+  test("returns all categories within the dataset", () => {
+    const result = budgetCalculator.getCategories();
+    result.sort();
+    expect(result).toEqual(["Bills", "Income", "Other", "Personal"]);
   });
 });

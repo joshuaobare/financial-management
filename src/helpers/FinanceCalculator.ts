@@ -7,6 +7,14 @@ class FinanceCalculator {
     this.financeData = financeData;
   }
 
+  getCategories(): string[] {
+    let categorySet: Set<string> = new Set();
+    this.financeData.forEach((item) => categorySet.add(item.category));
+    const categories = [...categorySet];
+
+    return categories;
+  }
+
   financeCategoryCalculator(category: string): number {
     let sum = 0;
 
@@ -53,6 +61,7 @@ class FinanceCalculator {
 
     this.financeData.forEach((item) => {
       if (item.category === "Income") return;
+      if (item.category === "Savings") return;
       if (counter.has(item.category)) {
         const counterVal = counter.get(item.category);
         const updatedVal = counterVal + parseInt(item.amount);
@@ -71,7 +80,23 @@ class FinanceCalculator {
   }
 
   categoriesNearBudgetLimit(transactionData: Transaction[]) {
-    return [];
+    const transactionCalculator = new FinanceCalculator(transactionData);
+    const categories = this.getCategories();
+    const result: [string, number][] = [];
+
+    categories.forEach((category) => {
+      if (category === "Income") return;
+      if (category === "Savings") return;
+      const budget = this.financeCategoryCalculator(category);
+      const transaction =
+        transactionCalculator.financeCategoryCalculator(category);
+      const diff = budget - transaction;
+      if (diff < 0.1 * budget) {
+        result.push([category, diff]);
+      }
+    });
+
+    return result;
   }
 }
 
