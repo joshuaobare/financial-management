@@ -1,5 +1,5 @@
 import FinanceCalculator from "../src/helpers/FinanceCalculator";
-import { budgetData } from "./testValues";
+import { budgetData, transactionData } from "./testValues";
 
 describe("For a category, return total of its values", () => {
   let budgetCalculator = new FinanceCalculator(budgetData);
@@ -46,5 +46,19 @@ describe("For a given dataset, return the category with the max value and its va
       maxValue: 8070000,
       maxCategory: "Other",
     });
+  });
+});
+
+describe("get categories close to budget", () => {
+  let budgetCalculator = new FinanceCalculator(budgetData);
+
+  test("returns categories that are within 10% of the budget and their values", () => {
+    expect(budgetCalculator.categoriesNearBudgetLimit(transactionData)).toEqual(
+      [
+        ["Bills", 10200],
+        ["Personal", 0],
+        ["Other", -100],
+      ]
+    );
   });
 });

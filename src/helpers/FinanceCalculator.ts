@@ -69,6 +69,10 @@ class FinanceCalculator {
 
     return { maxValue, maxCategory };
   }
+
+  categoriesNearBudgetLimit(transactionData: Transaction[]) {
+    return [];
+  }
 }
 
 export default FinanceCalculator;
