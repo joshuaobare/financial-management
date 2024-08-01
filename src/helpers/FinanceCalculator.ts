@@ -1,7 +1,7 @@
 import { Budget } from "../interfaces/budgetInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
 class FinanceCalculator {
-  financeData: Budget[] | Transaction[] = [];
+  private financeData: Budget[] | Transaction[] = [];
 
   constructor(financeData: Budget[] | Transaction[]) {
     this.financeData = financeData;

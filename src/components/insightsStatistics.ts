@@ -42,7 +42,10 @@ const insightsStatisticsSection = (
 
   const expenseTrendsCard = expenseTrends(monthlySpend, prevMonthlySpend);
 
-  const budgetPerformanceCard = budgetPerformance();
+  const budgetPerformanceCard = budgetPerformance(
+    monthlyBudgetData,
+    monthlyTransactionData
+  );
 
   const cashFlowAnalysisCard = cashFlowAnalysis(monthlySpend, monthlyIncome);
 
@@ -141,11 +144,41 @@ const expenseTrends = (monthlySpend: number, prevMonthlySpend: number) => {
   return expenseTrendsCard;
 };
 
-const budgetPerformance = () => {
+const budgetPerformance = (
+  budgetData: Budget[],
+  transactionData: Transaction[]
+) => {
+  const financeCalculator = new FinanceCalculator(budgetData);
+  const discrepancies =
+    financeCalculator.categoriesNearBudgetLimit(transactionData);
+  console.log(discrepancies);
+  const underBudget = discrepancies.filter((item) => item[1] > 0);
+  const overBudget = discrepancies.filter((item) => item[1] < 0);
   const budgetPerformanceCard = document.createElement("div");
   const budgetPerformanceCardHeader = document.createElement("div");
   const budgetPerformanceCardBody = document.createElement("div");
-  budgetPerformanceCardBody.textContent = `You are over/under budget by [Amount] in [Category].`;
+
+  const underBudgetSection = document.createElement("div");
+  const underBudgetSectionHeader = document.createElement("div");
+  const underBudgetSectionBody = document.createElement("div");
+  underBudgetSectionHeader.textContent = "Under Budget";
+  underBudget.forEach((item) => {
+    const div = document.createElement("div");
+    div.textContent = `You are KShs. ${item[1]} away from exceeding your budget in the ${item[0]} category`;
+    underBudgetSectionBody.appendChild(div);
+  });
+  underBudgetSection.append(underBudgetSectionHeader, underBudgetSectionBody);
+  const overBudgetSection = document.createElement("div");
+  const overBudgetSectionHeader = document.createElement("div");
+  const overBudgetSectionBody = document.createElement("div");
+  overBudgetSectionHeader.textContent = "Over Budget";
+  overBudget.forEach((item) => {
+    const div = document.createElement("div");
+    div.textContent = `You are KShs. ${item[1]} over budget in the ${item[0]} category`;
+    overBudgetSectionBody.appendChild(div);
+  });
+  overBudgetSection.append(overBudgetSectionHeader, overBudgetSectionBody);
+  budgetPerformanceCardBody.append(underBudgetSection, overBudgetSection);
   budgetPerformanceCard.append(
     budgetPerformanceCardHeader,
     budgetPerformanceCardBody
