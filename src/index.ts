@@ -7,6 +7,7 @@ import { createTransactionModule } from "./modules/transaction";
 import { BudgetService } from "./services/BudgetService";
 import { TransactionService } from "./services/TransactionService";
 import { createInsightsModule } from "./modules/insights";
+import { createGoalsModule } from "./modules/goals";
 import "./login";
 import "./register";
 
@@ -16,6 +17,7 @@ const budgetBtn = document.getElementById("budget-btn");
 const mainNavCont = document.getElementById("main-nav");
 const transactionBtn = document.getElementById("transaction-btn");
 const insightsBtn = document.getElementById("insights-btn");
+const goalsBtn = document.getElementById("goals-btn")
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 
@@ -80,6 +82,17 @@ const openInsights = async () => {
 insightsBtn?.addEventListener("click", () => {
   openInsights();
 });
+
+const openGoals = () => {
+  const goals = createGoalsModule()
+  container?.replaceChildren();
+  container?.appendChild(goals);
+
+}
+
+goalsBtn?.addEventListener("click", () => {
+  openGoals()
+})
 
 openHome();
 
