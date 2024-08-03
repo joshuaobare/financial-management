@@ -13,3 +13,22 @@
   display: flex;
   gap: 50px;
 }
+
+/* GOAL DIALOGS */
+.goal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.goal-form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.goal-form-item > label {
+  width: 150px;
+}
+.goal-form-item-input {
+  padding: 10px;
+  width: 250px;
+}

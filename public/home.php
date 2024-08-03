@@ -3,7 +3,7 @@ include_once ("../config/pdo.php");
 
 session_start();
 if (isset($_SESSION['user_id'])) {
-  echo "<script type='text/javascript'> localStorage.setItem('user_id'," . $_SESSION['user_id'] . ") </script>";
+    echo "<script type='text/javascript'> localStorage.setItem('user_id'," . $_SESSION['user_id'] . ") </script>";
 }
 
 ?>
@@ -254,6 +254,26 @@ if (isset($_SESSION['user_id'])) {
                         </form>
                     </div>
                 </div>
+            </dialog>
+            <dialog id="goal-dialog">
+                <form action="" id="goal-form" class="goal-form">
+                    <div class="goal-form-item">
+                        <label for="goal-form-goal-name">Goal Name</label>
+                        <input type="text" class="goal-form-item-input" id="goal-form-goal-name">
+                    </div>
+                    <div class="goal-form-item">
+                        <label for="goal-form-target-amount">Target Amount</label>
+                        <input type="text" class="goal-form-item-input" id="goal-form-target-amount">
+                    </div>
+                    <div class="goal-form-item">
+                        <label for="">Description</label>
+                        <textarea class="goal-form-item-input" id="goal-form-description"></textarea>
+                    </div>
+                    <div class="goal-form-item">
+                        <label for="goal-form-due-date">Due date</label>
+                        <input type="date" class="goal-form-item-input" id="goal-form-due-date">
+                    </div>
+                </form>
             </dialog>
         </main>
     </div>
