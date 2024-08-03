@@ -1,13 +1,13 @@
 import { config } from "../config";
-import { Budget } from "../interfaces/budgetInterface";
+import { Goal } from "../interfaces/goalInterface";
 
-class BudgetService {
+class GoalService {
   constructor() {}
 
-  fetchBudget = async (userId: string) => {
+  fetchGoals = async (userId: string) => {
     try {
       const request = await fetch(
-        config.BASE_URL + `budgetFetch.php?user_id=${userId}`,
+        config.BASE_URL + `goalFetch.php?user_id=${userId}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
@@ -15,20 +15,20 @@ class BudgetService {
       );
       const response = await request.json();
 
-      if (response.budgets) {
-        return response.budgets;
+      if (response.goals) {
+        return response.goals;
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  createBudget = async (budgetFormValues: any) => {
+  createGoal = async (goalFormValues: any) => {
     try {
-      const request = await fetch(config.BASE_URL + "budgetCreate.php", {
+      const request = await fetch(config.BASE_URL + "goalCreate.php", {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify(budgetFormValues),
+        body: JSON.stringify(goalFormValues),
       });
       const response = await request.json();
 
@@ -41,12 +41,12 @@ class BudgetService {
     }
   };
 
-  updateBudget = async (budgetData: Budget) => {
+  updateGoal = async (goalData: Goal) => {
     try {
-      const request = await fetch(config.BASE_URL + "budgetUpdate.php", {
+      const request = await fetch(config.BASE_URL + "goalUpdate.php", {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify(budgetData),
+        body: JSON.stringify(goalData),
       });
       const response = await request.json();
 
@@ -59,10 +59,10 @@ class BudgetService {
     }
   };
 
-  deleteBudget = async (budget_id: string) => {
+  deleteGoal = async (goalId: string) => {
     try {
       const request = await fetch(
-        config.BASE_URL + `budgetDelete.php?budget_id=${budget_id}`,
+        config.BASE_URL + `goalDelete.php?goal_id=${goalId}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
@@ -80,4 +80,4 @@ class BudgetService {
   };
 }
 
-export { BudgetService };
+export { GoalService };
