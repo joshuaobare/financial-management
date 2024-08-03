@@ -13,7 +13,7 @@ class TransactionService {
   fetchTransactions = async (userId: string) => {
     try {
       const request = await fetch(
-        config.BASE_URL + `fetchTransactions.php?user_id=${userId}`,
+        config.BASE_URL + `transactionFetch.php?user_id=${userId}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
@@ -31,7 +31,7 @@ class TransactionService {
 
   createTransaction = async (transactionFormValues: any) => {
     try {
-      const request = await fetch(config.BASE_URL + "createTransaction.php", {
+      const request = await fetch(config.BASE_URL + "transactionCreate.php", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(transactionFormValues),
@@ -49,7 +49,7 @@ class TransactionService {
 
   updateTransaction = async (transactionData: Transaction) => {
     try {
-      const request = await fetch(config.BASE_URL + "updateTransaction.php", {
+      const request = await fetch(config.BASE_URL + "transactionUpdate.php", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(transactionData),
@@ -68,7 +68,7 @@ class TransactionService {
     try {
       const request = await fetch(
         config.BASE_URL +
-          `deleteTransaction.php?transaction_id=${transaction_id}`,
+          `transactionDelete.php?transaction_id=${transaction_id}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },

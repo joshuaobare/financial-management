@@ -13,7 +13,7 @@ class BudgetService {
   fetchBudget = async (userId: string) => {
     try {
       const request = await fetch(
-        config.BASE_URL + `fetchBudget.php?user_id=${userId}`,
+        config.BASE_URL + `budgetFetch.php?user_id=${userId}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
@@ -31,7 +31,7 @@ class BudgetService {
 
   createBudget = async (budgetFormValues: any) => {
     try {
-      const request = await fetch(config.BASE_URL + "createBudget.php", {
+      const request = await fetch(config.BASE_URL + "budgetCreate.php", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(budgetFormValues),
@@ -49,7 +49,7 @@ class BudgetService {
 
   updateBudget = async (budgetData: Budget) => {
     try {
-      const request = await fetch(config.BASE_URL + "updateBudget.php", {
+      const request = await fetch(config.BASE_URL + "budgetUpdate.php", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(budgetData),
@@ -68,7 +68,7 @@ class BudgetService {
   deleteBudget = async (budget_id: string) => {
     try {
       const request = await fetch(
-        config.BASE_URL + `deleteBudget.php?budget_id=${budget_id}`,
+        config.BASE_URL + `budgetDelete.php?budget_id=${budget_id}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
