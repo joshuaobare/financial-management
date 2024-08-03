@@ -6,9 +6,9 @@ include_once ("./header.php");
 $data = file_get_contents("php://input");
 $_POST = json_decode($data, true);
 
-if (isset($_POST["user_id"]) && isset($_POST["goal_name"]) && isset($_POST["target_amount"]) && isset($_POST["due_date"]) && isset($_POST["is_achieved"])) {
+if (isset($_POST["user_id"]) && isset($_POST["goal_name"]) && isset($_POST["description"]) && isset($_POST["target_amount"]) && isset($_POST["due_date"]) && isset($_POST["is_achieved"])) {
     try {
-        $sql = "INSERT INTO GOALS (user_id, goal_name, target_amount, is_achieved, due_date) VALUES (:user_id, :goal_name, :target_amount, :is_achieved, :due_date)";
+        $sql = "INSERT INTO GOALS (user_id, goal_name, description, target_amount, is_achieved, due_date) VALUES (:user_id, :goal_name, :description, :target_amount, :is_achieved, :due_date)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(
             array(
@@ -16,6 +16,7 @@ if (isset($_POST["user_id"]) && isset($_POST["goal_name"]) && isset($_POST["targ
                 ':goal_name' => $_POST["goal_name"],
                 ':target_amount' => $_POST["target_amount"],
                 ':is_achieved' => $_POST["is_achieved"],
+                ':description' => $_POST["description"],
                 ':due_date' => $_POST["due_date"]
             )
         );
