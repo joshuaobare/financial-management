@@ -1,7 +1,13 @@
-const createGoalsModule = () => {
-    const goals = document.createElement("div")
+import { Goal } from "../interfaces/goalInterface";
+import { Transaction } from "../interfaces/transactionInterfact";
 
-    return goals
-}
+const createGoalsModule = (
+  transactionData: Transaction[],
+  goalData: Goal[]
+) => {
+  const goals = document.createElement("div");
 
-export {createGoalsModule}
+  return goals;
+};
+
+export { createGoalsModule };

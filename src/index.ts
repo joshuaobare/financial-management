@@ -10,6 +10,8 @@ import { createInsightsModule } from "./modules/insights";
 import { createGoalsModule } from "./modules/goals";
 import "./login";
 import "./register";
+import { GoalService } from "./services/GoalService";
+import { Goal } from "./interfaces/goalInterface";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
@@ -17,9 +19,10 @@ const budgetBtn = document.getElementById("budget-btn");
 const mainNavCont = document.getElementById("main-nav");
 const transactionBtn = document.getElementById("transaction-btn");
 const insightsBtn = document.getElementById("insights-btn");
-const goalsBtn = document.getElementById("goals-btn")
+const goalsBtn = document.getElementById("goals-btn");
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
+const goalService = new GoalService();
 
 mainNavCont?.appendChild(navbar);
 
@@ -83,16 +86,23 @@ insightsBtn?.addEventListener("click", () => {
   openInsights();
 });
 
-const openGoals = () => {
-  const goals = createGoalsModule()
-  container?.replaceChildren();
-  container?.appendChild(goals);
+const openGoals = async () => {
+  const user_id = localStorage.getItem("user_id");
 
-}
+  if (user_id) {
+    const transactionData = <Transaction[]>(
+      await transactionService.fetchTransactions(user_id)
+    );
+    const goalData = <Goal[]>await goalService.fetchGoals(user_id);
+    const goals = createGoalsModule(transactionData, goalData);
+    container?.replaceChildren();
+    container?.appendChild(goals);
+  }
+};
 
 goalsBtn?.addEventListener("click", () => {
-  openGoals()
-})
+  openGoals();
+});
 
 openHome();
 
