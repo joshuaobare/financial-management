@@ -45,7 +45,7 @@ describe("BudgetService", () => {
       const result = await budgetService.fetchBudget(mockUserId);
 
       expect(mockFetch).toHaveBeenCalledWith(
-        `${config.BASE_URL}fetchBudget.php?user_id=${mockUserId}`,
+        `${config.BASE_URL}budgetFetch.php?user_id=${mockUserId}`,
         expect.any(Object)
       );
       expect(result).toEqual(mockBudgets);
@@ -75,7 +75,7 @@ describe("BudgetService", () => {
       const result = await budgetService.createBudget(mockBudgetFormValues);
 
       expect(mockFetch).toHaveBeenCalledWith(
-        `${config.BASE_URL}createBudget.php`,
+        `${config.BASE_URL}budgetCreate.php`,
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify(mockBudgetFormValues),
@@ -108,7 +108,7 @@ describe("BudgetService", () => {
       const result = await budgetService.updateBudget(mockBudgetData);
 
       expect(mockFetch).toHaveBeenCalledWith(
-        `${config.BASE_URL}updateBudget.php`,
+        `${config.BASE_URL}budgetUpdate.php`,
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify(mockBudgetData),
@@ -141,7 +141,7 @@ describe("BudgetService", () => {
       const result = await budgetService.deleteBudget(mockBudgetId);
 
       expect(mockFetch).toHaveBeenCalledWith(
-        `${config.BASE_URL}deleteBudget.php?budget_id=${mockBudgetId}`,
+        `${config.BASE_URL}budgetDelete.php?budget_id=${mockBudgetId}`,
         expect.any(Object)
       );
       expect(result).toBe(true);
