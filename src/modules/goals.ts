@@ -4,6 +4,10 @@ import { Helper } from "../helpers/Helper";
 import "../../styles/goals.css";
 
 const helper = new Helper();
+const goalFormDialog = <HTMLDialogElement>(
+  document.getElementById("goal-dialog")
+);
+const goalForm = <HTMLFormElement>document.getElementById("goal-form");
 const createGoalsModule = (
   transactionData: Transaction[],
   goalData: Goal[]
@@ -30,6 +34,10 @@ const activeGoalsComponent = (goalData: Goal[]) => {
 
   const newGoalBtn = document.createElement("button");
   newGoalBtn.textContent = "Create New Goal";
+
+  newGoalBtn.addEventListener("click", () => {
+    goalFormDialog.show();
+  });
   activeGoals.append(activeGoalsHeader, activeGoalsBody, newGoalBtn);
   return activeGoals;
 };
