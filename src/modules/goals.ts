@@ -1,6 +1,7 @@
 import { Goal } from "../interfaces/goalInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
 import { Helper } from "../helpers/Helper";
+import "../../styles/goals.css";
 
 const helper = new Helper();
 const createGoalsModule = (
@@ -8,6 +9,7 @@ const createGoalsModule = (
   goalData: Goal[]
 ) => {
   const goals = document.createElement("div");
+  goals.className = "goals";
   const activeGoals = activeGoalsComponent(goalData);
   const expiredGoals = expiredGoalsComponent(goalData);
   goals.append(activeGoals, expiredGoals);
@@ -17,6 +19,7 @@ const createGoalsModule = (
 
 const activeGoalsComponent = (goalData: Goal[]) => {
   const activeGoals = document.createElement("div");
+  activeGoals.className = "goals-active";
   const activeGoalsHeader = document.createElement("h3");
   activeGoalsHeader.textContent = "Active Goals";
   const activeGoalsBody = document.createElement("div");
@@ -33,26 +36,29 @@ const activeGoalsComponent = (goalData: Goal[]) => {
 
 const expiredGoalsComponent = (goalData: Goal[]) => {
   const expiredGoals = document.createElement("div");
+  expiredGoals.className = "goals-expired";
   const expiredGoalsHeader = document.createElement("h3");
+  expiredGoalsHeader.className = "goals-expired-header";
   expiredGoalsHeader.textContent = "Expired Goals";
+  const expiredGoalsBody = document.createElement("div");
+  expiredGoalsBody.className = "goals-expired-body";
   const accomplishedGoalData = goalData.filter((goal) => goal.is_achieved);
   const unAccomplishedGoalData = goalData.filter((goal) => !goal.is_achieved);
   const accomplishedGoals = accomplishedGoalsSection(accomplishedGoalData);
   const unaccomplishedGoals = unaccomplishedGoalsSection(
     unAccomplishedGoalData
   );
-
-  expiredGoals.append(
-    expiredGoalsHeader,
-    accomplishedGoals,
-    unaccomplishedGoals
-  );
+  expiredGoalsBody.append(accomplishedGoals, unaccomplishedGoals);
+  expiredGoals.append(expiredGoalsHeader, expiredGoalsBody);
 
   return expiredGoals;
 };
 
 const accomplishedGoalsSection = (goalData: Goal[]) => {
   const accomplishedGoals = document.createElement("div");
+  const accomplishedGoalsHeader = document.createElement("h4");
+  accomplishedGoalsHeader.textContent = "Accomplished Goals";
+  accomplishedGoals.appendChild(accomplishedGoalsHeader);
 
   goalData.forEach((goal) => {
     accomplishedGoals.append(goalItem(goal));
@@ -63,6 +69,9 @@ const accomplishedGoalsSection = (goalData: Goal[]) => {
 
 const unaccomplishedGoalsSection = (goalData: Goal[]) => {
   const unaccomplishedGoals = document.createElement("div");
+  const unAccomplishedGoalsHeader = document.createElement("h4");
+  unAccomplishedGoalsHeader.textContent = "Unaccomplished Goals";
+  unaccomplishedGoals.appendChild(unAccomplishedGoalsHeader);
 
   goalData.forEach((goal) => {
     unaccomplishedGoals.append(goalItem(goal));

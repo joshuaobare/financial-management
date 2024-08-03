@@ -1,0 +1,15 @@
+.goals {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.goals-active,
+.goals-expired {
+  flex: 1;
+}
+
+.goals-expired-body {
+  display: flex;
+  gap: 50px;
+}
