@@ -41,6 +41,16 @@ class Helper {
       prevEndDate: prevEndDate.toISOString().split("T")[0],
     };
   }
+
+  getDaysBetweenDates = (startDate: Date, endDate: Date) => {
+    // Calculate the difference in time (milliseconds)
+    const timeDifference = Math.abs(endDate.getTime() - startDate.getTime());
+
+    // Convert time difference from milliseconds to days
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    return daysDifference;
+  };
 }
 
 export { Helper };

@@ -92,3 +92,20 @@ describe("get start and end date from month and year", () => {
     });
   });
 });
+
+describe("get days between two dates", () => {
+  const helper = new Helper();
+
+  it("returns 0 when the same day is passed in", () => {
+    const result = helper.getDaysBetweenDates(new Date(), new Date());
+    expect(result).toEqual(0);
+  });
+
+  it("returns 7 when days a week apart are input", () => {
+    const result = helper.getDaysBetweenDates(
+      new Date("2024-08-03"),
+      new Date("2024-08-10")
+    );
+    expect(result).toEqual(7);
+  });
+});
