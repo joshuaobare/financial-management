@@ -62,8 +62,12 @@ const expiredGoalsComponent = (goalData: Goal[]) => {
   expiredGoalsHeader.textContent = "Expired Goals";
   const expiredGoalsBody = document.createElement("div");
   expiredGoalsBody.className = "goals-expired-body";
-  const accomplishedGoalData = goalData.filter((goal) => goal.is_achieved);
-  const unAccomplishedGoalData = goalData.filter((goal) => !goal.is_achieved);
+  const accomplishedGoalData = goalData.filter(
+    (goal) => goal.is_achieved && new Date(goal.due_date) < new Date()
+  );
+  const unAccomplishedGoalData = goalData.filter(
+    (goal) => !goal.is_achieved && new Date(goal.due_date) < new Date()
+  );
   const accomplishedGoals = accomplishedGoalsSection(accomplishedGoalData);
   const unaccomplishedGoals = unaccomplishedGoalsSection(
     unAccomplishedGoalData
@@ -177,6 +181,10 @@ const createNewGoalItem = async (e: Event) => {
     openGoals();
   }
 };
+
+goalForm.addEventListener("submit", (e: Event) => {
+  createNewGoalItem(e);
+});
 
 goalDialogCloseBtn?.addEventListener("click", () => {
   goalFormDialog!.close();
