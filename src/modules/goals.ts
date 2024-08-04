@@ -116,6 +116,10 @@ const goalItem = (currentGoal: Goal) => {
   deleteIcon.className = "material-symbols-outlined goal-item-del-icon";
   deleteIconCont.appendChild(deleteIcon);
 
+  deleteIconCont.addEventListener("click", (e) => {
+    deleteGoalItem(currentGoal.goal_id);
+  });
+
   const editIconCont = document.createElement("div");
   editIconCont.className = "goal-item-edit-cont";
   const editIcon = document.createElement("span");
@@ -291,6 +295,14 @@ const updateGoalItem = async (e: Event) => {
 
   if (successfulGoalUpdate) {
     editGoalFormDialog.close();
+    openGoals();
+  }
+};
+
+const deleteGoalItem = async (goalId: string) => {
+  const successfulGoalDeletion = await goalService.deleteGoal(goalId);
+
+  if (successfulGoalDeletion) {
     openGoals();
   }
 };
