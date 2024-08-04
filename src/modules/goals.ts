@@ -106,20 +106,27 @@ const unaccomplishedGoalsSection = (goalData: Goal[]) => {
 
 const goalItem = (currentGoal: Goal) => {
   const goal = document.createElement("div");
+  goal.className = "goal-item";
   const goalName = document.createElement("div");
+  goalName.className = "goal-item-name";
   goalName.textContent = currentGoal.goal_name;
   const daysLeft = document.createElement("div");
+  daysLeft.className = "goal-item-days-left";
   const days = helper.getDaysBetweenDates(
     new Date(),
     new Date(currentGoal.due_date)
   );
-  daysLeft.textContent = `${days} days left`;
+  daysLeft.textContent = `${days} day${days === 1 ? "" : "s"} left`;
   const currentAmount = document.createElement("div");
-  currentAmount.textContent = currentGoal.current_amount;
+  currentAmount.className = "goal-item-current-amount";
+  currentAmount.textContent = `KShs. ${currentGoal.current_amount}`;
   const targetAmount = document.createElement("div");
-  targetAmount.textContent = currentGoal.target_amount;
+  targetAmount.className = "goal-item-target-amount";
+  targetAmount.textContent = `KShs. ${currentGoal.target_amount}`;
   const dueDate = document.createElement("div");
-  dueDate.textContent = currentGoal.due_date;
+  dueDate.className = "goal-item-due-date";
+  const dateText = new Date(currentGoal.due_date).toString().split(" ");
+  dueDate.textContent = dateText.slice(0, 4).join(" ");
 
   goal.append(goalName, daysLeft, currentAmount, targetAmount, dueDate);
 
