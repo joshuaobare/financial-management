@@ -29,10 +29,13 @@ const navbarRightSection = (userData: User | null) => {
     userName.textContent = `${userData.first_name} ${userData.last_name}`;
 
     const logout = document.createElement("a");
-    logout.href = `profile.php?id=${userData.user_id}`;
+    logout.href = `login.php`;
     logout.className = "navbar-link";
     logout.textContent = "Logout";
     navbarRight.append(userName, logout);
+    logout.addEventListener("click", () => {
+      localStorage.removeItem("user_id");
+    });
   } else {
     const signIn = document.createElement("a");
     signIn.textContent = "Sign In";

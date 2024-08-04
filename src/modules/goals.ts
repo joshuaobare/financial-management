@@ -307,10 +307,10 @@ const deleteGoalItem = async (goalId: string) => {
   }
 };
 
-goalForm.addEventListener("submit", (e: Event) => {
+goalForm?.addEventListener("submit", (e: Event) => {
   createNewGoalItem(e);
 });
-editGoalForm.addEventListener("submit", (e: Event) => {
+editGoalForm?.addEventListener("submit", (e: Event) => {
   updateGoalItem(e);
 });
 

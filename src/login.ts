@@ -44,5 +44,3 @@ password?.addEventListener("input", (e: Event) => {
     displayError(password);
   }
 });
-
-export {};
