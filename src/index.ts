@@ -106,4 +106,4 @@ goalsBtn?.addEventListener("click", () => {
 
 openHome();
 
-export { openBudget, openTransaction };
+export { openBudget, openTransaction, openGoals };

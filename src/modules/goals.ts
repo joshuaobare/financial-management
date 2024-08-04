@@ -2,10 +2,15 @@ import { Goal } from "../interfaces/goalInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
 import { Helper } from "../helpers/Helper";
 import "../../styles/goals.css";
+import { GoalService } from "../services/GoalService";
+import { openGoals } from "../index";
 
 const helper = new Helper();
 const goalFormDialog = <HTMLDialogElement>(
   document.getElementById("goal-dialog")
+);
+const editGoalFormDialog = <HTMLDialogElement>(
+  document.getElementById("edit-goal-dialog")
 );
 const goalForm = <HTMLFormElement>document.getElementById("goal-form");
 const editGoalForm = <HTMLFormElement>document.getElementById("goal-form");
@@ -13,6 +18,7 @@ const goalDialogCloseBtn = document.getElementById("goal-dialog-close");
 const editGoalDialogCloseBtn = document.getElementById(
   "edit-goal-dialog-close"
 );
+const goalService = new GoalService();
 
 const createGoalsModule = (
   transactionData: Transaction[],
@@ -116,8 +122,68 @@ const goalItem = (currentGoal: Goal) => {
   return goal;
 };
 
+const resetGoalForm = () => {
+  const goal_name = <HTMLInputElement>(
+    document.getElementById("goal-form-goal-name")
+  );
+  goal_name.value = "";
+  const target_amount = <HTMLInputElement>(
+    document.getElementById("goal-form-target-amount")
+  );
+  target_amount.value = "";
+  const description = <HTMLInputElement>(
+    document.getElementById("goal-form-description")
+  );
+  description.value = "";
+  const due_date = <HTMLInputElement>(
+    document.getElementById("goal-form-due-date")
+  );
+  due_date.value = "";
+};
+
+const getGoalFormValues = () => {
+  const goal_name = (<HTMLInputElement>(
+    document.getElementById("goal-form-goal-name")
+  )).value;
+  const target_amount = (<HTMLInputElement>(
+    document.getElementById("goal-form-target-amount")
+  )).value;
+  const description = (<HTMLInputElement>(
+    document.getElementById("goal-form-description")
+  )).value;
+  const due_date = (<HTMLInputElement>(
+    document.getElementById("goal-form-due-date")
+  )).value;
+  const user_id = localStorage.getItem("user_id");
+
+  return {
+    goal_name,
+    target_amount,
+    description,
+    due_date,
+    user_id,
+    is_achieved: false,
+  };
+};
+
+const createNewGoalItem = async (e: Event) => {
+  e.preventDefault();
+  const goalFormValues = getGoalFormValues();
+  const successfulGoalSubmission = await goalService.createGoal(goalFormValues);
+
+  if (successfulGoalSubmission) {
+    resetGoalForm();
+    goalFormDialog.close();
+    openGoals();
+  }
+};
+
 goalDialogCloseBtn?.addEventListener("click", () => {
   goalFormDialog!.close();
+});
+
+editGoalDialogCloseBtn?.addEventListener("click", () => {
+  editGoalFormDialog!.close();
 });
 
 export { createGoalsModule };
