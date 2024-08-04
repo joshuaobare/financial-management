@@ -1,4 +1,5 @@
 import "../../styles/navbar.css";
+import "../../styles/main.css";
 import { UserService } from "../services/UserService";
 import { User } from "../interfaces/userInterface";
 
