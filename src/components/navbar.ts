@@ -1,7 +1,9 @@
 import "../../styles/navbar.css";
 import { UserService } from "../services/UserService";
+import { User } from "../interfaces/userInterface";
 
-const createNavComponent = () => {
+const userService = new UserService();
+const createNavComponent = (userData: User | null) => {
   const navbar: HTMLElement = document.createElement("div");
   navbar.className = "navbar";
 
@@ -10,18 +12,27 @@ const createNavComponent = () => {
   navbarLeft.className = "navbar-left";
   const navbarMid = document.createElement("div");
   navbarMid.className = "navbar-mid";
-  const navbarRight = navbarRightSection();
+  const navbarRight = navbarRightSection(userData);
   navbar.append(navbarLeft, navbarMid, navbarRight);
 
   return navbar;
 };
 
-const navbarRightSection = () => {
+const navbarRightSection = (userData: User | null) => {
   const navbarRight = document.createElement("div");
   navbarRight.className = "navbar-right";
 
-  const userId = localStorage.getItem("user_id");
-  if (userId) {
+  if (userData) {
+    const userName = document.createElement("a");
+    userName.href = `profile.php?id=${userData.user_id}`;
+    userName.className = "navbar-link-username";
+    userName.textContent = `${userData.first_name} ${userData.last_name}`;
+
+    const logout = document.createElement("a");
+    logout.href = `profile.php?id=${userData.user_id}`;
+    logout.className = "navbar-link";
+    logout.textContent = "Logout";
+    navbarRight.append(userName, logout);
   } else {
     const signIn = document.createElement("a");
     signIn.textContent = "Sign In";

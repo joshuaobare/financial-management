@@ -12,6 +12,7 @@ import "./login";
 import "./register";
 import { GoalService } from "./services/GoalService";
 import { Goal } from "./interfaces/goalInterface";
+import { UserService } from "./services/UserService";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
@@ -23,8 +24,18 @@ const goalsBtn = document.getElementById("goals-btn");
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 const goalService = new GoalService();
+const userService = new UserService();
 
-mainNavCont?.appendChild(createNavComponent());
+const renderNav = async () => {
+  const userId = localStorage.getItem("user_id");
+
+  if (userId) {
+    const userData = await userService.fetchUser(userId);
+    mainNavCont?.appendChild(createNavComponent(userData));
+  } else {
+    mainNavCont?.appendChild(createNavComponent(null));
+  }
+};
 
 const openHome = () => {
   const home = createHome();
@@ -105,5 +116,6 @@ goalsBtn?.addEventListener("click", () => {
 });
 
 openHome();
+renderNav();
 
 export { openBudget, openTransaction, openGoals };

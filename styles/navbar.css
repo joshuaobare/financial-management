@@ -45,8 +45,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.navbar-link-username {
+  text-decoration: none;
+  color: gold;
+}
 .navbar-right {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
+  align-items: center;
 }
