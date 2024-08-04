@@ -1,6 +1,6 @@
 import { createHome } from "./modules/home";
 import { createBudgetModule } from "./modules/budget";
-import { navbar } from "./components/navbar";
+import { createNavComponent } from "./components/navbar";
 import { Budget } from "./interfaces/budgetInterface";
 import { Transaction } from "./interfaces/transactionInterfact";
 import { createTransactionModule } from "./modules/transaction";
@@ -24,7 +24,7 @@ const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 const goalService = new GoalService();
 
-mainNavCont?.appendChild(navbar);
+mainNavCont?.appendChild(createNavComponent());
 
 const openHome = () => {
   const home = createHome();

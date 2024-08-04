@@ -1,5 +1,4 @@
 import { config } from "../config";
-import { Budget } from "../interfaces/budgetInterface";
 
 class UserService {
   constructor() {}

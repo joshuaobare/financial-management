@@ -14,6 +14,8 @@
 }
 .navbar {
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 .navbar-left,
 .navbar-mid,
@@ -27,7 +29,24 @@
   color: gold;
   font-size: 2rem;
 }
-.navbar-mid {
+.navbar-link {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: gold;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .navbar-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
 }
