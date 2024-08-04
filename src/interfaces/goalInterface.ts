@@ -1,6 +1,6 @@
 interface Goal {
   goal_id: string;
-  user_is: string;
+  user_id: string | null;
   goal_name: string;
   target_amount: string;
   current_amount: string;

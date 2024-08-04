@@ -13,7 +13,7 @@ const editGoalFormDialog = <HTMLDialogElement>(
   document.getElementById("edit-goal-dialog")
 );
 const goalForm = <HTMLFormElement>document.getElementById("goal-form");
-const editGoalForm = <HTMLFormElement>document.getElementById("goal-form");
+const editGoalForm = <HTMLFormElement>document.getElementById("edit-goal-form");
 const goalDialogCloseBtn = document.getElementById("goal-dialog-close");
 const editGoalDialogCloseBtn = document.getElementById(
   "edit-goal-dialog-close"
@@ -108,19 +108,30 @@ const goalItem = (currentGoal: Goal) => {
   const goalItem = document.createElement("div");
   goalItem.className = "goal-item-cont";
   const manageCont = document.createElement("div");
+
   const deleteIconCont = document.createElement("div");
   deleteIconCont.className = "goal-item-del-cont";
   const deleteIcon = document.createElement("span");
   deleteIcon.textContent = "delete";
   deleteIcon.className = "material-symbols-outlined goal-item-del-icon";
   deleteIconCont.appendChild(deleteIcon);
+
   const editIconCont = document.createElement("div");
   editIconCont.className = "goal-item-edit-cont";
   const editIcon = document.createElement("span");
   editIcon.textContent = "edit";
   editIcon.className = "material-symbols-outlined goal-item-edit-icon";
   editIconCont.appendChild(editIcon);
+  editIconCont.addEventListener("click", () => {
+    editGoalFormDialog.show();
+  });
+
+  editIconCont.addEventListener("click", (e) => {
+    populateGoalForm(currentGoal);
+  });
+
   manageCont.append(deleteIconCont, editIconCont);
+
   const goal = document.createElement("div");
   goal.className = "goal-item";
   const goalName = document.createElement("div");
@@ -147,6 +158,37 @@ const goalItem = (currentGoal: Goal) => {
   goal.append(goalName, daysLeft, currentAmount, targetAmount, dueDate);
   goalItem.append(manageCont, goal);
   return goalItem;
+};
+
+const populateGoalForm = (goalData: Goal) => {
+  const goal_name = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-goal-name")
+  );
+  goal_name.value = goalData.goal_name;
+  const target_amount = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-target-amount")
+  );
+  target_amount.value = goalData.target_amount;
+  const current_amount = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-current-amount")
+  );
+  current_amount.value = goalData.current_amount;
+  const description = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-description")
+  );
+  description.value = goalData.description;
+  const due_date = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-due-date")
+  );
+  due_date.value = goalData.due_date.toString();
+  const goal_id = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-goal-id")
+  );
+  goal_id.value = goalData.goal_id;
+  const created_at = <HTMLInputElement>(
+    document.getElementById("edit-goal-form-created-at")
+  );
+  created_at.value = goalData.created_at.toString();
 };
 
 const resetGoalForm = () => {
@@ -193,6 +235,43 @@ const getGoalFormValues = () => {
   };
 };
 
+const getEditGoalFormValues = (): Goal => {
+  const goal_name = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-goal-name")
+  )).value;
+  const target_amount = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-target-amount")
+  )).value;
+  const current_amount = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-current-amount")
+  )).value;
+  const description = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-description")
+  )).value;
+  const due_date = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-due-date")
+  )).value;
+  const goal_id = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-goal-id")
+  )).value;
+  const created_at = (<HTMLInputElement>(
+    document.getElementById("edit-goal-form-created-at")
+  )).value;
+  const user_id = localStorage.getItem("user_id");
+
+  return {
+    goal_name,
+    target_amount,
+    current_amount,
+    description,
+    due_date,
+    user_id,
+    goal_id,
+    created_at,
+    is_achieved: "0",
+  };
+};
+
 const createNewGoalItem = async (e: Event) => {
   e.preventDefault();
   const goalFormValues = getGoalFormValues();
@@ -205,8 +284,22 @@ const createNewGoalItem = async (e: Event) => {
   }
 };
 
+const updateGoalItem = async (e: Event) => {
+  e.preventDefault();
+  const editGoalFormValues = getEditGoalFormValues();
+  const successfulGoalUpdate = await goalService.updateGoal(editGoalFormValues);
+
+  if (successfulGoalUpdate) {
+    editGoalFormDialog.close();
+    openGoals();
+  }
+};
+
 goalForm.addEventListener("submit", (e: Event) => {
   createNewGoalItem(e);
+});
+editGoalForm.addEventListener("submit", (e: Event) => {
+  updateGoalItem(e);
 });
 
 goalDialogCloseBtn?.addEventListener("click", () => {

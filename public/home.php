@@ -115,7 +115,7 @@ if (isset($_SESSION['user_id'])) {
                         </button>
                     </div>
                     <div class="budget-dialog-body">
-                        <form action="" class="budget-form" id="edit-budget-form">
+                        <form action="" method="post" class="budget-form" id="edit-budget-form">
                             <div class="budget-form-item">
                                 <label for="edit-budget-form-category-select">Category</label>
                                 <select name="category" id="edit-budget-form-category-select"
@@ -163,7 +163,7 @@ if (isset($_SESSION['user_id'])) {
                         </button>
                     </div>
                     <div class="transaction-dialog-body">
-                        <form action="" class="transaction-form" id="transaction-form">
+                        <form action="" method="post" class="transaction-form" id="transaction-form">
                             <div class="transaction-form-item">
                                 <label for="transaction-form-category-select">Category</label>
                                 <select name="category" id="transaction-form-category-select"
@@ -202,7 +202,7 @@ if (isset($_SESSION['user_id'])) {
                         </button>
                     </div>
                     <div class="transaction-dialog-body">
-                        <form action="" class="transaction-form" id="edit-transaction-form">
+                        <form action="" method="post" class="transaction-form" id="edit-transaction-form">
                             <div class="transaction-form-item">
                                 <label for="edit-transaction-form-category-select">Category</label>
                                 <select name="category" id="edit-transaction-form-category-select"
@@ -261,7 +261,7 @@ if (isset($_SESSION['user_id'])) {
                         X
                     </button>
                 </div>
-                <form action="" id="goal-form" class="goal-form">
+                <form action="" id="goal-form" class="goal-form" method="post">
                     <div class="goal-form-item">
                         <label for="goal-form-goal-name">Goal Name</label>
                         <input type="text" class="goal-form-item-input" id="goal-form-goal-name">
@@ -280,36 +280,39 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                     <button>Submit</button>
                 </form>
-                <dialog id="edit-goal-dialog">
-                    <div class="goal-dialog-header">
-                        <button class="goal-dialog-close" id="edit-goal-dialog-close">
-                            X
-                        </button>
+            </dialog>
+            <dialog id="edit-goal-dialog">
+                <div class="goal-dialog-header">
+                    <button class="goal-dialog-close" id="edit-goal-dialog-close">
+                        X
+                    </button>
+                </div>
+                <form action="" id="edit-goal-form" class="goal-form" method="post">
+                    <div class="goal-form-item">
+                        <label for="edit-goal-form-goal-name">Goal Name</label>
+                        <input type="text" class="goal-form-item-input" id="edit-goal-form-goal-name">
                     </div>
-                    <form action="" id="edit-goal-form" class="goal-form">
-                        <div class="edit-goal-form-item">
-                            <label for="edit-goal-form-goal-name">Goal Name</label>
-                            <input type="text" class="goal-form-item-input" id="edit-goal-form-goal-name">
-                        </div>
-                        <div class="goal-form-item">
-                            <label for="edit-goal-form-target-amount">Target Amount</label>
-                            <input type="number" class="goal-form-item-input" id="edit-goal-form-target-amount">
-                        </div>
-                        <div class="goal-form-item">
-                            <label for="edit-goal-form-target-amount">Current Amount</label>
-                            <input type="number" class="goal-form-item-input" id="edit-goal-form-target-amount">
-                        </div>
-                        <div class="goal-form-item">
-                            <label for="edit-goal-form-description">Description</label>
-                            <textarea class="goal-form-item-input" id="edit-goal-form-description"></textarea>
-                        </div>
-                        <div class="goal-form-item">
-                            <label for="goal-form-due-date">Due date</label>
-                            <input type="date" class="goal-form-item-input" id="edit-goal-form-due-date">
-                        </div>
-                        <button>Submit</button>
-                    </form>
-                </dialog>
+                    <div class="goal-form-item">
+                        <label for="edit-goal-form-target-amount">Target Amount</label>
+                        <input type="number" class="goal-form-item-input" id="edit-goal-form-target-amount">
+                    </div>
+                    <div class="goal-form-item">
+                        <label for="edit-goal-form-target-amount">Current Amount</label>
+                        <input type="number" class="goal-form-item-input" id="edit-goal-form-current-amount">
+                    </div>
+                    <div class="goal-form-item">
+                        <label for="edit-goal-form-description">Description</label>
+                        <textarea class="goal-form-item-input" id="edit-goal-form-description"></textarea>
+                    </div>
+                    <div class="goal-form-item">
+                        <label for="goal-form-due-date">Due date</label>
+                        <input type="date" class="goal-form-item-input" id="edit-goal-form-due-date">
+                    </div>
+                    <input type="hidden" name="goal_id" id="edit-goal-form-goal-id">
+                    <input type="hidden" name="created_at" id="edit-goal-form-created-at">
+                    <button>Submit</button>
+                </form>
+            </dialog>
         </main>
     </div>
 </body>
