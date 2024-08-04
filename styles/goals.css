@@ -3,6 +3,38 @@
   flex-direction: column;
   height: 100%;
 }
+.goal-item-cont {
+  display: flex;
+  align-items: center;
+}
+.goal-item {
+  display: flex;
+  gap: 5px;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  align-items: center;
+}
+.goal-item > div {
+  flex: 1;
+}
+.goal-item-del-icon {
+  cursor: pointer;
+  background-color: rgba(216, 30, 30, 0.1);
+}
+.goal-item-edit-icon {
+  background-color: rgb(25, 118, 210, 0.1);
+  cursor: pointer;
+}
+.goal-item-del-cont {
+  background-color: rgba(216, 30, 30, 0.3);
+}
+.goal-item-edit-cont {
+  background-color: rgba(25, 118, 210, 0.1);
+}
+.goal-item:hover {
+  background-color: rgba(153, 147, 147, 0.1);
+}
 
 .goals-active,
 .goals-expired {

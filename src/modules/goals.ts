@@ -105,6 +105,22 @@ const unaccomplishedGoalsSection = (goalData: Goal[]) => {
 };
 
 const goalItem = (currentGoal: Goal) => {
+  const goalItem = document.createElement("div");
+  goalItem.className = "goal-item-cont";
+  const manageCont = document.createElement("div");
+  const deleteIconCont = document.createElement("div");
+  deleteIconCont.className = "goal-item-del-cont";
+  const deleteIcon = document.createElement("span");
+  deleteIcon.textContent = "delete";
+  deleteIcon.className = "material-symbols-outlined goal-item-del-icon";
+  deleteIconCont.appendChild(deleteIcon);
+  const editIconCont = document.createElement("div");
+  editIconCont.className = "goal-item-edit-cont";
+  const editIcon = document.createElement("span");
+  editIcon.textContent = "edit";
+  editIcon.className = "material-symbols-outlined goal-item-edit-icon";
+  editIconCont.appendChild(editIcon);
+  manageCont.append(deleteIconCont, editIconCont);
   const goal = document.createElement("div");
   goal.className = "goal-item";
   const goalName = document.createElement("div");
@@ -129,8 +145,8 @@ const goalItem = (currentGoal: Goal) => {
   dueDate.textContent = dateText.slice(0, 4).join(" ");
 
   goal.append(goalName, daysLeft, currentAmount, targetAmount, dueDate);
-
-  return goal;
+  goalItem.append(manageCont, goal);
+  return goalItem;
 };
 
 const resetGoalForm = () => {
