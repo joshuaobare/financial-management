@@ -8,6 +8,12 @@ const goalFormDialog = <HTMLDialogElement>(
   document.getElementById("goal-dialog")
 );
 const goalForm = <HTMLFormElement>document.getElementById("goal-form");
+const editGoalForm = <HTMLFormElement>document.getElementById("goal-form");
+const goalDialogCloseBtn = document.getElementById("goal-dialog-close");
+const editGoalDialogCloseBtn = document.getElementById(
+  "edit-goal-dialog-close"
+);
+
 const createGoalsModule = (
   transactionData: Transaction[],
   goalData: Goal[]
@@ -109,5 +115,9 @@ const goalItem = (currentGoal: Goal) => {
 
   return goal;
 };
+
+goalDialogCloseBtn?.addEventListener("click", () => {
+  goalFormDialog!.close();
+});
 
 export { createGoalsModule };

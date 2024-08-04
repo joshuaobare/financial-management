@@ -256,6 +256,11 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </dialog>
             <dialog id="goal-dialog">
+                <div class="goal-dialog-header">
+                    <button class="goal-dialog-close" id="goal-dialog-close">
+                        X
+                    </button>
+                </div>
                 <form action="" id="goal-form" class="goal-form">
                     <div class="goal-form-item">
                         <label for="goal-form-goal-name">Goal Name</label>
@@ -273,8 +278,38 @@ if (isset($_SESSION['user_id'])) {
                         <label for="goal-form-due-date">Due date</label>
                         <input type="date" class="goal-form-item-input" id="goal-form-due-date">
                     </div>
+                    <button>Submit</button>
                 </form>
-            </dialog>
+                <dialog id="edit-goal-dialog">
+                    <div class="goal-dialog-header">
+                        <button class="goal-dialog-close" id="edit-goal-dialog-close">
+                            X
+                        </button>
+                    </div>
+                    <form action="" id="edit-goal-form" class="goal-form">
+                        <div class="edit-goal-form-item">
+                            <label for="edit-goal-form-goal-name">Goal Name</label>
+                            <input type="text" class="goal-form-item-input" id="edit-goal-form-goal-name">
+                        </div>
+                        <div class="goal-form-item">
+                            <label for="edit-goal-form-target-amount">Target Amount</label>
+                            <input type="number" class="goal-form-item-input" id="edit-goal-form-target-amount">
+                        </div>
+                        <div class="goal-form-item">
+                            <label for="edit-goal-form-target-amount">Current Amount</label>
+                            <input type="number" class="goal-form-item-input" id="edit-goal-form-target-amount">
+                        </div>
+                        <div class="goal-form-item">
+                            <label for="edit-goal-form-description">Description</label>
+                            <textarea class="goal-form-item-input" id="edit-goal-form-description"></textarea>
+                        </div>
+                        <div class="goal-form-item">
+                            <label for="goal-form-due-date">Due date</label>
+                            <input type="date" class="goal-form-item-input" id="edit-goal-form-due-date">
+                        </div>
+                        <button>Submit</button>
+                    </form>
+                </dialog>
         </main>
     </div>
 </body>
