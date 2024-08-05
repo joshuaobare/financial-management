@@ -13,6 +13,7 @@ import "./register";
 import { GoalService } from "./services/GoalService";
 import { Goal } from "./interfaces/goalInterface";
 import { UserService } from "./services/UserService";
+import { createInvestmentsModule } from "./modules/investments";
 
 const container = document.getElementById("container");
 const homeBtn = document.getElementById("home-btn");
@@ -21,6 +22,7 @@ const mainNavCont = document.getElementById("main-nav");
 const transactionBtn = document.getElementById("transaction-btn");
 const insightsBtn = document.getElementById("insights-btn");
 const goalsBtn = document.getElementById("goals-btn");
+const investmentBtn = document.getElementById("investments-btn");
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 const goalService = new GoalService();
@@ -113,6 +115,16 @@ const openGoals = async () => {
 
 goalsBtn?.addEventListener("click", () => {
   openGoals();
+});
+
+const openInvestments = () => {
+  const investments = createInvestmentsModule();
+  container?.replaceChildren();
+  container?.appendChild(investments);
+};
+
+investmentBtn?.addEventListener("click", () => {
+  openInvestments();
 });
 
 openHome();
