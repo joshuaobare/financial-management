@@ -3,6 +3,7 @@ import { Budget } from "../interfaces/budgetInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
 import { createTransactionComponent } from "./transactionComponent";
+import "../../styles/calendar.css";
 
 const createCalendar = (
   financialData: Budget[] | Transaction[],

@@ -1,6 +1,7 @@
 @font-face {
-  font-family: baufra;
-  src: url("../public/assets/Fonts/BaufraBold.ttf");
+  font-family: "baufra";
+  font-style: normal;
+  src: url("./fonts/BaufraBold.ttf") format("truetype");
 }
 
 .main-nav {

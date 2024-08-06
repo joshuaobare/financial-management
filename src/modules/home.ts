@@ -1,3 +1,6 @@
+import "../../styles/main.css";
+import "../../styles/home.css";
+
 const createHome = (): HTMLDivElement => {
   const homeDiv = document.createElement("div");
   const header = createHeader();

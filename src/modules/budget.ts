@@ -5,6 +5,7 @@ import { TransactionService } from "../services/TransactionService";
 import { Helper } from "../helpers/Helper";
 import { openBudget, openTransaction } from "../index";
 import { resetTransactionForm, transactionFormDialog } from "./transaction";
+import "../../styles/budget.css";
 
 const budgetFormDialog = <HTMLDialogElement>(
   document.getElementById("budget-dialog")
