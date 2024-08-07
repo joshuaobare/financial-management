@@ -48,9 +48,10 @@ const sidebarTop = (financialData: Budget[] | Transaction[]) => {
   const savingSection = document.createElement("div");
   savingSection.className = "cal-prop-title";
   const savingAmount = document.createElement("div");
-  const netIncome = financeCalculator.monthlyExcessCalculator().toString();
+  const netIncome = financeCalculator.monthlyExcessCalculator();
   savingSection.textContent = `LEFTOVER`;
-  savingAmount.textContent = `KShs. ${netIncome}`;
+  savingAmount.style.color = netIncome >= 0 ? "green" : "red";
+  savingAmount.textContent = `KShs. ${netIncome.toString()}`;
   savingAmount.className = "cal-prop-amount";
   savingSectionCont.append(savingSection, savingAmount);
   savingSectionCont.className = "cal-sidebar-row";

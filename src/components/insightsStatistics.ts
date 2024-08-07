@@ -125,9 +125,11 @@ const expenseTrends = (monthlySpend: number, prevMonthlySpend: number) => {
   if (monthlySpend !== 0) {
     if (monthlySpend !== prevMonthlySpend) {
       expenseTrendsCardBody.textContent = `Your spending has ${
-        prevMonthlySpend > monthlySpend ? "decreased" : "increased"
+        prevMonthlySpend && prevMonthlySpend > monthlySpend
+          ? "decreased"
+          : "increased"
       } by ${
-        prevMonthlySpend > monthlySpend
+        prevMonthlySpend && prevMonthlySpend > monthlySpend
           ? Math.round(
               ((prevMonthlySpend - monthlySpend) / prevMonthlySpend) * 100
             )
@@ -164,7 +166,7 @@ const budgetPerformance = (
   const underBudgetSection = document.createElement("div");
   const underBudgetSectionHeader = document.createElement("div");
   const underBudgetSectionBody = document.createElement("div");
-  underBudgetSectionHeader.textContent = "Under Budget";
+  //underBudgetSectionHeader.textContent = "Under Budget";
   underBudget.forEach((item) => {
     const div = document.createElement("div");
     div.textContent = `You are KShs. ${item[1]} away from exceeding your budget in the ${item[0]} category`;
@@ -174,7 +176,7 @@ const budgetPerformance = (
   const overBudgetSection = document.createElement("div");
   const overBudgetSectionHeader = document.createElement("div");
   const overBudgetSectionBody = document.createElement("div");
-  overBudgetSectionHeader.textContent = "Over Budget";
+  //overBudgetSectionHeader.textContent = "Over Budget";
   overBudget.forEach((item) => {
     const div = document.createElement("div");
     div.textContent = `You are KShs. ${item[1]} over budget in the ${item[0]} category`;
