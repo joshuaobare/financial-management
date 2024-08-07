@@ -16,17 +16,35 @@ import { UserService } from "./services/UserService";
 import { createInvestmentsModule } from "./modules/investments";
 
 const container = document.getElementById("container");
-const homeBtn = document.getElementById("home-btn");
-const budgetBtn = document.getElementById("budget-btn");
+const homeBtn: HTMLElement | null = document.getElementById("home-btn");
+const budgetBtn: HTMLElement | null = document.getElementById("budget-btn");
 const mainNavCont = document.getElementById("main-nav");
-const transactionBtn = document.getElementById("transaction-btn");
-const insightsBtn = document.getElementById("insights-btn");
-const goalsBtn = document.getElementById("goals-btn");
-const investmentBtn = document.getElementById("investments-btn");
+const transactionBtn: HTMLElement | null =
+  document.getElementById("transaction-btn");
+const insightsBtn: HTMLElement | null = document.getElementById("insights-btn");
+const goalsBtn: HTMLElement | null = document.getElementById("goals-btn");
+const investmentBtn: HTMLElement | null =
+  document.getElementById("investments-btn");
+const navBtns: (HTMLElement | null)[] = [
+  homeBtn,
+  budgetBtn,
+  transactionBtn,
+  insightsBtn,
+  goalsBtn,
+  investmentBtn,
+];
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 const goalService = new GoalService();
 const userService = new UserService();
+
+const resetNavColor = () => {
+  navBtns.forEach((btn) => {
+    if (btn) {
+      btn!.removeAttribute("style");
+    }
+  });
+};
 
 const renderNav = async () => {
   const userId = localStorage.getItem("user_id");
@@ -47,6 +65,8 @@ const openHome = () => {
 
 homeBtn?.addEventListener("click", (e: Event) => {
   openHome();
+  resetNavColor();
+  homeBtn.style.backgroundColor = "gold";
 });
 
 const openBudget = async () => {
@@ -62,6 +82,8 @@ const openBudget = async () => {
 
 budgetBtn?.addEventListener("click", (e: Event) => {
   openBudget();
+  resetNavColor();
+  budgetBtn.style.backgroundColor = "gold";
 });
 
 const openTransaction = async () => {
@@ -79,6 +101,8 @@ const openTransaction = async () => {
 
 transactionBtn?.addEventListener("click", () => {
   openTransaction();
+  resetNavColor();
+  transactionBtn.style.backgroundColor = "gold";
 });
 
 const openInsights = async () => {
@@ -97,6 +121,8 @@ const openInsights = async () => {
 
 insightsBtn?.addEventListener("click", () => {
   openInsights();
+  resetNavColor();
+  insightsBtn.style.backgroundColor = "gold";
 });
 
 const openGoals = async () => {
@@ -115,6 +141,8 @@ const openGoals = async () => {
 
 goalsBtn?.addEventListener("click", () => {
   openGoals();
+  resetNavColor();
+  goalsBtn.style.backgroundColor = "gold";
 });
 
 const openInvestments = () => {
@@ -125,9 +153,18 @@ const openInvestments = () => {
 
 investmentBtn?.addEventListener("click", () => {
   openInvestments();
+  resetNavColor();
+  investmentBtn.style.backgroundColor = "gold";
 });
 
-openHome();
-renderNav();
+const start = () => {
+  openHome();
+  if (homeBtn) {
+    homeBtn!.style.backgroundColor = "gold";
+  }
+  renderNav();
+};
+
+start();
 
 export { openBudget, openTransaction, openGoals };

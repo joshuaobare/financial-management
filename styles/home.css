@@ -10,7 +10,7 @@
   width: 100%;
 }
 .home-nav {
-  width: 16vw;
+  width: 20vw;
   border-right: 1px solid black;
 }
 .home-nav-items-cont {
@@ -26,6 +26,11 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.home-nav-item:hover {
+  /* background-color: rgba(#000, 0.5); */
+  background-color: gold;
 }
 
 .material-symbols-outlined {
