@@ -63,10 +63,11 @@ const openHome = async () => {
   if (userId) {
     const goalData = <Goal[]>await goalService.fetchGoals(userId);
     const budgetData = <Budget[]>await budgetService.fetchBudget(userId);
+    const userData = await userService.fetchUser(userId);
     const transactionData = <Transaction[]>(
       await transactionService.fetchTransactions(userId)
     );
-    const home = createHome(goalData, budgetData, transactionData);
+    const home = createHome(goalData, budgetData, transactionData, userData);
     container?.replaceChildren();
     container?.appendChild(home);
   }

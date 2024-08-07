@@ -5,14 +5,16 @@ import { Goal } from "../interfaces/goalInterface";
 import { Budget } from "../interfaces/budgetInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
 import { calendarSidebar } from "../components/calendarSidebar";
+import { User } from "../interfaces/userInterface";
 
 const createHome = (
   goalData: Goal[],
   budgetData: Budget[],
-  transactionData: Transaction[]
+  transactionData: Transaction[],
+  userData: User
 ): HTMLDivElement => {
   const homeDiv = document.createElement("div");
-  const header = createHeader();
+  const header = createHeader(userData);
 
   homeDiv.appendChild(header);
   homeDiv.appendChild(activeGoalsComponent(goalData, "home"));
@@ -35,14 +37,14 @@ const createHome = (
   return homeDiv;
 };
 
-const createHeader = (): HTMLDivElement => {
+const createHeader = (userData: User): HTMLDivElement => {
   const header = document.createElement("div");
 
   // create and populate left and right portions of the header
   const headerLeft = document.createElement("span");
   const headerRight = document.createElement("span");
   headerLeft.textContent = "Welcome ";
-  headerRight.textContent = "Jack!";
+  headerRight.textContent = `${userData.first_name}`;
   headerLeft.className = "home-header";
   headerRight.className = "home-header home-header-right";
 
