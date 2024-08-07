@@ -39,19 +39,27 @@ const activeGoalsComponent = (goalData: Goal[], parentModule: string) => {
   const activeGoalsHeader = document.createElement("h3");
   activeGoalsHeader.textContent = "Active Goals";
   const activeGoalsBody = document.createElement("div");
+  activeGoalsBody.className = "goals-active-body";
+  const activeGoalsData = goalData.filter(
+    (goal) => new Date(goal.due_date) > new Date()
+  );
 
-  goalData.forEach((goal) => {
-    if (new Date(goal.due_date) > new Date()) {
-      activeGoalsBody.append(goalItem(goal));
-    }
+  activeGoalsData.forEach((goal) => {
+    activeGoalsBody.append(goalItem(goal));
   });
+
+  if (activeGoalsData.length === 0) {
+    const noGoalsDisclaimer = document.createElement("div");
+    noGoalsDisclaimer.textContent = "No goals active currently";
+    activeGoalsBody.append(noGoalsDisclaimer);
+  }
 
   const newGoalBtn = document.createElement("button");
   newGoalBtn.textContent = "Create New Goal";
   newGoalBtn.className = "goal-add-btn";
 
   newGoalBtn.addEventListener("click", () => {
-    goalFormDialog.show();
+    goalFormDialog.showModal();
   });
   activeGoals.append(activeGoalsHeader, activeGoalsBody);
 
@@ -137,7 +145,7 @@ const goalItem = (currentGoal: Goal) => {
   editIcon.className = "material-symbols-outlined goal-item-edit-icon";
   editIconCont.appendChild(editIcon);
   editIconCont.addEventListener("click", () => {
-    editGoalFormDialog.show();
+    editGoalFormDialog.showModal();
   });
 
   editIconCont.addEventListener("click", (e) => {

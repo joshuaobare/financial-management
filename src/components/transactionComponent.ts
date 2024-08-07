@@ -49,7 +49,7 @@ const createTransactionComponent = (
       document.getElementById("transaction-form-category-select")
     );
     transactionFormSelect.value = title;
-    transactionFormDialog?.show();
+    transactionFormDialog?.showModal();
   });
 
   footer.appendChild(addBtn);
@@ -80,7 +80,7 @@ const row = (transactionData: Transaction) => {
 
   rowMain.addEventListener("click", () => {
     populateEditTransactionForm(transactionData);
-    editTransactionFormDialog.show();
+    editTransactionFormDialog.showModal();
   });
   deleteIcon.addEventListener("click", () => {
     deleteTransactionItem(transactionData);

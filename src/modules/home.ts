@@ -4,6 +4,7 @@ import { activeGoalsComponent } from "./goals";
 import { Goal } from "../interfaces/goalInterface";
 import { Budget } from "../interfaces/budgetInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
+import { calendarSidebar } from "../components/calendarSidebar";
 
 const createHome = (
   goalData: Goal[],
@@ -15,7 +16,22 @@ const createHome = (
 
   homeDiv.appendChild(header);
   homeDiv.appendChild(activeGoalsComponent(goalData, "home"));
+  const chartsCont = document.createElement("div");
+  const budgetChart = document.createElement("div");
+  const budgetChartHeader = document.createElement("h3");
+  budgetChartHeader.textContent = "Budget";
+  budgetChart.append(budgetChartHeader, calendarSidebar(budgetData));
 
+  const transactionChart = document.createElement("div");
+  const transactionChartHeader = document.createElement("h3");
+  transactionChartHeader.textContent = "Transactions";
+  transactionChart.append(
+    transactionChartHeader,
+    calendarSidebar(transactionData)
+  );
+  chartsCont.className = "home-charts-cont";
+  chartsCont.append(budgetChart, transactionChart);
+  homeDiv.appendChild(chartsCont);
   return homeDiv;
 };
 

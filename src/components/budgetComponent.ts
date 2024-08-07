@@ -75,7 +75,7 @@ const row = (budgetData: Budget) => {
 
   rowMain.addEventListener("click", () => {
     populateEditBudgetForm(budgetData);
-    editBudgetFormDialog.show();
+    editBudgetFormDialog.showModal();
   });
   deleteIcon.addEventListener("click", () => {
     deleteBudgetItem(budgetData);

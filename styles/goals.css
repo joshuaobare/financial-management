@@ -46,7 +46,10 @@
 .goals-expired {
   flex: 1;
 }
-
+.goals-active-body {
+  padding: 10px;
+  padding-left: 0;
+}
 .goals-expired-body {
   display: flex;
   gap: 50px;

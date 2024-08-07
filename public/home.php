@@ -67,11 +67,13 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </nav>
             <div id="container" class="home-container"></div>
-            <dialog id="budget-dialog">
+            <dialog id="budget-dialog" class="dialog budget-dialog">
                 <div class="budget-dialog-cont">
-                    <div class="budget-dialog=header">
-                        <button class="budget-dialog-close" id="budget-dialog-close">
-                            X
+                    <div class="budget-dialog-header dialog-header">
+                        <button class="budget-dialog-close dialog-close" id="budget-dialog-close">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
                         </button>
                     </div>
                     <div class="budget-dialog-body">
@@ -104,11 +106,13 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </dialog>
-            <dialog id="edit-budget-dialog">
+            <dialog id="edit-budget-dialog" class="dialog edit-budget-dialog">
                 <div class="budget-dialog-cont">
-                    <div class="budget-dialog=header">
-                        <button class="budget-dialog-close" id="edit-budget-dialog-close">
-                            X
+                    <div class="budget-dialog-header dialog-header">
+                        <button class="budget-dialog-close dialog-close" id="edit-budget-dialog-close">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
                         </button>
                     </div>
                     <div class="budget-dialog-body">
@@ -152,11 +156,13 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </dialog>
-            <dialog id="transaction-dialog">
+            <dialog id="transaction-dialog" class="dialog transaction-dialog">
                 <div class="transaction-dialog-cont">
-                    <div class="transaction-dialog=header">
-                        <button class="transaction-dialog-close" id="transaction-dialog-close">
-                            X
+                    <div class="transaction-dialog-header dialog-header">
+                        <button class="transaction-dialog-close dialog-close" id="transaction-dialog-close">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
                         </button>
                     </div>
                     <div class="transaction-dialog-body">
@@ -191,11 +197,13 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </dialog>
-            <dialog id="edit-transaction-dialog">
+            <dialog id="edit-transaction-dialog" class="dialog edit-transaction-dialog">
                 <div class="transaction-dialog-cont">
-                    <div class="transaction-dialog=header">
-                        <button class="transaction-dialog-close" id="edit-transaction-dialog-close">
-                            X
+                    <div class="transaction-dialog-header dialog-header">
+                        <button class="transaction-dialog-close dialog-close" id="edit-transaction-dialog-close">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
                         </button>
                     </div>
                     <div class="transaction-dialog-body">
@@ -252,10 +260,12 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </dialog>
-            <dialog id="goal-dialog">
-                <div class="goal-dialog-header">
-                    <button class="goal-dialog-close" id="goal-dialog-close">
-                        X
+            <dialog id="goal-dialog" class="dialog goal-dialog">
+                <div class="goal-dialog-header dialog-header">
+                    <button class="goal-dialog-close dialog-close" id="goal-dialog-close">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
                     </button>
                 </div>
                 <form action="" id="goal-form" class="goal-form" method="post">
@@ -278,10 +288,12 @@ if (isset($_SESSION['user_id'])) {
                     <button>Submit</button>
                 </form>
             </dialog>
-            <dialog id="edit-goal-dialog">
-                <div class="goal-dialog-header">
-                    <button class="goal-dialog-close" id="edit-goal-dialog-close">
-                        X
+            <dialog id="edit-goal-dialog" class="dialog edit-goal-dialog">
+                <div class="goal-dialog-header dialog-header">
+                    <button class="goal-dialog-close dialog-close" id="edit-goal-dialog-close">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
                     </button>
                 </div>
                 <form action="" id="edit-goal-form" class="goal-form" method="post">

@@ -50,7 +50,28 @@
 .home-header-right {
   color: #d92121;
 }
+.home-charts-cont {
+  display: flex;
+}
+.dialog {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  padding: 10px;
+}
+.dialog-close {
+  background-color: #fff;
+  color: black;
+  padding: 0;
+}
 
+.dialog-header {
+  display: flex;
+  justify-content: end;
+}
 @media (max-width: 600px) {
   .home-main {
     height: 100%;
@@ -70,5 +91,9 @@
   }
   .home-nav-items-cont {
     flex-direction: row;
+  }
+  .home-charts-cont {
+    flex-direction: column;
+    margin-bottom: 50px;
   }
 }
