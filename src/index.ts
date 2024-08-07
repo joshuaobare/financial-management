@@ -57,10 +57,19 @@ const renderNav = async () => {
   }
 };
 
-const openHome = () => {
-  const home = createHome();
-  container?.replaceChildren();
-  container?.appendChild(home);
+const openHome = async () => {
+  const userId = localStorage.getItem("user_id");
+
+  if (userId) {
+    const goalData = <Goal[]>await goalService.fetchGoals(userId);
+    const budgetData = <Budget[]>await budgetService.fetchBudget(userId);
+    const transactionData = <Transaction[]>(
+      await transactionService.fetchTransactions(userId)
+    );
+    const home = createHome(goalData, budgetData, transactionData);
+    container?.replaceChildren();
+    container?.appendChild(home);
+  }
 };
 
 homeBtn?.addEventListener("click", (e: Event) => {

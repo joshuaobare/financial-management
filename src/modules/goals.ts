@@ -26,14 +26,14 @@ const createGoalsModule = (
 ) => {
   const goals = document.createElement("div");
   goals.className = "goals";
-  const activeGoals = activeGoalsComponent(goalData);
+  const activeGoals = activeGoalsComponent(goalData, "goals");
   const expiredGoals = expiredGoalsComponent(goalData);
   goals.append(activeGoals, expiredGoals);
 
   return goals;
 };
 
-const activeGoalsComponent = (goalData: Goal[]) => {
+const activeGoalsComponent = (goalData: Goal[], parentModule: string) => {
   const activeGoals = document.createElement("div");
   activeGoals.className = "goals-active";
   const activeGoalsHeader = document.createElement("h3");
@@ -53,7 +53,11 @@ const activeGoalsComponent = (goalData: Goal[]) => {
   newGoalBtn.addEventListener("click", () => {
     goalFormDialog.show();
   });
-  activeGoals.append(activeGoalsHeader, activeGoalsBody, newGoalBtn);
+  activeGoals.append(activeGoalsHeader, activeGoalsBody);
+
+  if (parentModule === "goals") {
+    activeGoals.append(newGoalBtn);
+  }
   return activeGoals;
 };
 
@@ -330,4 +334,4 @@ editGoalDialogCloseBtn?.addEventListener("click", () => {
   editGoalFormDialog!.close();
 });
 
-export { createGoalsModule };
+export { createGoalsModule, activeGoalsComponent };

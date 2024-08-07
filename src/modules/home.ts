@@ -1,11 +1,20 @@
 import "../../styles/main.css";
 import "../../styles/home.css";
+import { activeGoalsComponent } from "./goals";
+import { Goal } from "../interfaces/goalInterface";
+import { Budget } from "../interfaces/budgetInterface";
+import { Transaction } from "../interfaces/transactionInterfact";
 
-const createHome = (): HTMLDivElement => {
+const createHome = (
+  goalData: Goal[],
+  budgetData: Budget[],
+  transactionData: Transaction[]
+): HTMLDivElement => {
   const homeDiv = document.createElement("div");
   const header = createHeader();
 
   homeDiv.appendChild(header);
+  homeDiv.appendChild(activeGoalsComponent(goalData, "home"));
 
   return homeDiv;
 };
