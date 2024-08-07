@@ -20,9 +20,9 @@ const createBudgetComponent = (title: string, budgetData: Budget[]) => {
   headerMid.className = "budget-row-mid budget-header-mid";
   headerMid.textContent = "Planned";
   const headerRight = document.createElement("div");
-  headerRight.textContent = "Received";
+  headerRight.textContent = "Amount";
   headerRight.className = "budget-row-right budget-header-right";
-  header.append(headerLeft, headerMid, headerRight);
+  header.append(headerLeft, headerRight);
   const main = document.createElement("div");
   const componentData = budgetData.filter(
     (budgetItem) => budgetItem.category === title
@@ -37,6 +37,7 @@ const createBudgetComponent = (title: string, budgetData: Budget[]) => {
   footer.className = "budget-footer";
   const addBtn = document.createElement("button");
   addBtn.textContent = "Add Item";
+  addBtn.className = "budget-add-btn";
 
   addBtn.addEventListener("click", () => {
     const budgetFormSelect = <HTMLSelectElement>(
@@ -70,7 +71,7 @@ const row = (budgetData: Budget) => {
   rowRight.className = "budget-row-right";
   rowRight.textContent = "KShs. 0.00";
 
-  rowMain.append(rowLeft, rowMid, rowRight);
+  rowMain.append(rowLeft, rowMid);
 
   rowMain.addEventListener("click", () => {
     populateEditBudgetForm(budgetData);

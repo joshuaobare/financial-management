@@ -42,6 +42,7 @@ const createTransactionComponent = (
   footer.className = "transaction-component-footer";
   const addBtn = document.createElement("button");
   addBtn.textContent = "Add Item";
+  addBtn.className = "transaction-add-btn";
 
   addBtn.addEventListener("click", () => {
     const transactionFormSelect = <HTMLSelectElement>(

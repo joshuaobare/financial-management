@@ -38,6 +38,12 @@
 .transaction-component-row-left {
   width: 50%;
 }
+.transaction-add-btn {
+  padding: 0.3em 1.2em;
+  font-size: 0.9rem;
+  background-color: gold;
+  color: black;
+}
 
 .transaction-component-row-left-input {
   padding: 10px;
@@ -51,7 +57,7 @@
 }
 
 .transaction-component-row-right {
-  width: 25%;
+  width: 50%;
 }
 
 .transaction-component-main {

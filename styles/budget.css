@@ -38,6 +38,12 @@
 .budget-row-left {
   width: 50%;
 }
+.budget-add-btn {
+  padding: 0.3em 1.2em;
+  font-size: 0.9rem;
+  background-color: gold;
+  color: black;
+}
 
 .budget-row-left-input {
   padding: 10px;
@@ -51,7 +57,7 @@
 }
 
 .budget-row-right {
-  width: 25%;
+  width: 50%;
 }
 
 .budget-main {
