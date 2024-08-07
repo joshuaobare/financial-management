@@ -11,8 +11,21 @@ const createInvestmentsModule = () => {
     assets.appendChild(asset);
   });
   investments.appendChild(assets);
+  apiCall();
 
   return investments;
+};
+
+const apiCall = async () => {
+  try {
+    const request = await fetch(
+      `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=${process.env.KEY}`
+    );
+    const response = await request.json();
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export { createInvestmentsModule };
