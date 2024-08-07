@@ -1,5 +1,5 @@
 import FinanceCalculator from "../src/helpers/FinanceCalculator";
-import { budgetData, transactionData } from "./testValues";
+import { budgetData, transactionData, transactionData2 } from "./testValues";
 
 describe("For a category, return total of its values", () => {
   let budgetCalculator = new FinanceCalculator(budgetData);
@@ -41,9 +41,16 @@ describe("Monthly excess is diff between income and all other expenses", () => {
 
 describe("For a given dataset, return the category with the max value and its value", () => {
   let budgetCalculator = new FinanceCalculator(budgetData);
+  let transactionCalculator = new FinanceCalculator(transactionData2);
   test("return max category and value", () => {
     expect(budgetCalculator.maxValueCategory()).toEqual({
       maxValue: 8070000,
+      maxCategory: "Other",
+    });
+  });
+  test("return max category and value", () => {
+    expect(transactionCalculator.maxValueCategory()).toEqual({
+      maxValue: 5000,
       maxCategory: "Other",
     });
   });

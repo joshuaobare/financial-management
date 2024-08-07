@@ -62,17 +62,22 @@ class FinanceCalculator {
     this.financeData.forEach((item) => {
       if (item.category === "Income") return;
       if (item.category === "Savings") return;
+
       if (counter.has(item.category)) {
         const counterVal = counter.get(item.category);
         const updatedVal = counterVal + parseInt(item.amount);
         counter.set(item.category, updatedVal);
-
         if (updatedVal > maxValue) {
           maxCategory = item.category;
           maxValue = updatedVal;
         }
       } else {
+        const amount = parseInt(item.amount);
         counter.set(item.category, parseInt(item.amount));
+        if (amount > maxValue) {
+          maxCategory = item.category;
+          maxValue = amount;
+        }
       }
     });
 

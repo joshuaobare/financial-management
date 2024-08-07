@@ -18,6 +18,12 @@
 .goal-item > div {
   flex: 1;
 }
+.goal-add-btn {
+  padding: 0.3em 1.2em;
+  font-size: 0.9rem;
+  background-color: gold;
+  color: black;
+}
 .goal-item-del-icon {
   cursor: pointer;
   background-color: rgba(216, 30, 30, 0.1);
@@ -44,6 +50,10 @@
 .goals-expired-body {
   display: flex;
   gap: 50px;
+}
+.goals-accomplished,
+.goals-unaccomplished {
+  width: 50%;
 }
 
 /* GOAL DIALOGS */

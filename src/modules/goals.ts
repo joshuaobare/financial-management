@@ -48,6 +48,7 @@ const activeGoalsComponent = (goalData: Goal[]) => {
 
   const newGoalBtn = document.createElement("button");
   newGoalBtn.textContent = "Create New Goal";
+  newGoalBtn.className = "goal-add-btn";
 
   newGoalBtn.addEventListener("click", () => {
     goalFormDialog.show();
@@ -83,6 +84,7 @@ const expiredGoalsComponent = (goalData: Goal[]) => {
 
 const accomplishedGoalsSection = (goalData: Goal[]) => {
   const accomplishedGoals = document.createElement("div");
+  accomplishedGoals.className = "goals-accomplished";
   const accomplishedGoalsHeader = document.createElement("h4");
   accomplishedGoalsHeader.textContent = "Accomplished Goals";
   accomplishedGoals.appendChild(accomplishedGoalsHeader);
@@ -96,6 +98,7 @@ const accomplishedGoalsSection = (goalData: Goal[]) => {
 
 const unaccomplishedGoalsSection = (goalData: Goal[]) => {
   const unaccomplishedGoals = document.createElement("div");
+  unaccomplishedGoals.className = "goals-unaccomplished";
   const unAccomplishedGoalsHeader = document.createElement("h4");
   unAccomplishedGoalsHeader.textContent = "Unaccomplished Goals";
   unaccomplishedGoals.appendChild(unAccomplishedGoalsHeader);

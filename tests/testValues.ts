@@ -359,4 +359,51 @@ const transactionData: Transaction[] = [
   },
 ];
 
-export { budgetData, transactionData };
+const transactionData2 = [
+  {
+    transaction_id: "39",
+    user_id: "1",
+    title: "Water",
+    description: "",
+    start_date: "2024-08-01",
+    end_date: "2024-08-31",
+    category: "Bills",
+    amount: "3000.00",
+    created_at: "2024-08-01 21:54:23",
+  },
+  {
+    transaction_id: "41",
+    user_id: "1",
+    title: "Clothes",
+    description: "",
+    start_date: "2024-08-01",
+    end_date: "2024-08-31",
+    category: "Personal",
+    amount: "950.00",
+    created_at: "2024-08-01 21:57:21",
+  },
+  {
+    transaction_id: "42",
+    user_id: "1",
+    title: "Salary",
+    description: "",
+    start_date: "2024-08-01",
+    end_date: "2024-08-31",
+    category: "Income",
+    amount: "700000.00",
+    created_at: "2024-08-07 13:13:41",
+  },
+  {
+    transaction_id: "44",
+    user_id: "1",
+    title: "Tithes",
+    description: "",
+    start_date: "2024-08-01",
+    end_date: "2024-08-31",
+    category: "Other",
+    amount: "5000.00",
+    created_at: "2024-08-07 13:16:02",
+  },
+];
+
+export { budgetData, transactionData, transactionData2 };

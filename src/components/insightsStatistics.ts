@@ -7,6 +7,7 @@ const insightsStatisticsSection = (
   monthlyBudgetData: Budget[],
   prevMonthlyTransactionData: Transaction[]
 ) => {
+  console.log(monthlyTransactionData);
   const monthlyTransactionCalculator = new FinanceCalculator(
     monthlyTransactionData
   );
@@ -32,6 +33,7 @@ const insightsStatisticsSection = (
   component.className = "insights-bottom";
   const componentHeader = document.createElement("h2");
   componentHeader.textContent = "STATISTICS";
+  console.log(monthlyTransactionCalculator.maxValueCategory());
 
   const incomeVsSpendingCard = incomeVsSpending(monthlyIncome, monthlySpend);
 
@@ -100,6 +102,7 @@ const spendingCategories = (
   if (monthlySpend !== 0) {
     const { maxValue, maxCategory } =
       monthlyTransactionCalculator.maxValueCategory();
+    console.log(maxCategory);
     spendingCategoriesCardBody.textContent = `Your top spending category is ${maxCategory}, accounting for ${Math.round(
       (maxValue / monthlySpend) * 100
     )}% of your total spending`;

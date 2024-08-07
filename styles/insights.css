@@ -56,6 +56,11 @@
 .insights-charts-header {
   width: 70%;
 }
+.insights-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 @media (max-width: 600px) {
   .insights-top {
