@@ -29,6 +29,7 @@
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: gold;
   font-size: 2rem;
+  text-decoration: none;
 }
 .navbar-link {
   border-radius: 8px;

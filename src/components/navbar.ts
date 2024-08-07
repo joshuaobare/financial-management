@@ -9,7 +9,8 @@ const createNavComponent = (userData: User | null) => {
   const navbar: HTMLElement = document.createElement("div");
   navbar.className = "navbar";
 
-  const navbarLeft = document.createElement("div");
+  const navbarLeft = document.createElement("a");
+  navbarLeft.href = "home.php";
   navbarLeft.textContent = "FINTRACK";
   navbarLeft.className = "navbar-left";
   const navbarMid = document.createElement("div");
@@ -37,11 +38,11 @@ const navbarRightSection = (userData: User | null) => {
     navbarRight.append(userName, logout);
     logout.addEventListener("click", () => {
       localStorage.removeItem("user_id");
-      logoutSession()
+      logoutSession();
     });
   } else {
     const signIn = document.createElement("a");
-    signIn.textContent = "Sign In";
+    signIn.textContent = "Login";
     signIn.href = "login.php";
     signIn.className = "navbar-link";
     const register = document.createElement("a");

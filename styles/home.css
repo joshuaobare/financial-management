@@ -9,6 +9,11 @@
   flex: 1;
   width: 100%;
 }
+.home-module {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 .home-nav {
   width: 20vw;
   border-right: 1px solid black;

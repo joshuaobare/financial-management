@@ -1,4 +1,14 @@
+.profile {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
 .profile-item {
   display: flex;
   gap: 10px;
+}
+
+.edit-form-cont {
+  display: flex;
 }
