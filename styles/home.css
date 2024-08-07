@@ -50,3 +50,25 @@
 .home-header-right {
   color: #d92121;
 }
+
+@media (max-width: 600px) {
+  .home-main {
+    height: 100%;
+    flex: 1 0 auto;
+    overflow-y: auto;
+  }
+  .home-nav-item-title {
+    display: none;
+  }
+  .home-nav {
+    border-right: none;
+    border-top: 1px solid black;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+  }
+  .home-nav-items-cont {
+    flex-direction: row;
+  }
+}

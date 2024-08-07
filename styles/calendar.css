@@ -96,3 +96,16 @@
   display: flex;
   justify-content: flex-start;
 }
+
+@media (max-width: 600px) {
+  .cal-sidebar {
+    position: static;
+  }
+  .cal-body {
+    flex-direction: column-reverse;
+  }
+  .cal-body-left {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+}

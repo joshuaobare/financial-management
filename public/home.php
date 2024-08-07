@@ -30,39 +30,39 @@ if (isset($_SESSION['user_id'])) {
                 <div class="home-nav-items-cont">
                     <div class="home-nav-item" id="home-btn">
                         <span class="material-symbols-outlined home-icon"> home </span>
-                        <span>Home</span>
+                        <span class="home-nav-item-title">Home</span>
                     </div>
                     <div class="home-nav-item" id="budget-btn">
                         <span class="material-symbols-outlined home-icon">
                             request_quote
                         </span>
-                        <span>Budget</span>
+                        <span class="home-nav-item-title">Budget</span>
                     </div>
                     <div class="home-nav-item" id="transaction-btn">
                         <span class="material-symbols-outlined home-icon">
                             shopping_cart
                         </span>
-                        <span>Transactions</span>
+                        <span class="home-nav-item-title">Transactions</span>
                     </div>
                     <div class="home-nav-item" id="goals-btn">
                         <span class="material-symbols-outlined home-icon"> target </span>
-                        <span>Goals</span>
+                        <span class="home-nav-item-title">Goals</span>
                     </div>
                     <div class="home-nav-item" id="investments-btn">
                         <span class="material-symbols-outlined home-icon">
                             currency_bitcoin
                         </span>
-                        <span>Investments</span>
+                        <span class="home-nav-item-title">Investments</span>
                     </div>
                     <div class="home-nav-item" id="insights-btn">
                         <span class="material-symbols-outlined home-icon">
                             monitoring
                         </span>
-                        <span>Insights</span>
+                        <span class="home-nav-item-title">Insights</span>
                     </div>
                     <div class="home-nav-item" id="spending-btn">
                         <span class="material-symbols-outlined home-icon"> help </span>
-                        <span>FAQs</span>
+                        <span class="home-nav-item-title">FAQs</span>
                     </div>
                 </div>
             </nav>

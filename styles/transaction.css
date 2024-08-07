@@ -113,3 +113,9 @@
 .transaction-increment-value {
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .transaction-component {
+    width: 100%;
+  }
+}

@@ -93,3 +93,8 @@
   padding: 10px;
   width: 250px;
 }
+@media (max-width: 600px) {
+  .budget-component {
+    width: 100%;
+  }
+}
