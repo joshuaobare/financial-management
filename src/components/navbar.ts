@@ -2,6 +2,7 @@ import "../../styles/navbar.css";
 import "../../styles/main.css";
 import { UserService } from "../services/UserService";
 import { User } from "../interfaces/userInterface";
+import { config } from "../config";
 
 const userService = new UserService();
 const createNavComponent = (userData: User | null) => {
@@ -36,6 +37,7 @@ const navbarRightSection = (userData: User | null) => {
     navbarRight.append(userName, logout);
     logout.addEventListener("click", () => {
       localStorage.removeItem("user_id");
+      logoutSession()
     });
   } else {
     const signIn = document.createElement("a");
@@ -50,6 +52,16 @@ const navbarRightSection = (userData: User | null) => {
   }
 
   return navbarRight;
+};
+
+const logoutSession = async () => {
+  try {
+    const request = await fetch(`${config.BASE_URL}logout.php`);
+    const response = await request.json();
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export { createNavComponent };
