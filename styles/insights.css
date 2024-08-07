@@ -10,7 +10,7 @@
 }
 .insights-top {
   display: flex;
-  width: 90%;
+  width: 80%;
   gap: 50px;
   align-items: center;
   justify-content: center;
@@ -49,4 +49,29 @@
 }
 .insights-monthly-spending-cont {
   width: 100%;
+}
+.insights-mid,
+.insights-top,
+.insights-bottom,
+.insights-charts-header {
+  width: 70%;
+}
+
+@media (max-width: 600px) {
+  .insights-top {
+    flex-direction: column;
+  }
+  .insights-budget-section,
+  .insights-transaction-section {
+    width: 100%;
+  }
+  .insights-mid,
+  .insights-top,
+  .insights-bottom,
+  .insights-charts-header {
+    width: 100%;
+  }
+  .insights-mid {
+    margin-bottom: 50px;
+  }
 }

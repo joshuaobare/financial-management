@@ -29,7 +29,7 @@ const insightsStatisticsSection = (
   const daysInMonth = lastMonthDay.getDate();
 
   const component = document.createElement("div");
-  component.className = "insight-bottom";
+  component.className = "insights-bottom";
   const componentHeader = document.createElement("h2");
   componentHeader.textContent = "STATISTICS";
 

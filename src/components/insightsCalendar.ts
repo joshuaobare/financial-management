@@ -184,15 +184,19 @@ const calendarBody = (
 
     return itemStart >= prevStartDate && itemEnd <= prevEndDate;
   });
+  const chartHeader = document.createElement("h2");
+  chartHeader.textContent = "CHARTS";
+  chartHeader.className = "insights-charts-header";
 
   calendarBody.append(
-    insightsTop(monthlyBudgetData, monthlyTransactionData),
-    insightsMid(monthlyTransactionData, prevMonthlyTransactionData),
     insightsStatisticsSection(
       monthlyTransactionData,
       monthlyBudgetData,
       prevMonthlyTransactionData
-    )
+    ),
+    chartHeader,
+    insightsTop(monthlyBudgetData, monthlyTransactionData),
+    insightsMid(monthlyTransactionData, prevMonthlyTransactionData)
   );
 
   calendarBody.className = "insights-calendar-body";
@@ -225,7 +229,7 @@ const insightsTop = (budgetData: Budget[], transactionData: Transaction[]) => {
   transactionChartCont.className = "insights-transaction-chart-cont";
   const transactionChart = document.createElement("canvas");
   transactionChart.id = "insights-transaction-chart";
-  transactionChart.className = "insights=transaction-chart";
+  transactionChart.className = "insights-transaction-chart";
   const transactionChartDesc = document.createElement("div");
   transactionChartDesc.textContent = "Actual spending by category";
 
@@ -249,6 +253,8 @@ const insightsMid = (
   const monthlySpendingComparisonCont = document.createElement("div");
   monthlySpendingComparisonCont.className = "insights-monthly-spending-cont";
   const monthlySpendingComparison = document.createElement("canvas");
+  monthlySpendingComparison.id = "insights-monthly-spending-chart";
+  monthlySpendingComparison.className = "insights-monthly-spending-chart";
   renderMonthlySpendingChart(
     monthlySpendingComparison,
     monthlyTransactionData,

@@ -2,7 +2,6 @@
 // Include the database connection configuration , header file and createTransaction function
 include_once ("../config/pdo.php");
 include_once ("./header.php");
-include_once ("./createTransaction.php");
 
 // Read the raw POST data from the request body
 $data = file_get_contents('php://input');
