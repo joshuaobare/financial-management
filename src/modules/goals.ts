@@ -41,7 +41,9 @@ const activeGoalsComponent = (goalData: Goal[]) => {
   const activeGoalsBody = document.createElement("div");
 
   goalData.forEach((goal) => {
-    activeGoalsBody.append(goalItem(goal));
+    if (new Date(goal.due_date) > new Date()) {
+      activeGoalsBody.append(goalItem(goal));
+    }
   });
 
   const newGoalBtn = document.createElement("button");
@@ -63,10 +65,11 @@ const expiredGoalsComponent = (goalData: Goal[]) => {
   const expiredGoalsBody = document.createElement("div");
   expiredGoalsBody.className = "goals-expired-body";
   const accomplishedGoalData = goalData.filter(
-    (goal) => goal.is_achieved && new Date(goal.due_date) < new Date()
+    (goal) => parseInt(goal.is_achieved) && new Date(goal.due_date) < new Date()
   );
   const unAccomplishedGoalData = goalData.filter(
-    (goal) => !goal.is_achieved && new Date(goal.due_date) < new Date()
+    (goal) =>
+      !parseInt(goal.is_achieved) && new Date(goal.due_date) < new Date()
   );
   const accomplishedGoals = accomplishedGoalsSection(accomplishedGoalData);
   const unaccomplishedGoals = unaccomplishedGoalsSection(
@@ -147,7 +150,9 @@ const goalItem = (currentGoal: Goal) => {
     new Date(),
     new Date(currentGoal.due_date)
   );
-  daysLeft.textContent = `${days} day${days === 1 ? "" : "s"} left`;
+  daysLeft.textContent = `${days} day${days === 1 ? "" : "s"} ${
+    new Date(currentGoal.due_date) > new Date() ? "left" : "past"
+  }`;
   const currentAmount = document.createElement("div");
   currentAmount.className = "goal-item-current-amount";
   currentAmount.textContent = `KShs. ${currentGoal.current_amount}`;
