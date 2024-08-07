@@ -1,31 +1,36 @@
+import { InvestmentOptions } from "../interfaces/investmentOptionsInterface";
 const createInvestmentsModule = () => {
   const investments = document.createElement("div");
   const assets = document.createElement("select");
-  const options = [
-    { "S&P 500": ["TIME_SERIES_DAILY", "SPY"] },
-    { Bitcoin: ["DIGITAL_CURRENCY_DAILY", "BTC"] },
-    { Ethereum: ["DIGITAL_CURRENCY_DAILY", "ETH"] },
-    { Gold: ["TIME_SERIES_DAILY", "GLD"] },
-    { "Crude Oil": ["TIME_SERIES_DAILY", "USO"] },
-  ];
+  const options: InvestmentOptions = {
+    "S&P 500": ["TIME_SERIES_DAILY", "SPY"],
+    Bitcoin: ["DIGITAL_CURRENCY_DAILY", "BTC"],
+    Ethereum: ["DIGITAL_CURRENCY_DAILY", "ETH"],
+    Gold: ["TIME_SERIES_DAILY", "GLD"],
+    "Crude Oil": ["TIME_SERIES_DAILY", "USO"],
+  };
 
-  options.forEach((option) => {
+  for (const key of Object.keys(options)) {
     const asset = document.createElement("option");
-    asset.textContent = `${Object.keys(option)[0]}`;
-    asset.value = `${Object.keys(option)[0]}`;
-    console.log(Object.keys(option));
+    asset.textContent = key;
+    asset.value = key;
     assets.appendChild(asset);
-  });
+  }
+
   investments.appendChild(assets);
-  apiCall();
+
+  assets.addEventListener("change", (e: Event) => {
+    const [func, symbol] = options[assets.value as keyof InvestmentOptions];
+    apiCall(func, symbol);
+  });
 
   return investments;
 };
 
-const apiCall = async () => {
+const apiCall = async (func: string, symbol: string) => {
   try {
     const request = await fetch(
-      `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=${process.env.KEY}`
+      `https://www.alphavantage.co/query?function=${func}&symbol=${symbol}&market=USD&apikey=${process.env.KEY}`
     );
     const response = await request.json();
     console.log(response);
