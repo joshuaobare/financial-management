@@ -1,13 +1,19 @@
 const createInvestmentsModule = () => {
   const investments = document.createElement("div");
   const assets = document.createElement("select");
-  const options = ["S&P 500", "Bitcoin", "Ethereum", "Gold", "Crude Oil"];
+  const options = [
+    { "S&P 500": ["TIME_SERIES_DAILY", "SPY"] },
+    { Bitcoin: ["DIGITAL_CURRENCY_DAILY", "BTC"] },
+    { Ethereum: ["DIGITAL_CURRENCY_DAILY", "ETH"] },
+    { Gold: ["TIME_SERIES_DAILY", "GLD"] },
+    { "Crude Oil": ["TIME_SERIES_DAILY", "USO"] },
+  ];
 
   options.forEach((option) => {
     const asset = document.createElement("option");
-    asset.textContent = option;
-    asset.value = option;
-
+    asset.textContent = `${Object.keys(option)[0]}`;
+    asset.value = `${Object.keys(option)[0]}`;
+    console.log(Object.keys(option));
     assets.appendChild(asset);
   });
   investments.appendChild(assets);
