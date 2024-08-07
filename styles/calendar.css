@@ -80,3 +80,19 @@
   list-style: none;
   flex-wrap: wrap;
 }
+
+.cal-sidebar-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.cal-prop-title {
+  width: 100px;
+  font-weight: bold;
+}
+.cal-prop-amount {
+  width: 150px;
+  display: flex;
+  justify-content: flex-start;
+}

@@ -18,20 +18,43 @@ const sidebarTop = (financialData: Budget[] | Transaction[]) => {
   const sectionHeader = document.createElement("h2");
   sectionHeader.textContent = "Monthly Breakdown";
   const body = document.createElement("div");
+  const incomeSectionCont = document.createElement("div");
   const incomeSection = document.createElement("div");
   const income = financeCalculator
     .financeCategoryCalculator("Income")
     .toString();
-  incomeSection.textContent = `Income this month: ${income}`;
+  incomeSection.textContent = `INCOME`;
+  incomeSection.className = "cal-prop-title";
+  const incomeAmount = document.createElement("div");
+  incomeAmount.textContent = `KShs. ${income}`;
+  incomeAmount.className = "cal-prop-amount";
+  incomeSectionCont.append(incomeSection, incomeAmount);
+  incomeSectionCont.className = "cal-sidebar-row";
+
+  const totalSpendSectionCont = document.createElement("div");
   const totalSpendSection = document.createElement("div");
+  totalSpendSection.className = "cal-prop-title";
   const totalSpend = financeCalculator.totalMonthlySpend();
   console.log(JSON.parse(JSON.stringify(financialData)));
   console.log(totalSpend);
-  totalSpendSection.textContent = `Total spend this month: ${totalSpend}`;
+  totalSpendSection.textContent = `EXPENSES`;
+  const totalSpendAmount = document.createElement("div");
+  totalSpendAmount.className = "cal-prop-amount";
+  totalSpendAmount.textContent = `KShs. ${totalSpend}`;
+  totalSpendSectionCont.append(totalSpendSection, totalSpendAmount);
+  totalSpendSectionCont.className = "cal-sidebar-row";
+
+  const savingSectionCont = document.createElement("div");
   const savingSection = document.createElement("div");
+  savingSection.className = "cal-prop-title";
+  const savingAmount = document.createElement("div");
   const netIncome = financeCalculator.monthlyExcessCalculator().toString();
-  savingSection.textContent = `Leftover: ${netIncome}`;
-  body.append(incomeSection, totalSpendSection, savingSection);
+  savingSection.textContent = `LEFTOVER`;
+  savingAmount.textContent = `KShs. ${netIncome}`;
+  savingAmount.className = "cal-prop-amount";
+  savingSectionCont.append(savingSection, savingAmount);
+  savingSectionCont.className = "cal-sidebar-row";
+  body.append(incomeSectionCont, totalSpendSectionCont, savingSectionCont);
   section.append(sectionHeader, body);
   return section;
 };
