@@ -1,6 +1,9 @@
 import { InvestmentOptions } from "../interfaces/investmentOptionsInterface";
+import { renderInvestmentChart } from "../components/investmentChart";
 const createInvestmentsModule = () => {
   const investments = document.createElement("div");
+  const investmentsHeader = document.createElement("h3");
+  investmentsHeader.textContent = "Assets";
   const assets = document.createElement("select");
   const options: InvestmentOptions = {
     "S&P 500": ["TIME_SERIES_DAILY", "SPY"],
@@ -17,6 +20,7 @@ const createInvestmentsModule = () => {
     assets.appendChild(asset);
   }
 
+  investments.appendChild(investmentsHeader);
   investments.appendChild(assets);
 
   assets.addEventListener("change", (e: Event) => {
@@ -33,7 +37,7 @@ const apiCall = async (func: string, symbol: string) => {
       `https://www.alphavantage.co/query?function=${func}&symbol=${symbol}&market=USD&apikey=${process.env.KEY}`
     );
     const response = await request.json();
-    console.log(response);
+    console.log(response["Time Series (Digital Currency Daily)"]);
   } catch (error) {
     console.error(error);
   }
