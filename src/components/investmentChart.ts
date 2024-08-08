@@ -4,8 +4,9 @@ Chart.register(LineController);
 const renderInvestmentChart = (
   ctx: HTMLCanvasElement,
   dates: string[],
-  values: string[]
+  values: number[]
 ) => {
+  ctx.getContext("2d");
   const data = {
     labels: [...dates],
     datasets: [
@@ -18,7 +19,7 @@ const renderInvestmentChart = (
       },
     ],
   };
-  new Chart(ctx, {
+  const chart = new Chart(ctx, {
     type: "bar",
     data: data,
     options: {
@@ -35,6 +36,7 @@ const renderInvestmentChart = (
       },
     },
   });
+  return chart;
 };
 
 export { renderInvestmentChart };
