@@ -14,6 +14,7 @@ import { GoalService } from "./services/GoalService";
 import { Goal } from "./interfaces/goalInterface";
 import { UserService } from "./services/UserService";
 import { createInvestmentsModule } from "./modules/investments";
+import { createFaqModule } from "./modules/faq";
 
 const container = document.getElementById("container");
 const homeBtn: HTMLElement | null = document.getElementById("home-btn");
@@ -25,6 +26,7 @@ const insightsBtn: HTMLElement | null = document.getElementById("insights-btn");
 const goalsBtn: HTMLElement | null = document.getElementById("goals-btn");
 const investmentBtn: HTMLElement | null =
   document.getElementById("investments-btn");
+const faqBtn: HTMLElement | null = document.getElementById("faq-btn");
 const navBtns: (HTMLElement | null)[] = [
   homeBtn,
   budgetBtn,
@@ -32,6 +34,7 @@ const navBtns: (HTMLElement | null)[] = [
   insightsBtn,
   goalsBtn,
   investmentBtn,
+  faqBtn,
 ];
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
@@ -165,6 +168,18 @@ investmentBtn?.addEventListener("click", () => {
   openInvestments();
   resetNavColor();
   investmentBtn.style.backgroundColor = "gold";
+});
+
+const openFAQ = () => {
+  const faq = createFaqModule();
+  container?.replaceChildren();
+  container?.appendChild(faq);
+};
+
+faqBtn?.addEventListener("click", () => {
+  openFAQ();
+  resetNavColor();
+  faqBtn.style.backgroundColor = "gold";
 });
 
 const start = () => {

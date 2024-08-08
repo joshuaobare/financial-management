@@ -60,7 +60,7 @@ if (isset($_SESSION['user_id'])) {
                         </span>
                         <span class="home-nav-item-title">Insights</span>
                     </div>
-                    <div class="home-nav-item" id="spending-btn">
+                    <div class="home-nav-item" id="faq-btn">
                         <span class="material-symbols-outlined home-icon"> help </span>
                         <span class="home-nav-item-title">FAQs</span>
                     </div>
