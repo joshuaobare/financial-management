@@ -3,6 +3,7 @@ import { Transaction } from "../interfaces/transactionInterfact";
 import FinanceCalculator from "../helpers/FinanceCalculator";
 import { renderChart } from "./chartComponent";
 
+// Entry point: calendar component and home module
 const calendarSidebar = (financialData: Budget[] | Transaction[]) => {
   const sidebar = document.createElement("div");
   sidebar.className = "cal-sidebar";
@@ -35,8 +36,6 @@ const sidebarTop = (financialData: Budget[] | Transaction[]) => {
   const totalSpendSection = document.createElement("div");
   totalSpendSection.className = "cal-prop-title";
   const totalSpend = financeCalculator.totalMonthlySpend();
-  console.log(JSON.parse(JSON.stringify(financialData)));
-  console.log(totalSpend);
   totalSpendSection.textContent = `EXPENSES`;
   const totalSpendAmount = document.createElement("div");
   totalSpendAmount.className = "cal-prop-amount";

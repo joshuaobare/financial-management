@@ -1,5 +1,6 @@
 import { config } from "../config";
 
+// class allows fetching of user details
 class UserService {
   constructor() {}
 

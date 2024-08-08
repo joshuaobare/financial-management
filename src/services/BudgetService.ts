@@ -1,6 +1,7 @@
 import { config } from "../config";
 import { Budget } from "../interfaces/budgetInterface";
 
+// class facilitates CRUD operations for the budget table
 class BudgetService {
   constructor() {}
 

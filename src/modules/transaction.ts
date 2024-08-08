@@ -2,11 +2,11 @@ import { createCalendar } from "../components/calendar";
 import { Transaction } from "../interfaces/transactionInterfact";
 import "../../styles/transaction.css";
 import { TransactionService } from "../services/TransactionService";
-import { Helper } from "../helpers/Helper";
+import { DateHelper } from "../helpers/DateHelper";
 import { openTransaction } from "../index";
 
 const transactionService = new TransactionService();
-const helper = new Helper();
+const helper = new DateHelper();
 const transactionFormDialog = <HTMLDialogElement>(
   document.getElementById("transaction-dialog")
 );

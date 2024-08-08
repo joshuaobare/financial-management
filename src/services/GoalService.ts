@@ -1,6 +1,7 @@
 import { config } from "../config";
 import { Goal } from "../interfaces/goalInterface";
 
+// class facilitates CRUD functionality for the Goals table
 class GoalService {
   constructor() {}
 

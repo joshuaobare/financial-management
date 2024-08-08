@@ -1,4 +1,4 @@
-class Helper {
+class DateHelper {
   // this function takes the month and year and returns the month's start and end date
   getMonthStartAndEndByDate = (year: number, month: number) => {
     // Create a new Date object for the start date and set it to the first day of the specified month and year
@@ -53,4 +53,4 @@ class Helper {
   };
 }
 
-export { Helper };
+export { DateHelper };

@@ -1,7 +1,7 @@
-import { Helper } from "../src/helpers/Helper";
+import { DateHelper } from "../src/helpers/DateHelper";
 
 describe("getPreviousMonthDates from current date", () => {
-  const helper = new Helper();
+  const helper = new DateHelper();
   const startDate = new Date("2024-07-01");
   const endDate = new Date("2024-07-01");
 
@@ -43,7 +43,7 @@ describe("getPreviousMonthDates from current date", () => {
 });
 
 describe("get start and end date from month and year", () => {
-  const helper = new Helper();
+  const helper = new DateHelper();
   it("should return correct start and end dates for January", () => {
     const result = helper.getMonthStartAndEndByDate(2023, 0);
     expect(result).toEqual({
@@ -94,7 +94,7 @@ describe("get start and end date from month and year", () => {
 });
 
 describe("get days between two dates", () => {
-  const helper = new Helper();
+  const helper = new DateHelper();
 
   it("returns 0 when the same day is passed in", () => {
     const result = helper.getDaysBetweenDates(new Date(), new Date());

@@ -1,11 +1,11 @@
 import { Goal } from "../interfaces/goalInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
-import { Helper } from "../helpers/Helper";
+import { DateHelper } from "../helpers/DateHelper";
 import "../../styles/goals.css";
 import { GoalService } from "../services/GoalService";
 import { openGoals } from "../index";
 
-const helper = new Helper();
+const helper = new DateHelper();
 const goalFormDialog = <HTMLDialogElement>(
   document.getElementById("goal-dialog")
 );

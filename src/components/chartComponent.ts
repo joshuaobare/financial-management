@@ -5,6 +5,7 @@ import {
 } from "../../node_modules/chart.js/auto/auto";
 Chart.register(DoughnutController);
 
+// Renders chart within calendarSidebar component
 const renderChart = (ctx: HTMLCanvasElement, financeData: any) => {
   ctx.getContext("2d");
   const financeCalculator = new FinanceCalculator(financeData);
@@ -38,6 +39,7 @@ const renderChart = (ctx: HTMLCanvasElement, financeData: any) => {
 
   const allZero = financeCalculator.totalMonthlySpend() === 0;
 
+  // Plugin renders text when the dataset is empty
   const noDataPlugin = {
     id: "noData",
     afterDraw(chart: Chart) {

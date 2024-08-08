@@ -1,6 +1,7 @@
 import { LineController, Chart } from "../../node_modules/chart.js/auto/auto";
 Chart.register(LineController);
 
+// Renders chart of values from Stocks API
 const renderInvestmentChart = (
   ctx: HTMLCanvasElement,
   dates: string[],

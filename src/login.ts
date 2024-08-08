@@ -2,6 +2,7 @@ import "../styles/login.css";
 import "../styles/main.css";
 import "../styles/navbar.css";
 
+// Get DOM elements
 const loginForm: HTMLElement | null = document.getElementById("login-form");
 const email: HTMLInputElement | null = <HTMLInputElement>(
   document.getElementById("email")
@@ -13,6 +14,7 @@ const password: HTMLInputElement | null = <HTMLInputElement>(
 const password_error: HTMLElement | null =
   document.getElementById("password_error");
 
+// Function to display errors when data is input
 const displayError = (node: HTMLElement) => {
   if (node === email) {
     if (email.validity.valueMissing) {
@@ -29,6 +31,7 @@ const displayError = (node: HTMLElement) => {
   }
 };
 
+// Event listeners
 email?.addEventListener("input", (e: Event) => {
   if (email.validity.valid) {
     email_error!.textContent = "";

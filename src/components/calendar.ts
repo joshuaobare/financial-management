@@ -5,6 +5,7 @@ import { calendarSidebar } from "./calendarSidebar";
 import { createTransactionComponent } from "./transactionComponent";
 import "../../styles/calendar.css";
 
+// Entry point: either budget or transaction module
 const createCalendar = (
   financialData: Budget[] | Transaction[],
   parent: string
@@ -85,6 +86,7 @@ const calendarHeader = (
 
   renderCalendarDate(calendarHeaderDate, date, year, month);
 
+  // chevrons control what is rendered within calendar body
   chevrons.forEach((chevron) => {
     chevron.addEventListener("click", () => {
       month = chevron.id === "cal-chevron-prev" ? month - 1 : month + 1;
@@ -121,6 +123,7 @@ const renderCalendarBody = (
   calBody.appendChild(calendarBody(date, year, month, financialData, parent));
 };
 
+// Component renders the calendar's body
 const calendarBody = (
   date: Date,
   year: number,
@@ -150,6 +153,7 @@ const calendarBody = (
   calendarBodyRight.className = "cal-body-right";
   let calSidebar = null;
 
+  // Component is used in both budget and transaction modules
   if (parent === "Budget") {
     calSidebar = calendarSidebar(monthlyData as Budget[]);
     calendarBodyLeft.append(

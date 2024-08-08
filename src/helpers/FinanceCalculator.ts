@@ -1,5 +1,7 @@
 import { Budget } from "../interfaces/budgetInterface";
 import { Transaction } from "../interfaces/transactionInterfact";
+
+// Class is used for all finance calculations
 class FinanceCalculator {
   private financeData: Budget[] | Transaction[] = [];
 

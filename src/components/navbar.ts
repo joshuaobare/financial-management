@@ -5,6 +5,8 @@ import { User } from "../interfaces/userInterface";
 import { config } from "../config";
 
 const userService = new UserService();
+
+// Entry point: index.ts. Navbar module is used in all public php files
 const createNavComponent = (userData: User | null) => {
   const navbar: HTMLElement = document.createElement("div");
   navbar.className = "navbar";
@@ -55,6 +57,7 @@ const navbarRightSection = (userData: User | null) => {
   return navbarRight;
 };
 
+// Terminates php session
 const logoutSession = async () => {
   try {
     const request = await fetch(`${config.BASE_URL}logout.php`);

@@ -3,6 +3,7 @@ import { BarController, Chart } from "../../node_modules/chart.js/auto/auto";
 Chart.register(BarController);
 import FinanceCalculator from "../helpers/FinanceCalculator";
 
+// Renders comparison data between current month and previous month
 const renderMonthlySpendingChart = (
   ctx: HTMLCanvasElement,
   currMonth: Transaction[],

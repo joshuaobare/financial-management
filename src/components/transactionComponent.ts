@@ -8,6 +8,8 @@ import {
 import { TransactionService } from "../services/TransactionService";
 
 const transactionService = new TransactionService();
+
+// Entry point: Transaction module
 const createTransactionComponent = (
   title: string,
   transactionData: Transaction[]

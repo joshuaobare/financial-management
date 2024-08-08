@@ -7,6 +7,7 @@ import {
 import { openTransaction as resetTransactionModule } from "../index";
 import { Transaction } from "../interfaces/transactionInterfact";
 
+// class facilitates CRUD functionality for the transaction table
 class TransactionService {
   constructor() {}
 

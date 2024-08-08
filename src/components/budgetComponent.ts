@@ -8,6 +8,8 @@ import {
 } from "../modules/budget";
 
 const budgetService = new BudgetService();
+
+// Entry point: Budget module
 const createBudgetComponent = (title: string, budgetData: Budget[]) => {
   const budgetComponent = document.createElement("div");
   budgetComponent.className = "budget-component";

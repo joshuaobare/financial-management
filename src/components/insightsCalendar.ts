@@ -3,12 +3,14 @@ import { Transaction } from "../interfaces/transactionInterfact";
 import { calendarSidebar } from "./calendarSidebar";
 import { renderChart } from "./chartComponent";
 import "../../styles/insights.css";
-import { Helper } from "../helpers/Helper";
+import { DateHelper } from "../helpers/DateHelper";
 import { renderMonthlySpendingChart } from "./monthlySpendingChart";
 import FinanceCalculator from "../helpers/FinanceCalculator";
 import { insightsStatisticsSection } from "./insightsStatistics";
 
-const helper = new Helper();
+const helper = new DateHelper();
+
+// Entry point: Insights module
 const createInsightsCalendar = (
   budgetData: Budget[],
   transactionData: Transaction[]

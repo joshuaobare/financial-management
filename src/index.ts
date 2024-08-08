@@ -16,6 +16,7 @@ import { UserService } from "./services/UserService";
 import { createInvestmentsModule } from "./modules/investments";
 import { createFaqModule } from "./modules/faq";
 
+// Get DOM elements
 const container = document.getElementById("container");
 const homeBtn: HTMLElement | null = document.getElementById("home-btn");
 const budgetBtn: HTMLElement | null = document.getElementById("budget-btn");
@@ -27,6 +28,8 @@ const goalsBtn: HTMLElement | null = document.getElementById("goals-btn");
 const investmentBtn: HTMLElement | null =
   document.getElementById("investments-btn");
 const faqBtn: HTMLElement | null = document.getElementById("faq-btn");
+
+// Array of all navigation buttons
 const navBtns: (HTMLElement | null)[] = [
   homeBtn,
   budgetBtn,
@@ -36,11 +39,14 @@ const navBtns: (HTMLElement | null)[] = [
   investmentBtn,
   faqBtn,
 ];
+
+// Initialize services
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
 const goalService = new GoalService();
 const userService = new UserService();
 
+// Function to reset the color of all navigation buttons after new button is clicked
 const resetNavColor = () => {
   navBtns.forEach((btn) => {
     if (btn) {
@@ -49,6 +55,7 @@ const resetNavColor = () => {
   });
 };
 
+// Function to render the navbar component
 const renderNav = async () => {
   const userId = localStorage.getItem("user_id");
 
@@ -60,6 +67,7 @@ const renderNav = async () => {
   }
 };
 
+// Function to open the home page module
 const openHome = async () => {
   const userId = localStorage.getItem("user_id");
 
@@ -76,12 +84,7 @@ const openHome = async () => {
   }
 };
 
-homeBtn?.addEventListener("click", (e: Event) => {
-  openHome();
-  resetNavColor();
-  homeBtn.style.backgroundColor = "gold";
-});
-
+// Function to open the budget module
 const openBudget = async () => {
   const user_id = localStorage.getItem("user_id");
 
@@ -93,12 +96,7 @@ const openBudget = async () => {
   }
 };
 
-budgetBtn?.addEventListener("click", (e: Event) => {
-  openBudget();
-  resetNavColor();
-  budgetBtn.style.backgroundColor = "gold";
-});
-
+// Function to open the transaction module
 const openTransaction = async () => {
   const user_id = localStorage.getItem("user_id");
 
@@ -112,12 +110,7 @@ const openTransaction = async () => {
   }
 };
 
-transactionBtn?.addEventListener("click", () => {
-  openTransaction();
-  resetNavColor();
-  transactionBtn.style.backgroundColor = "gold";
-});
-
+// Function to open the insights module
 const openInsights = async () => {
   const user_id = localStorage.getItem("user_id");
 
@@ -132,12 +125,7 @@ const openInsights = async () => {
   }
 };
 
-insightsBtn?.addEventListener("click", () => {
-  openInsights();
-  resetNavColor();
-  insightsBtn.style.backgroundColor = "gold";
-});
-
+// Function to open the goals module
 const openGoals = async () => {
   const user_id = localStorage.getItem("user_id");
 
@@ -152,36 +140,21 @@ const openGoals = async () => {
   }
 };
 
-goalsBtn?.addEventListener("click", () => {
-  openGoals();
-  resetNavColor();
-  goalsBtn.style.backgroundColor = "gold";
-});
-
+// Function to open the investments module
 const openInvestments = () => {
   const investments = createInvestmentsModule();
   container?.replaceChildren();
   container?.appendChild(investments);
 };
 
-investmentBtn?.addEventListener("click", () => {
-  openInvestments();
-  resetNavColor();
-  investmentBtn.style.backgroundColor = "gold";
-});
-
+// Function to open the faq module
 const openFAQ = () => {
   const faq = createFaqModule();
   container?.replaceChildren();
   container?.appendChild(faq);
 };
 
-faqBtn?.addEventListener("click", () => {
-  openFAQ();
-  resetNavColor();
-  faqBtn.style.backgroundColor = "gold";
-});
-
+// Function to start the application
 const start = () => {
   openHome();
   if (homeBtn) {
@@ -190,6 +163,50 @@ const start = () => {
   renderNav();
 };
 
+// Event listeners
+homeBtn?.addEventListener("click", (e: Event) => {
+  openHome();
+  resetNavColor();
+  homeBtn.style.backgroundColor = "gold";
+});
+
+budgetBtn?.addEventListener("click", (e: Event) => {
+  openBudget();
+  resetNavColor();
+  budgetBtn.style.backgroundColor = "gold";
+});
+
+transactionBtn?.addEventListener("click", () => {
+  openTransaction();
+  resetNavColor();
+  transactionBtn.style.backgroundColor = "gold";
+});
+
+insightsBtn?.addEventListener("click", () => {
+  openInsights();
+  resetNavColor();
+  insightsBtn.style.backgroundColor = "gold";
+});
+
+goalsBtn?.addEventListener("click", () => {
+  openGoals();
+  resetNavColor();
+  goalsBtn.style.backgroundColor = "gold";
+});
+
+investmentBtn?.addEventListener("click", () => {
+  openInvestments();
+  resetNavColor();
+  investmentBtn.style.backgroundColor = "gold";
+});
+
+faqBtn?.addEventListener("click", () => {
+  openFAQ();
+  resetNavColor();
+  faqBtn.style.backgroundColor = "gold";
+});
+
+// Call the start function to initialize the application
 start();
 
 export { openBudget, openTransaction, openGoals };

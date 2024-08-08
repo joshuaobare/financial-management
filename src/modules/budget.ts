@@ -2,7 +2,7 @@ import { createCalendar } from "../components/calendar";
 import { Budget } from "../interfaces/budgetInterface";
 import { BudgetService } from "../services/BudgetService";
 import { TransactionService } from "../services/TransactionService";
-import { Helper } from "../helpers/Helper";
+import { DateHelper } from "../helpers/DateHelper";
 import { openBudget, openTransaction } from "../index";
 import { resetTransactionForm, transactionFormDialog } from "./transaction";
 import "../../styles/budget.css";
@@ -23,7 +23,7 @@ const editBudgetFormDialog = <HTMLDialogElement>(
 );
 const budgetService = new BudgetService();
 const transactionService = new TransactionService();
-const helper = new Helper();
+const helper = new DateHelper();
 
 const createBudgetModule = (budgetData: Budget[]): HTMLDivElement => {
   const budget = document.createElement("div");
