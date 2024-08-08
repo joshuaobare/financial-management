@@ -11,11 +11,11 @@ const createInvestmentsModule = () => {
   assetSelector.className = "investments-asset-selector";
 
   const options: InvestmentOptions = {
-    "S&P 500": ["TIME_SERIES_DAILY", "^GSPC"],
-    Bitcoin: ["DIGITAL_CURRENCY_DAILY", "BTC"],
-    Ethereum: ["DIGITAL_CURRENCY_DAILY", "ETH"],
-    Gold: ["FX_DAILY", "XAU"],
-    "Crude Oil": ["COMMODITY_EXCHANGE", "WTI"],
+    "S&P 500": ["TIME_SERIES_DAILY", "^GSPC", "SPY-USD"],
+    Bitcoin: ["DIGITAL_CURRENCY_DAILY", "BTC", "BTC-USD"],
+    Ethereum: ["DIGITAL_CURRENCY_DAILY", "ETH", "ETH-USD"],
+    Gold: ["FX_DAILY", "XAU", "GLD-USD"],
+    "Crude Oil": ["COMMODITY_EXCHANGE", "WTI", "USO-USD"],
   };
 
   for (const key of Object.keys(options)) {
@@ -55,8 +55,6 @@ const createInvestmentsModule = () => {
     dates.forEach((date) => {
       values.push(parseInt(dataset[date]["4. close"]));
     });
-    console.log(Object.keys(dataset));
-    console.log(values);
     const newchart = renderInvestmentChart(chart, dates, values);
     chartSection.appendChild(chart);
   });
@@ -66,10 +64,21 @@ const createInvestmentsModule = () => {
   return investments;
 };
 
+const displayPrediction = async (symbol: string) => {
+  try {
+    const request = await fetch(`http://localhost:8000/predict/${symbol}`);
+    const response = await request.json();
+    return response;
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const apiCall = async (func: string, symbol: string) => {
   try {
     const request = await fetch(
-      `https://www.alphavantage.co/query?function=${func}&symbol=${symbol}&market=USD&apikey=${process.env.KEY2}`
+      `https://www.alphavantage.co/query?function=${func}&symbol=${symbol}&market=USD&apikey=${process.env.KEY}`
     );
     const response = await request.json();
     console.log(response);
