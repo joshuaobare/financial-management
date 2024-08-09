@@ -1,4 +1,5 @@
 <?php
+include_once "../php/header.php";
 include_once ("../config/pdo.php");
 
 session_start();

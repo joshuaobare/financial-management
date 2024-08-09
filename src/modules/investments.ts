@@ -33,6 +33,7 @@ const createInvestmentsModule = () => {
   predictorSection.className = "investments-body-predictor-section";
   const predictorSectionHeader = document.createElement("h4");
   predictorSectionHeader.textContent = "Prediction";
+  const predictorSectionBody = document.createElement("div");
 
   predictorSection.append(predictorSectionHeader);
 
@@ -47,29 +48,67 @@ const createInvestmentsModule = () => {
     chartSectionHeader.textContent = "Chart";
     chartSection.append(chartSectionHeader);
     const chart = document.createElement("canvas");
-    const [func, symbol] =
+    const [func, symbol, ticker] =
       options[assetSelector.value as keyof InvestmentOptions];
-    const dataset = await apiCall(func, symbol);
-    const dates = Object.keys(dataset);
-    const values: number[] = [];
-    dates.forEach((date) => {
-      values.push(parseInt(dataset[date]["4. close"]));
-    });
-    const newchart = renderInvestmentChart(chart, dates, values);
+    // //const dataset = await apiCall(func, symbol);
+    // const dates = Object.keys(dataset);
+    // const values: number[] = [];
+    // dates.forEach((date) => {
+    //   values.push(parseInt(dataset[date]["4. close"]));
+    // });
+    // const newchart = renderInvestmentChart(chart, dates, values);
+    const predictionData = await fetchPrediction(ticker);
+    predictorSectionBody.replaceChildren();
+    predictorSectionBody.append(displayPrediction(predictionData));
+
     chartSection.appendChild(chart);
   });
-
+  predictorSection.append(predictorSectionBody);
   investmentsBody.append(predictorSection, chartSection);
   investments.append(investmentsBody);
   return investments;
 };
 
-const displayPrediction = async (symbol: string) => {
+const displayPrediction = (predictionData: any) => {
+  const prediction = document.createElement("div");
+
+  for (const key of Object.keys(predictionData)) {
+    const predictionItem = document.createElement("div");
+    const predictionItemTitle = document.createElement("div");
+    predictionItemTitle.textContent = `${key.toUpperCase()}`;
+    const predictionItemValue = document.createElement("div");
+
+    if (key.toString() === "accuracy") {
+      predictionItemValue.textContent = `${100 - predictionData[key]}%`;
+    } else if (key.toString() === "date") {
+      let date = new Date(predictionData[key]).toString().split(" ");
+      date = date.slice(0, 4);
+      predictionItemValue.textContent = `${date.join(" ")}`;
+    } else {
+      predictionItemValue.textContent = `USD. ${Math.round(
+        predictionData[key]
+      )}`;
+    }
+    predictionItem.append(predictionItemTitle, predictionItemValue);
+    prediction.appendChild(predictionItem);
+  }
+
+  return prediction;
+};
+
+const fetchPrediction = async (symbol: string) => {
   try {
-    const request = await fetch(`http://localhost:8000/predict/${symbol}`);
+    const request = await fetch(
+      `http://192.168.1.29:7000/predict/symbol=${symbol}`,
+      {
+        method: "GET",
+        headers: { "Content-type": "application/json" },
+      }
+    );
     const response = await request.json();
-    return response;
     console.log(response);
+    return response;
+    return response;
   } catch (error) {
     console.error(error);
   }
