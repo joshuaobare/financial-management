@@ -5,7 +5,8 @@ Chart.register(LineController);
 const renderInvestmentChart = (
   ctx: HTMLCanvasElement,
   dates: string[],
-  values: number[]
+  values: number[],
+  asset: string
 ) => {
   ctx.getContext("2d");
   const data = {
@@ -21,7 +22,7 @@ const renderInvestmentChart = (
     ],
   };
   const chart = new Chart(ctx, {
-    type: "bar",
+    type: "line",
     data: data,
     options: {
       scales: {
@@ -29,10 +30,12 @@ const renderInvestmentChart = (
           beginAtZero: true,
         },
       },
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         title: {
           display: true,
-          text: "Asset",
+          text: asset,
         },
       },
     },

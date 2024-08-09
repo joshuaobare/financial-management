@@ -62,21 +62,38 @@ const createInvestmentsModule = () => {
     chartSection.replaceChildren();
     chartSectionHeader.textContent = "Chart";
     chartSection.append(chartSectionHeader);
+    const chartCont = document.createElement("div");
+    chartCont.className = "investments-chart-cont";
     const chart = document.createElement("canvas");
+    chartCont.appendChild(chart);
     const [func, symbol] =
       options[assetSelector.value as keyof InvestmentOptions];
-    const dataset = await apiCall(func, symbol);
+    //const dataset = await apiCall(func, symbol);
     // const dates = Object.keys(dataset);
     // const values: number[] = [];
     // dates.forEach((date) => {
     //   values.push(parseInt(dataset[date]["4. close"]));
     // });
-    // const newchart = renderInvestmentChart(chart, dates, values);
     const predictionData = await fetchPrediction(symbol);
+    const dataLen = predictionData.data.dates.length;
+    const predictionDates = predictionData.data.dates.slice(
+      dataLen - 365,
+      dataLen
+    );
+    const predictionDataset = predictionData.data.data.slice(
+      dataLen - 365,
+      dataLen
+    );
+    const newchart = renderInvestmentChart(
+      chart,
+      predictionDates,
+      predictionDataset,
+      assetSelector.value
+    );
     predictorSectionBody.replaceChildren();
     predictorSectionBody.append(displayPrediction(predictionData));
 
-    chartSection.appendChild(chart);
+    chartSection.appendChild(chartCont);
   });
   predictorSection.append(predictorSectionBody);
   investmentsBody.append(predictorSection, chartSection);
@@ -88,6 +105,8 @@ const displayPrediction = (predictionData: any) => {
   const prediction = document.createElement("div");
 
   for (const key of Object.keys(predictionData)) {
+    if (key.toString() === "data") continue;
+
     const predictionItem = document.createElement("div");
     predictionItem.className = "investments-prediction-item";
     const predictionItemTitle = document.createElement("div");
@@ -104,13 +123,27 @@ const displayPrediction = (predictionData: any) => {
       let date = new Date(predictionData[key]).toString().split(" ");
       date = date.slice(0, 4);
       predictionItemValue.textContent = `${date.join(" ")}`;
+    } else if (key.toString() === "verdict") {
+      const predictionVal = predictionData[key];
+      predictionItemValue.textContent = `${predictionVal}`;
+      predictionItemValue.style.color =
+        predictionVal === "SELL" ? "red" : "green";
     } else {
       predictionItemValue.textContent = `USD. ${Math.round(
         predictionData[key]
       )}`;
     }
+
     predictionItem.append(predictionItemTitle, predictionItemValue);
+
     prediction.appendChild(predictionItem);
+
+    if (key.toString() === "alert") {
+      const alert = document.createElement("div");
+      alert.append("Model Unavailable");
+      predictionItem.replaceChildren();
+      prediction.append(alert);
+    }
   }
 
   return prediction;
@@ -127,7 +160,6 @@ const fetchPrediction = async (symbol: string) => {
     );
     const response = await request.json();
     console.log(response);
-    return response;
     return response;
   } catch (error) {
     console.error(error);

@@ -39,4 +39,19 @@
 }
 .investments-prediction-item-title {
   width: 150px;
+  font-weight: bold;
+}
+
+.investments-chart-cont {
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .investments-body {
+    flex-direction: column;
+  }
+  .investments-body-chart-section,
+  .investments-body-predictor-section {
+    width: 100%;
+  }
 }
