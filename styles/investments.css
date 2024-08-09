@@ -32,3 +32,11 @@
   -moz-appearance: none;
   appearance: none;
 }
+
+.investments-prediction-item {
+  display: flex;
+  gap: 20px;
+}
+.investments-prediction-item-title {
+  width: 150px;
+}

@@ -11,11 +11,26 @@ const createInvestmentsModule = () => {
   assetSelector.className = "investments-asset-selector";
 
   const options: InvestmentOptions = {
-    "S&P 500": ["TIME_SERIES_DAILY", "^GSPC", "SPY-USD"],
-    Bitcoin: ["DIGITAL_CURRENCY_DAILY", "BTC", "BTC-USD"],
-    Ethereum: ["DIGITAL_CURRENCY_DAILY", "ETH", "ETH-USD"],
-    Gold: ["FX_DAILY", "XAU", "GLD-USD"],
-    "Crude Oil": ["COMMODITY_EXCHANGE", "WTI", "USO-USD"],
+    "S&P 500": [
+      "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^GSPC&outputsize=full&apikey=",
+      "SPY-USD",
+    ],
+    Bitcoin: [
+      "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=",
+      "BTC-USD",
+    ],
+    Ethereum: [
+      "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=ETH&market=USD&apikey=",
+      "ETH-USD",
+    ],
+    Gold: [
+      "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_symbol=XAU&to_symbol=USD&outputsize=full&apikey=",
+      "GLD-USD",
+    ],
+    "Crude Oil": [
+      "https://www.alphavantage.co/query?function=WTI&interval=daily&apikey=",
+      "USO-USD",
+    ],
   };
 
   for (const key of Object.keys(options)) {
@@ -48,16 +63,16 @@ const createInvestmentsModule = () => {
     chartSectionHeader.textContent = "Chart";
     chartSection.append(chartSectionHeader);
     const chart = document.createElement("canvas");
-    const [func, symbol, ticker] =
+    const [func, symbol] =
       options[assetSelector.value as keyof InvestmentOptions];
-    // //const dataset = await apiCall(func, symbol);
+    const dataset = await apiCall(func, symbol);
     // const dates = Object.keys(dataset);
     // const values: number[] = [];
     // dates.forEach((date) => {
     //   values.push(parseInt(dataset[date]["4. close"]));
     // });
     // const newchart = renderInvestmentChart(chart, dates, values);
-    const predictionData = await fetchPrediction(ticker);
+    const predictionData = await fetchPrediction(symbol);
     predictorSectionBody.replaceChildren();
     predictorSectionBody.append(displayPrediction(predictionData));
 
@@ -74,9 +89,12 @@ const displayPrediction = (predictionData: any) => {
 
   for (const key of Object.keys(predictionData)) {
     const predictionItem = document.createElement("div");
+    predictionItem.className = "investments-prediction-item";
     const predictionItemTitle = document.createElement("div");
+    predictionItemTitle.className = "investments-prediction-item-title";
     predictionItemTitle.textContent = `${formatPredictionKey(key)}`;
     const predictionItemValue = document.createElement("div");
+    predictionItemValue.className = "investments-prediction-item-title-value";
 
     if (key.toString() === "accuracy") {
       predictionItemValue.textContent = `${Math.round(
@@ -118,9 +136,7 @@ const fetchPrediction = async (symbol: string) => {
 
 const apiCall = async (func: string, symbol: string) => {
   try {
-    const request = await fetch(
-      `https://www.alphavantage.co/query?function=${func}&symbol=${symbol}&market=USD&apikey=${process.env.KEY}`
-    );
+    const request = await fetch(`${func}${process.env.KEY}`);
     const response = await request.json();
     console.log(response);
     return response;
