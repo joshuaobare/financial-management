@@ -75,11 +75,13 @@ const displayPrediction = (predictionData: any) => {
   for (const key of Object.keys(predictionData)) {
     const predictionItem = document.createElement("div");
     const predictionItemTitle = document.createElement("div");
-    predictionItemTitle.textContent = `${key.toUpperCase()}`;
+    predictionItemTitle.textContent = `${formatPredictionKey(key)}`;
     const predictionItemValue = document.createElement("div");
 
     if (key.toString() === "accuracy") {
-      predictionItemValue.textContent = `${100 - predictionData[key]}%`;
+      predictionItemValue.textContent = `${Math.round(
+        100 - predictionData[key]
+      )}%`;
     } else if (key.toString() === "date") {
       let date = new Date(predictionData[key]).toString().split(" ");
       date = date.slice(0, 4);
@@ -125,6 +127,14 @@ const apiCall = async (func: string, symbol: string) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+const formatPredictionKey = (key: string) => {
+  let words = key.split("_");
+
+  words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+  return words.join(" ");
 };
 
 export { createInvestmentsModule };
