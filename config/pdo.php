@@ -1,8 +1,8 @@
 <?php
-$dbname = getenv('MYSQL_DATABASE');
+$dbname = 'financial-management';
 $user = 'root';
 $host = 'db';
-$password = getenv('MYSQL_PASSWORD');
+$password = '';
 $dsn = "mysql:host=$host;dbname=$dbname";
 try {
     // Initialize a new PDO instance to connect to DB

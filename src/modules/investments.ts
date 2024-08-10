@@ -152,7 +152,7 @@ const displayPrediction = (predictionData: any) => {
 const fetchPrediction = async (symbol: string) => {
   try {
     const request = await fetch(
-      `http://192.168.1.29:7000/predict/symbol=${symbol}`,
+      `http://192.168.1.29:7000/predict/symbol=${symbol}/`,
       {
         method: "GET",
         headers: { "Content-type": "application/json" },

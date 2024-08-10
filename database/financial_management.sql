@@ -1,7 +1,7 @@
 create database financial_management;
 use financial_management;
 
-CREATE TABLE users (
+CREATE TABLE USERS (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL UNIQUE,
     last_name VARCHAR(50) NOT NULL UNIQUE,
@@ -13,7 +13,7 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE financial_accounts (
+CREATE TABLE FINANCIAL_ACCOUNTS (
     account_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     account_type VARCHAR(50) NOT NULL,
@@ -21,11 +21,11 @@ CREATE TABLE financial_accounts (
     account_number VARCHAR(50),
     balance DECIMAL(15, 2) DEFAULT 0.00,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
 
-CREATE TABLE transactions (
+CREATE TABLE TRANSACTIONS (
     transaction_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     title VARCHAR(50),
@@ -35,10 +35,10 @@ CREATE TABLE transactions (
     category VARCHAR(50),
     amount DECIMAL(15, 2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
-CREATE TABLE budgets (
+CREATE TABLE BUDGETS (
     budget_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     title VARCHAR(50),
@@ -48,10 +48,10 @@ CREATE TABLE budgets (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
-CREATE TABLE goals (
+CREATE TABLE GOALS (
     goal_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     goal_name VARCHAR(100) NOT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE goals (
     is_achieved boolean,
     due_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
-CREATE TABLE investments (
+CREATE TABLE INVESTMENTS (
     investment_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     investment_type VARCHAR(50) NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE investments (
     amount DECIMAL(15, 2) NOT NULL,
     current_value DECIMAL(15, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
 
