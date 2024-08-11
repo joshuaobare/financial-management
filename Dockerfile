@@ -24,3 +24,12 @@ COPY . /var/www
 
 # Change ownership of our applications
 RUN chown -R www-data:www-data /var/www
+
+# Copy Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 8080
+EXPOSE 8080
+
+# Start Nginx and PHP-FPM
+CMD service php8.1-fpm start && nginx -g 'daemon off;'
