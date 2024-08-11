@@ -28,8 +28,9 @@ RUN chown -R www-data:www-data /var/www
 # Copy Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose port 8080
+# Modify PHP-FPM configuration to listen on port 8080
+RUN sed -i 's|listen = /var/run/php/php-fpm.sock|listen = 0.0.0.0:8080|' /usr/local/etc/php-fpm.d/www.conf
+
 EXPOSE 8080
 
-# Start Nginx and PHP-FPM
-CMD service php8.1-fpm start && nginx -g 'daemon off;'
+CMD ["php-fpm"]
