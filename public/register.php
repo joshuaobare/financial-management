@@ -1,31 +1,31 @@
 <?php
-include_once ("../config/pdo.php");
+include_once ("./pdo.php");
 
 function validate_input($data)
 {
-  $data = trim($data);
-  $data = htmlspecialchars($data);
-  $data = stripslashes($data);
-  return $data;
+    $data = trim($data);
+    $data = htmlspecialchars($data);
+    $data = stripslashes($data);
+    return $data;
 
 }
 
 if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_POST["date_of_birth"])) && (isset($_POST["email"])) && (isset($_POST["password"]))) {
-  try {
-    $sql = "INSERT INTO USERS (first_name, last_name, date_of_birth, email, password) VALUES ( :first_name, :last_name, :date_of_birth, :email, :password)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(
-      array(
-        ":first_name" => validate_input($_POST["first_name"]),
-        ":last_name" => validate_input($_POST["last_name"]),
-        ":email" => validate_input($_POST["email"]),
-        ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
-        ":date_of_birth" => $_POST["date_of_birth"]
-      )
-    );
-  } catch (PDOException $e) {
-    echo "An error has occurred: " . $e->getMessage() . "";
-  }
+    try {
+        $sql = "INSERT INTO USERS (first_name, last_name, date_of_birth, email, password) VALUES ( :first_name, :last_name, :date_of_birth, :email, :password)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(
+            array(
+                ":first_name" => validate_input($_POST["first_name"]),
+                ":last_name" => validate_input($_POST["last_name"]),
+                ":email" => validate_input($_POST["email"]),
+                ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
+                ":date_of_birth" => $_POST["date_of_birth"]
+            )
+        );
+    } catch (PDOException $e) {
+        echo "An error has occurred: " . $e->getMessage() . "";
+    }
 }
 ?>
 

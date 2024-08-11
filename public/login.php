@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once ("../config/pdo.php");
+include_once ("./pdo.php");
 
 if (isset($_SESSION['user_id'])) {
   header("Location: home.php");

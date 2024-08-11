@@ -1,7 +1,7 @@
 <?php
 
 // Include the database connection configuration , header file
-include_once ("../config/pdo.php");
+include_once ("./pdo.php");
 include_once ("./header.php");
 
 // This block fetches all budget items belonging to a user
