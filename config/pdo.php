@@ -1,7 +1,7 @@
 <?php
-$dbname = 'financial-management';
+$dbname = 'financial_management';
 $user = 'root';
-$host = 'db';
+$host = 'localhost';
 $password = '';
 $dsn = "mysql:host=$host;dbname=$dbname";
 try {

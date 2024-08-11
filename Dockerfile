@@ -32,9 +32,11 @@ RUN chown -R www-data:www-data /var/www
 # Expose port 8080
 EXPOSE 8080
 
-# Copy start script
+# Install the Cloud SQL proxy
+RUN wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O /usr/local/bin/cloud_sql_proxy
+RUN chmod +x /usr/local/bin/cloud_sql_proxy
+
+# Update your start script to run the Cloud SQL proxy
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
-
-# Start Nginx and PHP-FPM
 CMD ["/start.sh"]

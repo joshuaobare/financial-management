@@ -1,13 +1,13 @@
 <?php
 
 // Include the database connection configuration , header file
-include_once ("./pdo.php");
+include_once ("../config/pdo.php");
 include_once ("./header.php");
 
-// This block fetches all budget items belonging to a user
+// This block fetches all goals belonging to a user
 if (isset($_GET["user_id"])) {
     try {
-        $sql = "SELECT * FROM BUDGETS WHERE USER_ID = :user_id";
+        $sql = "SELECT * FROM GOALS WHERE USER_ID = :user_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(
             array(
@@ -22,7 +22,7 @@ if (isset($_GET["user_id"])) {
             array_push($data, $row);
         }
         // Respond with a JSON-encoded message and the fetched budget data
-        echo json_encode(array("message" => "User's budget fetched", "budgets" => $data));
+        echo json_encode(array("message" => "User's goals fetched", "goals" => $data));
 
     } catch (PDOException $e) {
         // If there's a PDO exception, respond with the error message

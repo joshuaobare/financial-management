@@ -1,5 +1,5 @@
 <?php
-include_once ("./pdo.php");
+include_once ("../config/pdo.php");
 
 $userData = '';
 function validate_input($data)

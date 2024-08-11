@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "./header.php";
-include_once ("./pdo.php");
+include_once "../php/header.php";
+include_once ("../config/pdo.php");
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
 } else {

@@ -1,6 +1,6 @@
 <?php
 
-include_once ("./pdo.php");
+include_once ("../config/pdo.php");
 include_once ("./header.php");
 
 if (isset($_GET["budget_id"])) {
