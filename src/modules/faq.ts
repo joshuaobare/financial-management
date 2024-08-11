@@ -12,7 +12,7 @@ const createFaqModule = () => {
     "What can I do with the investments tab",
   ];
   const answers: string[] = [
-    "Regularly update transactions, set clear budgets and goals, review insights consistently and adjust spending",
+    "Ensure the 5 key areas of personal finance are accounted for: income, spending, insurance, savings, investments. Regularly update transactions, set clear budgets and goals, review insights consistently and adjust spending",
     'To create a budget, navigate to the Budget section, click on "Create New Budget," and enter your planned amounts for different categories like bills, savings, and personal expenses. Save the budget to start tracking your spending against it.',
     "Yes, you can edit your budget at any time. Go to the Budget section, click the budget item you want to edit, make the necessary changes, and save the updated budget.",
 
