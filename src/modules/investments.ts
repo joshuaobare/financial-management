@@ -152,23 +152,12 @@ const displayPrediction = (predictionData: any) => {
 const fetchPrediction = async (symbol: string) => {
   try {
     const request = await fetch(
-      `http://192.168.1.29:7000/predict/symbol=${symbol}/`,
+      `http://localhost:7000/predict/symbol=${symbol}/`,
       {
         method: "GET",
         headers: { "Content-type": "application/json" },
       }
     );
-    const response = await request.json();
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const apiCall = async (func: string, symbol: string) => {
-  try {
-    const request = await fetch(`${func}${process.env.KEY}`);
     const response = await request.json();
     console.log(response);
     return response;
