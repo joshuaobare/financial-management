@@ -1,31 +1,81 @@
 <?php
-include_once ("../config/pdo.php");
+include_once("../config/pdo.php");
 
 function validate_input($data)
 {
-  $data = trim($data);
-  $data = htmlspecialchars($data);
-  $data = stripslashes($data);
-  return $data;
+    $data = trim($data);
+    $data = htmlspecialchars($data);
+    $data = stripslashes($data);
+    return $data;
 
 }
 
+function validate_password($password)
+{
+    $errors = [];
+
+    // Check minimum length (at least 12 characters)
+    if (strlen($password) < 12) {
+        $errors[] = "Password must be at least 12 characters long";
+    }
+
+    // Check for uppercase letters
+    if (!preg_match('/[A-Z]/', $password)) {
+        $errors[] = "Password must contain at least one uppercase letter";
+    }
+
+    // Check for lowercase letters
+    if (!preg_match('/[a-z]/', $password)) {
+        $errors[] = "Password must contain at least one lowercase letter";
+    }
+
+    // Check for numbers
+    if (!preg_match('/[0-9]/', $password)) {
+        $errors[] = "Password must contain at least one number";
+    }
+
+    // Check for special characters
+    if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
+        $errors[] = "Password must contain at least one special character";
+    }
+
+    return [
+        'valid' => empty($errors),
+        'errors' => $errors
+    ];
+}
+
 if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_POST["date_of_birth"])) && (isset($_POST["email"])) && (isset($_POST["password"]))) {
-  try {
-    $sql = "INSERT INTO USERS (first_name, last_name, date_of_birth, email, password) VALUES ( :first_name, :last_name, :date_of_birth, :email, :password)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(
-      array(
-        ":first_name" => validate_input($_POST["first_name"]),
-        ":last_name" => validate_input($_POST["last_name"]),
-        ":email" => validate_input($_POST["email"]),
-        ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
-        ":date_of_birth" => $_POST["date_of_birth"]
-      )
-    );
-  } catch (PDOException $e) {
-    echo "An error has occurred: " . $e->getMessage() . "";
-  }
+
+    // Validate password before proceeding
+    $password_validation = validate_password($_POST["password"]);
+
+    if (!$password_validation['valid']) {
+        header('Content-Type: application/json');
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Password validation failed',
+            'errors' => $password_validation['errors']
+        ]);
+        exit;
+    }
+
+
+    try {
+        $sql = "INSERT INTO USERS (first_name, last_name, date_of_birth, email, password) VALUES ( :first_name, :last_name, :date_of_birth, :email, :password)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(
+            array(
+                ":first_name" => validate_input($_POST["first_name"]),
+                ":last_name" => validate_input($_POST["last_name"]),
+                ":email" => validate_input($_POST["email"]),
+                ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
+                ":date_of_birth" => $_POST["date_of_birth"]
+            )
+        );
+    } catch (PDOException $e) {
+        echo "An error has occurred: " . $e->getMessage() . "";
+    }
 }
 ?>
 
@@ -82,6 +132,13 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
                         <input type="password" class="register-form-item-input" name="password" id="password"
                             minlength="3" required />
                         <span class="error-message" id="password_error"></span>
+                        <div class="password-requirements">
+                            <div class="requirement" id="length-req">At least 12 characters</div>
+                            <div class="requirement" id="uppercase-req">At least one uppercase letter</div>
+                            <div class="requirement" id="lowercase-req">At least one lowercase letter</div>
+                            <div class="requirement" id="number-req">At least one number</div>
+                            <div class="requirement" id="special-req">At least one special character</div>
+                        </div>
                     </div>
                 </div>
                 <div class="register-form-item">
