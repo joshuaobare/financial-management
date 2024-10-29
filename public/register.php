@@ -8,6 +8,7 @@ function validate_input($data)
     $data = stripslashes($data);
     return $data;
 
+
 }
 
 function validate_password($password)
