@@ -1,0 +1,29 @@
+Html Webpack Plugin:
+<pre>
+  TypeError: val.includes is not a function
+  
+  - plugin.js:297 
+    [financial-management]/[csp-html-webpack-plugin]/plugin.js:297:17
+  
+  - Array.map
+  
+  - plugin.js:290 CspHtmlWebpackPlugin.buildPolicy
+    [financial-management]/[csp-html-webpack-plugin]/plugin.js:290:8
+  
+  - plugin.js:334 CspHtmlWebpackPlugin.processCsp
+    [financial-management]/[csp-html-webpack-plugin]/plugin.js:334:30
+  
+  
+  - new Promise
+  
+  
+  - Hook.js:22 Hook.PROMISE_DELEGATE [as _promise]
+    [financial-management]/[tapable]/lib/Hook.js:22:14
+  
+  - index.js:1494 
+    [financial-management]/[html-webpack-plugin]/index.js:1494:23
+  
+  - task_queues:105 process.processTicksAndRejections
+    node:internal/process/task_queues:105:5
+  
+</pre>

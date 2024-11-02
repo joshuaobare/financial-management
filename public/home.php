@@ -1,7 +1,8 @@
 <?php
 session_start();
 include_once "../php/header.php";
-include_once ("../config/pdo.php");
+include_once("../config/pdo.php");
+$nonce = base64_encode(random_bytes(16));
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
 } else {

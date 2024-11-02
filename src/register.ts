@@ -258,7 +258,6 @@ registerForm?.addEventListener("submit", async (e: Event) => {
       });
 
       const result = await response.json();
-      console.log(result);
 
       if (result.status === "success") {
         alert("Registration successful!");
