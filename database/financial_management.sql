@@ -19,9 +19,10 @@ CREATE TABLE FINANCIAL_ACCOUNTS (
     account_type VARCHAR(50) NOT NULL,
     account_name VARCHAR(100) NOT NULL,
     account_number VARCHAR(50),
-    balance DECIMAL(15, 2) DEFAULT 0.00,
+    balance DECIMAL(15 , 2 ) DEFAULT 0.00,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY (user_id)
+        REFERENCES USERS (user_id)
 );
 
 
@@ -30,12 +31,13 @@ CREATE TABLE TRANSACTIONS (
     user_id INT NOT NULL,
     title VARCHAR(50),
     description VARCHAR(255),
-	start_date DATE NOT NULL,
+    start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     category VARCHAR(50),
-    amount DECIMAL(15, 2) NOT NULL,
+    amount DECIMAL(15 , 2 ) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY (user_id)
+        REFERENCES USERS (user_id)
 );
 
 CREATE TABLE BUDGETS (
@@ -43,25 +45,27 @@ CREATE TABLE BUDGETS (
     user_id INT NOT NULL,
     title VARCHAR(50),
     category VARCHAR(50) NOT NULL,
-    amount DECIMAL(15, 2) NOT NULL,
-    description longtext,
+    amount DECIMAL(15 , 2 ) NOT NULL,
+    description LONGTEXT,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY (user_id)
+        REFERENCES USERS (user_id)
 );
 
 CREATE TABLE GOALS (
     goal_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     goal_name VARCHAR(100) NOT NULL,
-    target_amount DECIMAL(15, 2) NOT NULL,
-    current_amount DECIMAL(15, 2) DEFAULT 0.00,
-    description longtext,
-    is_achieved boolean,
+    target_amount DECIMAL(15 , 2 ) NOT NULL,
+    current_amount DECIMAL(15 , 2 ) DEFAULT 0.00,
+    description LONGTEXT,
+    is_achieved BOOLEAN,
     due_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY (user_id)
+        REFERENCES USERS (user_id)
 );
 
 CREATE TABLE INVESTMENTS (
@@ -69,10 +73,19 @@ CREATE TABLE INVESTMENTS (
     user_id INT NOT NULL,
     investment_type VARCHAR(50) NOT NULL,
     investment_name VARCHAR(100) NOT NULL,
-    amount DECIMAL(15, 2) NOT NULL,
-    current_value DECIMAL(15, 2),
+    amount DECIMAL(15 , 2 ) NOT NULL,
+    current_value DECIMAL(15 , 2 ),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY (user_id)
+        REFERENCES USERS (user_id)
+);
+
+CREATE TABLE LOGS (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    event VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id)
+        REFERENCES users (user_id)
 );
 
 
