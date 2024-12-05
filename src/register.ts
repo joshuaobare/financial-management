@@ -250,8 +250,7 @@ registerForm?.addEventListener("submit", async (e: Event) => {
         confirm_password: confirm_password.value,
         date_of_birth: date_of_birth.value,
       };
-      console.log(formData);
-      console.log(registerForm.action);
+
       const response = await fetch(`${config.BASE_URL}userCreate.php`, {
         method: "POST",
         body: JSON.stringify(formData),
@@ -260,10 +259,8 @@ registerForm?.addEventListener("submit", async (e: Event) => {
       const result = await response.json();
 
       if (result.status === "success") {
-        alert("Registration successful!");
         (e.target as HTMLFormElement).reset();
       } else {
-        alert(result.message);
         if (result.errors) {
           result.errors.forEach((error: string) => {
             if (password_error) password_error.textContent += error + "\n";

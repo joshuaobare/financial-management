@@ -38,10 +38,11 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
       // Log the successful login event
       $log_sql = "INSERT INTO LOGS (user_id, event) VALUES (:user_id, :event)";
       $log_stmt = $pdo->prepare($log_sql);
+      $email = $_POST['email'];
       $log_stmt->execute(
         array(
           ":user_id" => $user_id,
-          ":event" => "User logged in"
+          ":event" => "Successful login for email: $email"
         )
       );
 
@@ -53,6 +54,7 @@ if (isset($_POST['password']) && isset($_POST['email'])) {
       // Log the failed login attempt
       $log_sql = "INSERT INTO LOGS (user_id, event) VALUES (:user_id, :event)";
       $log_stmt = $pdo->prepare($log_sql);
+      $email = $_POST['email'];
       $log_stmt->execute(
         array(
           ":user_id" => null, // No user ID for failed attempts

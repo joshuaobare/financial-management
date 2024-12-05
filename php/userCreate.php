@@ -81,7 +81,20 @@ if ((isset($_POST["first_name"])) && (isset($_POST["last_name"])) && (isset($_PO
                 ":date_of_birth" => $_POST["date_of_birth"]
             )
         );
-        header('Content-Type: application/json');
+        //header('Content-Type: application/json');
+
+        // Log the successful login event
+        $log_sql = "INSERT INTO LOGS (user_id, event) VALUES (:user_id, :event)";
+        $log_stmt = $pdo->prepare($log_sql);
+        $email = validate_input($_POST["email"]);
+        $log_stmt->execute(
+            array(
+                ":user_id" => null,
+                ":event" => "Successfully created user: " . $email
+            )
+        );
+
+
         echo json_encode([
             'status' => 'success',
             'message' => 'User registered successfully'
